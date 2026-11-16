@@ -1,3 +1,11 @@
+/*!
+ * Nexus — Catálogo y Biblioteca de Software
+ * Autor: Alejandro Manrique
+ * Ubicación: Trelew, Chubut, Argentina
+ * Copyright (c) 2026 Alejandro Manrique. Todos los derechos reservados.
+ * Prohibida su reproducción total o parcial sin autorización expresa del autor.
+ */
+
 "use strict";
 
 const CONFIG = { catalogo: "./data/programas.json" };
