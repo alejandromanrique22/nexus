@@ -14,16 +14,16 @@
   <meta name="author" content="Alejandro Manrique">
   <meta name="copyright" content="© 2026 Alejandro Manrique - Trelew, Chubut, Argentina. Todos los derechos reservados.">
   <meta name="application-name" content="Nexus">
-  <meta name="description" content="Explorá software para Windows, macOS, Linux y Android. Compará programas, consultá sus características y encontrá fuentes de descarga confiables.">
+  <meta name="description" content="Explorá software gratuito para Windows. Compará programas, consultá sus características y encontrá fuentes de descarga confiables.">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <title>Nexus — Software útil, sin vueltas</title>
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./css/styles.css?v=3">
-  <script src="./js/app.js?v=2" defer></script>
+  <script src="./js/app.js?v=3" defer></script>
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Nexus">
   <meta property="og:title" content="Nexus — Software útil, sin vueltas">
-  <meta property="og:description" content="Encontrá herramientas para trabajar, crear y proteger tus dispositivos.">
+  <meta property="og:description" content="Encontrá herramientas gratuitas para trabajar, crear y proteger tu PC con Windows.">
 </head>
 <body>
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -71,13 +71,13 @@
             </div>
           </div>
           <div class="floating-chip chip-top"><span>✦</span> Descubrí</div>
-          <div class="floating-chip chip-bottom"><span>⌘</span> Para tus dispositivos</div>
+          <div class="floating-chip chip-bottom"><span>⌘</span> Para tu Windows</div>
         </div>
       </div>
       <div class="hero-bottom container">
         <div><strong id="totalProgramas">—</strong><span>programas en catálogo</span></div>
         <div><strong id="totalCategorias">—</strong><span>categorías para explorar</span></div>
-        <div><strong>4</strong><span>sistemas contemplados</span></div>
+        <div><strong>100%</strong><span>software gratis para Windows</span></div>
       </div>
     </section>
 
@@ -127,14 +127,39 @@
       <form class="search-form catalog-search" id="searchForm" role="search">
         <span class="search-symbol" aria-hidden="true">⌕</span>
         <label class="sr-only" for="search">Buscar programas</label>
-        <input id="search" type="search" placeholder="Buscá un programa, categoría o sistema…" autocomplete="off">
+        <input id="search" type="search" placeholder="Buscá un programa, categoría o versión de Windows…" autocomplete="off">
         <button type="submit">Buscar <span aria-hidden="true">→</span></button>
       </form>
 
       <div class="filter-panel">
-        <div class="filter-field"><label for="systemFilter">Sistema operativo</label><select id="systemFilter"><option value="">Todos los sistemas</option><option>Windows</option><option>Windows 7</option><option>Windows XP</option><option>macOS</option><option>Linux</option><option>Android</option><option>iOS</option></select></div>
-        <div class="filter-field"><label for="priceFilter">Modelo de precio</label><select id="priceFilter"><option value="">Cualquier precio</option><option>Gratis</option><option>Freemium</option><option>De pago</option></select></div>
-        <div class="filter-field"><label for="sortFilter">Ordenar por</label><select id="sortFilter"><option value="nombre">Nombre: A a Z</option><option value="recientes">Más recientes</option><option value="descargas">Más populares</option></select></div>
+        <div class="filter-field">
+          <label for="systemFilter">Versión de Windows</label>
+          <select id="systemFilter">
+            <option value="">Todas las versiones</option>
+            <option>Windows 11</option>
+            <option>Windows 10</option>
+            <option>Windows 8.1</option>
+            <option>Windows 7</option>
+            <option>Windows XP</option>
+          </select>
+        </div>
+        <div class="filter-field">
+          <label for="archFilter">Arquitectura</label>
+          <select id="archFilter">
+            <option value="">Todas (32 / 64 bits)</option>
+            <option value="64 bits">64 bits</option>
+            <option value="32 bits">32 bits</option>
+            <option value="32 y 64 bits">32 y 64 bits</option>
+          </select>
+        </div>
+        <div class="filter-field">
+          <label for="sortFilter">Ordenar por</label>
+          <select id="sortFilter">
+            <option value="nombre">Nombre: A a Z</option>
+            <option value="recientes">Más recientes</option>
+            <option value="descargas">Más populares</option>
+          </select>
+        </div>
         <button type="button" id="clearFilters" class="reset-button">↺ <span>Limpiar</span></button>
       </div>
       <div class="results-row"><p id="resultsCount" aria-live="polite">Cargando catálogo…</p><span>Elegí una ficha para ver sus datos</span></div>

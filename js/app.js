@@ -13,7 +13,7 @@
     category: "Todas",
     search: "",
     system: "",
-    price: "",
+    arch: "",
     sort: "nombre"
   };
 
@@ -26,7 +26,7 @@
     searchForm: document.getElementById("searchForm"),
     searchInput: document.getElementById("search"),
     systemFilter: document.getElementById("systemFilter"),
-    priceFilter: document.getElementById("priceFilter"),
+    archFilter: document.getElementById("archFilter"),
     sortFilter: document.getElementById("sortFilter"),
     clearFilters: document.getElementById("clearFilters"),
     resetSearch: document.getElementById("resetSearch"),
@@ -264,6 +264,21 @@
     return card;
   }
 
+  function matchesArchitecture(progArch, selectedArch) {
+    if (!selectedArch) {
+      return true;
+    }
+    var archLower = String(progArch || "").toLowerCase();
+    var targetLower = selectedArch.toLowerCase();
+    if (!archLower) {
+      return false;
+    }
+    if (targetLower === "32 y 64 bits") {
+      return archLower.indexOf("32") !== -1 && archLower.indexOf("64") !== -1;
+    }
+    return archLower.indexOf(targetLower) !== -1;
+  }
+
   function getFilteredPrograms() {
     var query = state.search.toLowerCase();
 
@@ -277,7 +292,7 @@
           return false;
         }
       }
-      if (state.price && prog.precio !== state.price) {
+      if (!matchesArchitecture(prog.arquitectura, state.arch)) {
         return false;
       }
       if (query) {
@@ -286,6 +301,7 @@
           prog.categoria,
           prog.editor,
           prog.descripcion,
+          prog.arquitectura,
           Array.isArray(prog.sistemas) ? prog.sistemas.join(" ") : ""
         ]
           .join(" ")
@@ -347,7 +363,7 @@
     state.category = "Todas";
     state.search = "";
     state.system = "";
-    state.price = "";
+    state.arch = "";
     state.sort = "nombre";
 
     if (elements.searchInput) {
@@ -356,8 +372,8 @@
     if (elements.systemFilter) {
       elements.systemFilter.value = "";
     }
-    if (elements.priceFilter) {
-      elements.priceFilter.value = "";
+    if (elements.archFilter) {
+      elements.archFilter.value = "";
     }
     if (elements.sortFilter) {
       elements.sortFilter.value = "nombre";
@@ -394,9 +410,9 @@
       });
     }
 
-    if (elements.priceFilter) {
-      elements.priceFilter.addEventListener("change", function () {
-        state.price = elements.priceFilter.value;
+    if (elements.archFilter) {
+      elements.archFilter.addEventListener("change", function () {
+        state.arch = elements.archFilter.value;
         renderPrograms();
       });
     }
