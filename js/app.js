@@ -485,7 +485,8 @@
     }
 
     if (elements.prevPageBtn) {
-      elements.prevPageBtn.addEventListener("click", function () {
+      elements.prevPageBtn.addEventListener("click", function (e) {
+        e.preventDefault();
         if (state.currentPage > 1) {
           state.currentPage--;
           renderPrograms();
@@ -494,7 +495,8 @@
     }
 
     if (elements.nextPageBtn) {
-      elements.nextPageBtn.addEventListener("click", function () {
+      elements.nextPageBtn.addEventListener("click", function (e) {
+        e.preventDefault();
         var filtered = getFilteredPrograms();
         var totalPages = Math.ceil(filtered.length / state.itemsPerPage);
         if (state.currentPage < totalPages) {
@@ -578,7 +580,7 @@
         }
         if (elements.resultsCount) {
           elements.resultsCount.textContent = "Catálogo no disponible";
-        } mouvements
+        }
         if (elements.errorState) {
           elements.errorState.hidden = false;
         }
