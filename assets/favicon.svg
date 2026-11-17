@@ -1,1 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#819cff"/><stop offset="1" stop-color="#a987f4"/></linearGradient></defs><rect width="64" height="64" rx="17" fill="url(#g)"/><path d="M17 47V17h8l15 18V17h8v30h-8L25 29v18z" fill="white"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="frameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#89c4ff" />
+      <stop offset="50%" stop-color="#2b6cb0" />
+      <stop offset="100%" stop-color="#14366e" />
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#132544" />
+      <stop offset="100%" stop-color="#060d1d" />
+    </linearGradient>
+    <linearGradient id="cyanBolt" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="55%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#7dd3fc" />
+    </linearGradient>
+    <linearGradient id="silverBolt" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc" />
+      <stop offset="50%" stop-color="#93c5fd" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#bgGrad)" stroke="url(#frameGrad)" stroke-width="4" />
+  <path d="M15 47 L26 21 L35 33 L44 22 L44 27 L35 38 L26 26 L18 47 Z" fill="url(#silverBolt)" />
+  <path d="M13 51 L26 28 L35 40 L47 22 L42 19 L54 15 L52 27 L48 24 L35 46 L26 34 Z" fill="url(#cyanBolt)" />
+</svg>
