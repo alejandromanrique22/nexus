@@ -16,7 +16,7 @@
     arch: "",
     sort: "nombre",
     currentPage: 1,
-    itemsPerPage: 6 // Cantidad de programas que se muestran por página
+    itemsPerPage: 6
   };
 
   var elements = {
@@ -117,7 +117,7 @@
       btn.setAttribute("aria-pressed", state.category === cat ? "true" : "false");
       btn.addEventListener("click", function () {
         state.category = cat;
-        state.currentPage = 1; // Volver a la página 1 al cambiar de categoría
+        state.currentPage = 1;
         renderCategories();
         renderPrograms();
       });
@@ -441,10 +441,6 @@
         state.search = elements.searchInput ? elements.searchInput.value.trim() : "";
         state.currentPage = 1;
         renderPrograms();
-        var catalog = document.getElementById("catalogo");
-        if (catalog) {
-          catalog.scrollIntoView({ behavior: "smooth" });
-        }
       });
     }
 
@@ -493,10 +489,6 @@
         if (state.currentPage > 1) {
           state.currentPage--;
           renderPrograms();
-          var catalog = document.getElementById("catalogo");
-          if (catalog) {
-            catalog.scrollIntoView({ behavior: "smooth" });
-          }
         }
       });
     }
@@ -508,10 +500,6 @@
         if (state.currentPage < totalPages) {
           state.currentPage++;
           renderPrograms();
-          var catalog = document.getElementById("catalogo");
-          if (catalog) {
-            catalog.scrollIntoView({ behavior: "smooth" });
-          }
         }
       });
     }
@@ -590,7 +578,7 @@
         }
         if (elements.resultsCount) {
           elements.resultsCount.textContent = "Catálogo no disponible";
-        }
+        } mouvements
         if (elements.errorState) {
           elements.errorState.hidden = false;
         }
