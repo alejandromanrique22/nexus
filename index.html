@@ -18,7 +18,7 @@
   <meta name="robots" content="index,follow,max-image-preview:large">
   <title>Nexus — Software útil, sin vueltas</title>
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./css/styles.css?v=2">
+  <link rel="stylesheet" href="./css/styles.css?v=3">
   <script src="./js/app.js?v=2" defer></script>
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Nexus">
@@ -50,12 +50,6 @@
           <span class="eyebrow"><span class="eyebrow-dot"></span> TU BIBLIOTECA DE SOFTWARE</span>
           <h1>Las herramientas<br>correctas. <span>Sin vueltas.</span></h1>
           <p class="hero-lead">Descubrí programas para trabajar, crear y mantener tus dispositivos en marcha. Compará opciones y encontrá lo que necesitás.</p>
-          <form class="search-form" id="searchForm" role="search">
-            <span class="search-symbol" aria-hidden="true">⌕</span>
-            <label class="sr-only" for="search">Buscar programas</label>
-            <input id="search" type="search" placeholder="Buscá un programa, categoría o sistema…" autocomplete="off">
-            <button type="submit">Buscar <span aria-hidden="true">→</span></button>
-          </form>
           <div class="hero-proof">
             <span><i class="proof-check">✓</i> Catálogo organizado</span>
             <span><i class="proof-check">✓</i> Filtros simples</span>
@@ -129,6 +123,14 @@
         <div><span class="eyebrow">LA BIBLIOTECA</span><h2>Software para cada tarea<span class="title-period">.</span></h2><p>Compará características y filtrá el catálogo a tu manera.</p></div>
         <span class="catalog-note"><span class="live-dot"></span> Catálogo disponible</span>
       </div>
+
+      <form class="search-form catalog-search" id="searchForm" role="search">
+        <span class="search-symbol" aria-hidden="true">⌕</span>
+        <label class="sr-only" for="search">Buscar programas</label>
+        <input id="search" type="search" placeholder="Buscá un programa, categoría o sistema…" autocomplete="off">
+        <button type="submit">Buscar <span aria-hidden="true">→</span></button>
+      </form>
+
       <div class="filter-panel">
         <div class="filter-field"><label for="systemFilter">Sistema operativo</label><select id="systemFilter"><option value="">Todos los sistemas</option><option>Windows</option><option>Windows 7</option><option>Windows XP</option><option>macOS</option><option>Linux</option><option>Android</option><option>iOS</option></select></div>
         <div class="filter-field"><label for="priceFilter">Modelo de precio</label><select id="priceFilter"><option value="">Cualquier precio</option><option>Gratis</option><option>Freemium</option><option>De pago</option></select></div>
