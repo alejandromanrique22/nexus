@@ -14,7 +14,9 @@
     search: "",
     system: "",
     arch: "",
-    sort: "nombre"
+    sort: "nombre",
+    currentPage: 1,
+    itemsPerPage: 6 // Cantidad de programas que se muestran por página
   };
 
   var elements = {
@@ -32,7 +34,11 @@
     resetSearch: document.getElementById("resetSearch"),
     totalProgramas: document.getElementById("totalProgramas"),
     totalCategorias: document.getElementById("totalCategorias"),
-    currentYear: document.getElementById("currentYear")
+    currentYear: document.getElementById("currentYear"),
+    paginationContainer: document.getElementById("paginationContainer"),
+    prevPageBtn: document.getElementById("prevPage"),
+    nextPageBtn: document.getElementById("nextPage"),
+    pageInfo: document.getElementById("pageInfo")
   };
 
   function safeUrl(value) {
@@ -111,6 +117,7 @@
       btn.setAttribute("aria-pressed", state.category === cat ? "true" : "false");
       btn.addEventListener("click", function () {
         state.category = cat;
+        state.currentPage = 1; // Volver a la página 1 al cambiar de categoría
         renderCategories();
         renderPrograms();
       });
@@ -326,6 +333,32 @@
     return filtered;
   }
 
+  function renderPagination(totalFiltered) {
+    var paginationEl = elements.paginationContainer;
+    if (!paginationEl) {
+      return;
+    }
+
+    var totalPages = Math.ceil(totalFiltered / state.itemsPerPage);
+
+    if (totalPages <= 1) {
+      paginationEl.hidden = true;
+      return;
+    }
+
+    paginationEl.hidden = false;
+    if (elements.pageInfo) {
+      elements.pageInfo.textContent = "Página " + state.currentPage + " de " + totalPages;
+    }
+
+    if (elements.prevPageBtn) {
+      elements.prevPageBtn.disabled = state.currentPage <= 1;
+    }
+    if (elements.nextPageBtn) {
+      elements.nextPageBtn.disabled = state.currentPage >= totalPages;
+    }
+  }
+
   function renderPrograms() {
     var list = elements.programList;
     if (!list) {
@@ -333,17 +366,32 @@
     }
 
     var filtered = getFilteredPrograms();
+    var totalFiltered = filtered.length;
+    var totalPages = Math.ceil(totalFiltered / state.itemsPerPage) || 1;
+
+    if (state.currentPage > totalPages) {
+      state.currentPage = totalPages;
+    }
+    if (state.currentPage < 1) {
+      state.currentPage = 1;
+    }
+
+    var startIndex = (state.currentPage - 1) * state.itemsPerPage;
+    var paginatedItems = filtered.slice(startIndex, startIndex + state.itemsPerPage);
+
     list.innerHTML = "";
 
     if (elements.resultsCount) {
-      var total = filtered.length;
       elements.resultsCount.textContent =
-        total === 1 ? "Mostrando 1 programa" : "Mostrando " + total + " programas";
+        totalFiltered === 1 ? "Mostrando 1 programa" : "Mostrando " + totalFiltered + " programas";
     }
 
-    if (filtered.length === 0) {
+    if (totalFiltered === 0) {
       if (elements.emptyState) {
         elements.emptyState.hidden = false;
+      }
+      if (elements.paginationContainer) {
+        elements.paginationContainer.hidden = true;
       }
       return;
     }
@@ -353,10 +401,12 @@
     }
 
     var fragment = document.createDocumentFragment();
-    filtered.forEach(function (prog) {
+    paginatedItems.forEach(function (prog) {
       fragment.appendChild(createProgramCard(prog));
     });
     list.appendChild(fragment);
+
+    renderPagination(totalFiltered);
   }
 
   function resetAllFilters() {
@@ -365,6 +415,7 @@
     state.system = "";
     state.arch = "";
     state.sort = "nombre";
+    state.currentPage = 1;
 
     if (elements.searchInput) {
       elements.searchInput.value = "";
@@ -388,6 +439,7 @@
       elements.searchForm.addEventListener("submit", function (e) {
         e.preventDefault();
         state.search = elements.searchInput ? elements.searchInput.value.trim() : "";
+        state.currentPage = 1;
         renderPrograms();
         var catalog = document.getElementById("catalogo");
         if (catalog) {
@@ -399,6 +451,7 @@
     if (elements.searchInput) {
       elements.searchInput.addEventListener("input", function () {
         state.search = elements.searchInput.value.trim();
+        state.currentPage = 1;
         renderPrograms();
       });
     }
@@ -406,6 +459,7 @@
     if (elements.systemFilter) {
       elements.systemFilter.addEventListener("change", function () {
         state.system = elements.systemFilter.value;
+        state.currentPage = 1;
         renderPrograms();
       });
     }
@@ -413,6 +467,7 @@
     if (elements.archFilter) {
       elements.archFilter.addEventListener("change", function () {
         state.arch = elements.archFilter.value;
+        state.currentPage = 1;
         renderPrograms();
       });
     }
@@ -420,6 +475,7 @@
     if (elements.sortFilter) {
       elements.sortFilter.addEventListener("change", function () {
         state.sort = elements.sortFilter.value;
+        state.currentPage = 1;
         renderPrograms();
       });
     }
@@ -430,6 +486,34 @@
 
     if (elements.resetSearch) {
       elements.resetSearch.addEventListener("click", resetAllFilters);
+    }
+
+    if (elements.prevPageBtn) {
+      elements.prevPageBtn.addEventListener("click", function () {
+        if (state.currentPage > 1) {
+          state.currentPage--;
+          renderPrograms();
+          var catalog = document.getElementById("catalogo");
+          if (catalog) {
+            catalog.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      });
+    }
+
+    if (elements.nextPageBtn) {
+      elements.nextPageBtn.addEventListener("click", function () {
+        var filtered = getFilteredPrograms();
+        var totalPages = Math.ceil(filtered.length / state.itemsPerPage);
+        if (state.currentPage < totalPages) {
+          state.currentPage++;
+          renderPrograms();
+          var catalog = document.getElementById("catalogo");
+          if (catalog) {
+            catalog.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      });
     }
   }
 
