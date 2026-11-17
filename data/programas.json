@@ -1,194 +1,330 @@
 [
   {
-    "name": "Winamp",
-    "icon": "../images/winamp.png",
-    "category": "Multimedia",
-    "desc": "El reproductor de MP3 clásico, famoso por sus skins y su consumo mínimo de recursos.",
-    "os": "Windows XP",
-    "arch": "32 bits",
-    "size": "Actualizado",
-    "download": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/winamp_latest_full.exe"
-  },
-  {
-    "name": "HW Monitor",
-    "icon": "../images/hwmonitor.png",
-    "category": "Sistema",
-    "desc": "Monitorea temperaturas, voltajes y velocidad de ventiladores del hardware.",
-    "os": "Windows 2000 / XP",
-    "arch": "32 bits",
-    "size": "Actualizado",
-    "download": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/HWMonitor_x32.exe"
-  },
-  {
-    "name": "PowerISO",
-    "icon": "../images/poweriso.png",
-    "category": "Utilidades",
-    "desc": "Una referencia de la época para grabar CD y DVD y crear imágenes de disco.",
-    "os": "Windows XP",
-    "arch": "32 bits",
-    "size": "Actualizado",
-    "download": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/poweriso_setup.exe"
-  },
-  {
-    "name": "Sumatra PDF",
-    "icon": "../images/Sumatra.png",
-    "category": "Ofimática",
-    "desc": "Lector liviano de PDF, ePub, MOBI y CBZ.",
-    "os": "Windows XP / 7 / 8.1 / 10 / 11",
-    "arch": "32 / 64 bits",
-    "size": "Actualizado",
-    "download": [
-      { "label": "⬇ 32 bits", "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/SumatraPDF-3.6.1-install.exe" },
-      { "label": "⬇ 64 bits", "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/SumatraPDF-3.6.1-64-install.exe" }
+    "slug": "winamp",
+    "nombre": "Winamp",
+    "categoria": "Multimedia",
+    "editor": "Nullsoft / Llama Group",
+    "version": "5.9.2",
+    "precio": "Gratis",
+    "sistemas": ["Windows XP", "Windows"],
+    "arquitectura": "32 bits",
+    "tamano": "Actualizado",
+    "descripcion": "El reproductor de MP3 clásico, famoso por sus skins y su consumo mínimo de recursos.",
+    "descargas": [
+      {
+        "etiqueta": "⬇ Descargar (32 bits)",
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/winamp_latest_full.exe"
+      }
     ]
   },
   {
-    "name": "One Core API",
-    "icon": "../images/one-core-api.png",
-    "category": "Sistema",
-    "desc": "Capa de compatibilidad para ejecutar aplicaciones modernas en Windows XP y Vista.",
-    "os": "Windows XP / Vista",
-    "arch": "32 / 64 bits",
-    "size": "15 MB",
-    "download": [
-      { "label": "⬇ 32 bits", "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/one-core-api-pack-x86.zip" },
-      { "label": "⬇ 64 bits", "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/one-core-api-pack-x64.zip" }
+    "slug": "hwmonitor",
+    "nombre": "HWMonitor",
+    "categoria": "Sistema",
+    "editor": "CPUID",
+    "version": "1.55",
+    "precio": "Gratis",
+    "sistemas": ["Windows XP", "Windows"],
+    "arquitectura": "32 bits",
+    "tamano": "Actualizado",
+    "descripcion": "Monitorea temperaturas, voltajes y velocidad de ventiladores del hardware.",
+    "descargas": [
+      {
+        "etiqueta": "⬇ Descargar (32 bits)",
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/HWMonitor_x32.exe"
+      }
     ]
   },
   {
-    "name": "Everything",
-    "icon": "../images/everything.png",
-    "category": "Sistema",
-    "desc": "Utilidad para buscar archivos eficientemente.",
-    "os": "Windows XP / 7 / 8.1 / 10 / 11",
-    "arch": "32 / 64 bits",
-    "size": "Actualizado",
-    "download": [
-      { "label": "⬇ 32 bits", "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/Everything-1.4.1.1032.x86-Setup.exe" },
-      { "label": "⬇ 64 bits", "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/Everything-1.4.1.1032.x64-Setup.exe" }
+    "slug": "poweriso",
+    "nombre": "PowerISO",
+    "categoria": "Utilidades",
+    "editor": "Power Software Ltd",
+    "version": "8.9",
+    "precio": "Freemium",
+    "sistemas": ["Windows XP", "Windows"],
+    "arquitectura": "32 bits",
+    "tamano": "Actualizado",
+    "descripcion": "Una referencia de la época para grabar CD y DVD y crear imágenes de disco.",
+    "descargas": [
+      {
+        "etiqueta": "⬇ Descargar (32 bits)",
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/poweriso_setup.exe"
+      }
     ]
   },
   {
-    "name": "Update Pack 7 R2",
-    "icon": "../images/upadatepack7r2.png",
-    "category": "Sistema",
-    "desc": "Paquete acumulativo de actualizaciones para Windows 7 y Windows Server 2008 R2.",
-    "os": "Windows 7",
-    "arch": "32 / 64 bits",
-    "size": "Actualizado",
-    "download": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/UpdatePack7R2-26.1.15.exe"
-  },
-  {
-    "name": "CrystalDiskInfo",
-    "icon": "../images/crystaldisk.png",
-    "category": "Sistema",
-    "desc": "Consulta el estado SMART y la temperatura de discos compatibles.",
-    "os": "Windows",
-    "arch": "32 / 64 bits",
-    "size": "Actualizado",
-    "download": ""
-  },
-  {
-    "name": "Any Desk",
-    "icon": "../images/anydesk.png",
-    "category": "Internet",
-    "desc": "Software de acceso y control remoto que permite conectarse a una computadora u otro dispositivo desde cualquier lugar.",
-    "os": "Windows XP / Vista / 7",
-    "arch": "64 bits",
-    "size": "Actualizado",
-    "download": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/AnyDesk.exe"
-  },
-  {
-    "name": "WinRAR",
-    "icon": "../images/winrar.png",
-    "category": "Utilidades",
-    "desc": "Compresión y extracción de archivos RAR y ZIP.",
-    "os": "Windows",
-    "arch": "32 / 64 bits",
-    "size": "Actualizado",
-    "download": [
-      { "label": "⬇ 32 bits", "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/winrar-x32-701es.exe" },
-      { "label": "⬇ 64 bits", "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/winrar-x64-723es.exe" }
+    "slug": "sumatra-pdf",
+    "nombre": "Sumatra PDF",
+    "categoria": "Ofimática",
+    "editor": "Krzysztof Kowalczyk",
+    "version": "3.6.1",
+    "precio": "Gratis",
+    "sistemas": ["Windows XP", "Windows 7", "Windows"],
+    "arquitectura": "32 / 64 bits",
+    "tamano": "Actualizado",
+    "descripcion": "Lector liviano de PDF, ePub, MOBI y CBZ.",
+    "descargas": [
+      {
+        "etiqueta": "⬇ 32 bits",
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/SumatraPDF-3.6.1-install.exe"
+      },
+      {
+        "etiqueta": "⬇ 64 bits",
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/SumatraPDF-3.6.1-64-install.exe"
+      }
     ]
   },
   {
-    "name": "Foxit PDF Reader",
-    "icon": "../images/foxit.png",
-    "category": "Ofimática",
-    "desc": "Lector de PDF ligero.",
-    "os": "Windows",
-    "arch": "64 bits",
-    "size": "Actualizado",
-    "download": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/FoxitPDFReader202621_L10N_Setup_Prom_x64.exe"
-  },
-  {
-    "name": "VLC media player",
-    "icon": "../images/vlc.png",
-    "category": "Multimedia",
-    "desc": "Reproductor multimedia conocido por admitir numerosos formatos.",
-    "os": "Windows / Linux / macOS",
-    "arch": "64 bits",
-    "size": "Actualizado",
-    "download": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/vlc-3.0.24-win64.exe"
-  },
-  {
-    "name": "7-Zip",
-    "icon": "../images/7zip.png",
-    "category": "Utilidades",
-    "desc": "Archivador gratuito y de código abierto para múltiples formatos.",
-    "os": "Windows",
-    "arch": "32 / 64 bits",
-    "size": "Actualizado",
-    "download": [
-      { "label": "⬇ 32 bits", "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/7z2605.exe" },
-      { "label": "⬇ 64 bits", "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/7z2605-x64.exe" }
+    "slug": "one-core-api",
+    "nombre": "One-Core-API",
+    "categoria": "Sistema",
+    "editor": "Skulltrail192",
+    "version": "4.0",
+    "precio": "Gratis",
+    "destacado": true,
+    "sistemas": ["Windows XP"],
+    "arquitectura": "32 / 64 bits",
+    "tamano": "15 MB",
+    "descripcion": "Capa de compatibilidad para ejecutar aplicaciones modernas en Windows XP y Vista.",
+    "descargas": [
+      {
+        "etiqueta": "⬇ 32 bits",
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/one-core-api-pack-x86.zip"
+      },
+      {
+        "etiqueta": "⬇ 64 bits",
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/one-core-api-pack-x64.zip"
+      }
     ]
   },
   {
-  "name": "Rufus",
-  "icon": "../images/rufus.png",
-  "category": "Utilidades",
-  "desc": "Crea unidades USB booteables para instalar Windows, Linux y otros sistemas.",
-  "os": "Windows 8 / 10 / 11",
-  "arch": "32 / 64 bits",
-  "version": "4.15",
-  "size": "~1.5 MB",
-  "download": [
-    { "label": "32 bits", "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/rufus-4.15_x86.exe" },
-    { "label": "64 bits", "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/rufus-4.15.exe" }
-  ]
+    "slug": "everything",
+    "nombre": "Everything",
+    "categoria": "Sistema",
+    "editor": "voidtools",
+    "version": "1.4.1.1032",
+    "precio": "Gratis",
+    "sistemas": ["Windows XP", "Windows 7", "Windows"],
+    "arquitectura": "32 / 64 bits",
+    "tamano": "Actualizado",
+    "descripcion": "Utilidad para buscar archivos instantáneamente en discos locales.",
+    "descargas": [
+      {
+        "etiqueta": "⬇ 32 bits",
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/Everything-1.4.1.1032.x86-Setup.exe"
+      },
+      {
+        "etiqueta": "⬇ 64 bits",
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/Everything-1.4.1.1032.x64-Setup.exe"
+      }
+    ]
   },
   {
-    "name": "Driver Booster",
-    "icon": "../images/driverbooster.png",
-    "category": "Utilidades",
-    "desc": "Detecta y actualiza controladores del sistema.",
-    "os": "Windows",
-    "arch": "32 / 64 bits",
-    "size": "Actualizado",
-    "download": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/DriverBooster.zip"
+    "slug": "update-pack-7-r2",
+    "nombre": "UpdatePack7R2",
+    "categoria": "Sistema",
+    "editor": "simplix",
+    "version": "26.1.15",
+    "precio": "Gratis",
+    "destacado": true,
+    "sistemas": ["Windows 7"],
+    "arquitectura": "32 / 64 bits",
+    "tamano": "Actualizado",
+    "descripcion": "Paquete acumulativo de actualizaciones para Windows 7 y Windows Server 2008 R2.",
+    "descargas": [
+      {
+        "etiqueta": "⬇ Descargar (32 / 64 bits)",
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/UpdatePack7R2-26.1.15.exe"
+      }
+    ]
   },
   {
-  "name": "qBittorrent",
-  "icon": "../images/qbittorrent.png",
-  "category": "Descargas",
-  "desc": "Cliente BitTorrent gratuito y de código abierto, sin publicidad, para descargar y compartir archivos.",
-  "os": "Windows 10 / 11",
-  "arch": "64 bits",
-  "version": "5.3.0",
-  "size": "~50 MB",
-  "download": [
-    { "label": "64 bits", "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/qbittorrent_5.3.0_x64_setup.exe" }
-  ]
+    "slug": "crystaldiskinfo",
+    "nombre": "CrystalDiskInfo",
+    "categoria": "Sistema",
+    "editor": "hiyohiyo",
+    "version": "9.5",
+    "precio": "Gratis",
+    "sistemas": ["Windows"],
+    "arquitectura": "32 / 64 bits",
+    "tamano": "Actualizado",
+    "descripcion": "Consulta el estado SMART y la temperatura de discos duros y SSD compatibles.",
+    "urlOficial": "https://crystalmark.info/en/software/crystaldiskinfo/"
   },
   {
-    "name": "Team Viewer",
-    "icon": "../images/teamviewer.png",
-    "category": "Internet",
-    "desc": "Software de acceso y control remoto que permite conectarse a una computadora u otro dispositivo desde cualquier lugar.",
-    "os": "Windows",
-    "arch": "64 bits",
-    "size": "Actualizado",
-    "download": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/TeamViewer_Setup_x64.exe"
+    "slug": "anydesk",
+    "nombre": "AnyDesk",
+    "categoria": "Internet",
+    "editor": "AnyDesk Software GmbH",
+    "version": "9.0",
+    "precio": "Freemium",
+    "sistemas": ["Windows XP", "Windows 7", "Windows"],
+    "arquitectura": "64 bits",
+    "tamano": "Actualizado",
+    "descripcion": "Software de acceso y control remoto que permite conectarse a una computadora u otro dispositivo desde cualquier lugar.",
+    "descargas": [
+      {
+        "etiqueta": "⬇ Descargar",
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/AnyDesk.exe"
+      }
+    ]
+  },
+  {
+    "slug": "winrar",
+    "nombre": "WinRAR",
+    "categoria": "Utilidades",
+    "editor": "win.rar GmbH",
+    "version": "7.23",
+    "precio": "Freemium",
+    "sistemas": ["Windows"],
+    "arquitectura": "32 / 64 bits",
+    "tamano": "Actualizado",
+    "descripcion": "Compresión y extracción de archivos RAR, ZIP y otros formatos.",
+    "descargas": [
+      {
+        "etiqueta": "⬇ 32 bits",
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/winrar-x32-701es.exe"
+      },
+      {
+        "etiqueta": "⬇ 64 bits",
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/winrar-x64-723es.exe"
+      }
+    ]
+  },
+  {
+    "slug": "foxit-pdf-reader",
+    "nombre": "Foxit PDF Reader",
+    "categoria": "Ofimática",
+    "editor": "Foxit Software",
+    "version": "2026.2.1",
+    "precio": "Gratis",
+    "sistemas": ["Windows"],
+    "arquitectura": "64 bits",
+    "tamano": "Actualizado",
+    "descripcion": "Lector de documentos PDF rápido y ligero con herramientas de anotación.",
+    "descargas": [
+      {
+        "etiqueta": "⬇ Descargar (64 bits)",
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/FoxitPDFReader202621_L10N_Setup_Prom_x64.exe"
+      }
+    ]
+  },
+  {
+    "slug": "vlc-media-player",
+    "nombre": "VLC media player",
+    "categoria": "Multimedia",
+    "editor": "VideoLAN",
+    "version": "3.0.24",
+    "precio": "Gratis",
+    "destacado": true,
+    "sistemas": ["Windows", "Linux", "macOS"],
+    "arquitectura": "64 bits",
+    "tamano": "Actualizado",
+    "descripcion": "Reproductor multimedia libre y multiplataforma conocido por admitir numerosos formatos.",
+    "descargas": [
+      {
+        "etiqueta": "⬇ Descargar (64 bits)",
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/vlc-3.0.24-win64.exe"
+      }
+    ]
+  },
+  {
+    "slug": "7-zip",
+    "nombre": "7-Zip",
+    "categoria": "Utilidades",
+    "editor": "Igor Pavlov",
+    "version": "26.05",
+    "precio": "Gratis",
+    "sistemas": ["Windows"],
+    "arquitectura": "32 / 64 bits",
+    "tamano": "Actualizado",
+    "descripcion": "Archivador gratuito y de código abierto con alta tasa de compresión para múltiples formatos.",
+    "descargas": [
+      {
+        "etiqueta": "⬇ 32 bits",
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/7z2605.exe"
+      },
+      {
+        "etiqueta": "⬇ 64 bits",
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/7z2605-x64.exe"
+      }
+    ]
+  },
+  {
+    "slug": "rufus",
+    "nombre": "Rufus",
+    "categoria": "Utilidades",
+    "editor": "Pete Batard",
+    "version": "4.15",
+    "precio": "Gratis",
+    "sistemas": ["Windows"],
+    "arquitectura": "32 / 64 bits",
+    "tamano": "~1.5 MB",
+    "descripcion": "Crea unidades USB booteables para instalar Windows, Linux y otros sistemas.",
+    "descargas": [
+      {
+        "etiqueta": "⬇ 32 bits",
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/rufus-4.15_x86.exe"
+      },
+      {
+        "etiqueta": "⬇ 64 bits",
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/rufus-4.15.exe"
+      }
+    ]
+  },
+  {
+    "slug": "driver-booster",
+    "nombre": "Driver Booster",
+    "categoria": "Utilidades",
+    "editor": "IObit",
+    "version": "Actualizado",
+    "precio": "Freemium",
+    "sistemas": ["Windows"],
+    "arquitectura": "32 / 64 bits",
+    "tamano": "Actualizado",
+    "descripcion": "Detecta y actualiza controladores del sistema.",
+    "descargas": [
+      {
+        "etiqueta": "⬇ Descargar",
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/DriverBooster.zip"
+      }
+    ]
+  },
+  {
+    "slug": "qbittorrent",
+    "nombre": "qBittorrent",
+    "categoria": "Descargas",
+    "editor": "The qBittorrent project",
+    "version": "5.3.0",
+    "precio": "Gratis",
+    "sistemas": ["Windows"],
+    "arquitectura": "64 bits",
+    "tamano": "~50 MB",
+    "descripcion": "Cliente BitTorrent gratuito y de código abierto, sin publicidad, para descargar y compartir archivos.",
+    "descargas": [
+      {
+        "etiqueta": "⬇ 64 bits",
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/qbittorrent_5.3.0_x64_setup.exe"
+      }
+    ]
+  },
+  {
+    "slug": "teamviewer",
+    "nombre": "TeamViewer",
+    "categoria": "Internet",
+    "editor": "TeamViewer Germany GmbH",
+    "version": "Actualizado",
+    "precio": "Freemium",
+    "sistemas": ["Windows"],
+    "arquitectura": "64 bits",
+    "tamano": "Actualizado",
+    "descripcion": "Software de acceso y control remoto que permite conectarse a una computadora u otro dispositivo desde cualquier lugar.",
+    "descargas": [
+      {
+        "etiqueta": "⬇ Descargar (64 bits)",
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/TeamViewer_Setup_x64.exe"
+      }
+    ]
   }
 ]
