@@ -459,7 +459,8 @@
   }
 
   function loadCatalog() {
-    fetch("./data/programas.json", { cache: "no-store" })
+    var catalogUrl = "./data/programas.json?v=" + String(Date.now());
+    fetch(catalogUrl, { cache: "no-store" })
       .then(function (response) {
         if (!response.ok) {
           throw new Error("HTTP " + response.status);
