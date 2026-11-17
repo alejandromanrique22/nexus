@@ -2,8 +2,11 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none';">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
   <meta name="robots" content="noindex,follow">
   <meta name="theme-color" content="#050b16">
   <meta name="author" content="Alejandro Manrique">
@@ -40,15 +43,9 @@
   </main>
   <footer class="site-footer">
     <div class="container footer-bottom">
-      <span>© <span id="year">2026</span> Nexus · Desarrollado por Alejandro Manrique (Trelew, Chubut, Argentina). Todos los derechos reservados.</span>
+      <span>© 2026 Nexus · Desarrollado por Alejandro Manrique (Trelew, Chubut, Argentina). Todos los derechos reservados.</span>
       <a href="../index.html">Volver al catálogo</a>
     </div>
   </footer>
-  <script>
-    var yearEl = document.getElementById("year");
-    if (yearEl) {
-      yearEl.textContent = new Date().getFullYear();
-    }
-  </script>
 </body>
 </html>

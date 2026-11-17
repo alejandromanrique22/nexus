@@ -72,19 +72,6 @@
     return typeof slug === "string" && /^[a-z0-9-]{2,60}$/.test(slug);
   }
 
-  function formatDownloads(num) {
-    if (typeof num !== "number" || num <= 0) {
-      return "";
-    }
-    if (num >= 1000000) {
-      return (num / 1000000).toFixed(1).replace(".0", "") + "M descargas";
-    }
-    if (num >= 1000) {
-      return Math.round(num / 1000) + "k descargas";
-    }
-    return num + " descargas";
-  }
-
   function createEl(tag, className, text) {
     var el = document.createElement(tag);
     if (className) {
@@ -431,7 +418,7 @@
   }
 
   function normalizeProgram(raw) {
-    if (!raw || typeof raw !== "object") {
+    if (!raw || typeof raw !== "object" || Array.isArray(raw)) {
       return null;
     }
     var nombre = sanitizeText(raw.nombre, 80);
@@ -512,19 +499,7 @@
   if (elements.currentYear) {
     elements.currentYear.textContent = String(new Date().getFullYear());
   }
-var copyWpiBtn = document.getElementById("copyWpiHash");
-  var wpiHashEl = document.getElementById("wpiHash");
-  if (copyWpiBtn && wpiHashEl) {
-    copyWpiBtn.addEventListener("click", function () {
-      var text = wpiHashEl.textContent.trim();
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function () {
-          copyWpiBtn.textContent = "¡Copiado!";
-          setTimeout(function () { copyWpiBtn.textContent = "Copiar"; }, 2000);
-        });
-      }
-    });
-  }
+
   bindEvents();
   loadCatalog();
 })();
