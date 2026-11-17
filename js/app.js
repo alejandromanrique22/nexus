@@ -512,7 +512,19 @@
   if (elements.currentYear) {
     elements.currentYear.textContent = String(new Date().getFullYear());
   }
-
+var copyWpiBtn = document.getElementById("copyWpiHash");
+  var wpiHashEl = document.getElementById("wpiHash");
+  if (copyWpiBtn && wpiHashEl) {
+    copyWpiBtn.addEventListener("click", function () {
+      var text = wpiHashEl.textContent.trim();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () {
+          copyWpiBtn.textContent = "¡Copiado!";
+          setTimeout(function () { copyWpiBtn.textContent = "Copiar"; }, 2000);
+        });
+      }
+    });
+  }
   bindEvents();
   loadCatalog();
 })();
