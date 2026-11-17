@@ -675,30 +675,31 @@ h1, h2, h3 {
   font-size: 10px;
 }
 
+/* Grilla y tarjetas optimizadas para compactar el tamaño */
 .program-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 17px;
+  gap: 12px;
 }
 
 .program-card {
   min-width: 0;
   overflow: hidden;
   border: 1px solid rgba(96, 165, 250, .22);
-  border-radius: 15px;
+  border-radius: 12px;
   background: linear-gradient(155deg, #0f1e3a, #081122);
   box-shadow: inset 0 1px 0 rgba(186, 230, 253, .1);
   transition: transform .22s, border-color .22s, box-shadow .22s;
 }
 
 .program-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   border-color: rgba(56, 189, 248, .65);
-  box-shadow: 0 18px 45px rgba(0, 5, 15, .55), 0 0 24px rgba(56, 189, 248, .14);
+  box-shadow: 0 14px 35px rgba(0, 5, 15, .55), 0 0 20px rgba(56, 189, 248, .14);
 }
 
 .program-image {
-  height: 145px;
+  height: 90px;
   position: relative;
   display: grid;
   place-items: center;
@@ -723,72 +724,72 @@ h1, h2, h3 {
 
 .image-placeholder {
   font-family: Manrope, sans-serif;
-  font-size: 48px;
+  font-size: 32px;
   font-weight: 800;
   color: #bae6fd;
-  text-shadow: 0 0 20px rgba(56, 189, 248, .45);
+  text-shadow: 0 0 15px rgba(56, 189, 248, .45);
 }
 
 .featured-label {
   position: absolute;
   z-index: 2;
-  top: 12px;
-  left: 12px;
-  padding: 5px 9px;
-  border-radius: 30px;
+  top: 8px;
+  left: 8px;
+  padding: 3px 7px;
+  border-radius: 20px;
   background: linear-gradient(90deg, #38bdf8, #bae6fd);
   color: #051024;
-  font-size: 8px;
+  font-size: 7.5px;
   font-weight: 900;
-  letter-spacing: .8px;
+  letter-spacing: .5px;
 }
 
 .program-content {
-  padding: 18px;
+  padding: 12px;
 }
 
 .program-category {
   color: #38bdf8;
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 800;
-  letter-spacing: 1.2px;
+  letter-spacing: 1px;
   text-transform: uppercase;
 }
 
 .program-content h3 {
-  font-size: 17px;
-  letter-spacing: -.5px;
-  margin: 6px 0;
+  font-size: 14px;
+  letter-spacing: -.4px;
+  margin: 3px 0;
 }
 
 .program-meta {
-  font-size: 10px;
+  font-size: 9px;
   color: #7c94b8;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
 }
 
 .program-description {
-  min-height: 54px;
+  min-height: 36px;
   color: #a6bddb;
-  font-size: 11px;
-  line-height: 1.7;
-  margin-bottom: 14px;
+  font-size: 10px;
+  line-height: 1.45;
+  margin-bottom: 8px;
 }
 
 .badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 15px;
+  gap: 4px;
+  margin-bottom: 8px;
 }
 
 .badge {
-  padding: 4px 7px;
+  padding: 2px 5px;
   border: 1px solid rgba(96, 165, 250, .18);
-  border-radius: 5px;
+  border-radius: 4px;
   background: #122444;
   color: #bae6fd;
-  font-size: 9px;
+  font-size: 8px;
 }
 
 .badge-free {
@@ -805,8 +806,8 @@ h1, h2, h3 {
 
 .program-actions {
   display: flex;
-  gap: 8px;
-  margin-top: 12px;
+  gap: 6px;
+  margin-top: 6px;
 }
 
 .download-button, .details-button {
@@ -814,11 +815,11 @@ h1, h2, h3 {
   flex: 1;
   align-items: center;
   justify-content: center;
-  min-height: 38px;
-  padding: 8px;
-  border-radius: 8px;
+  min-height: 30px;
+  padding: 6px;
+  border-radius: 6px;
   text-align: center;
-  font-size: 10px;
+  font-size: 9.5px;
   font-weight: 800;
   transition: .2s;
 }
@@ -832,7 +833,7 @@ h1, h2, h3 {
 
 .download-button:hover {
   background: linear-gradient(135deg, #0ea5e9, #2563eb);
-  box-shadow: 0 0 18px rgba(56, 189, 248, .3);
+  box-shadow: 0 0 15px rgba(56, 189, 248, .3);
 }
 
 .download-button.disabled {
@@ -1078,14 +1079,14 @@ h1, h2, h3 {
 .download-options {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   width: 100%;
-  margin-top: 12px;
+  margin-top: 6px;
 }
 
 .download-options .download-button {
   width: 100%;
-  min-height: 38px;
+  min-height: 30px;
 }
 
 /* Estilos para la paginación */
