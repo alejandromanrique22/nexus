@@ -110,7 +110,7 @@
 
           <div class="star-actions">
             <a class="star-btn-primary" href="https://github.com/alejandromanrique22/nexus/releases/latest" target="_blank" rel="noopener noreferrer">
-              <span>⬇ Descargar Nexus WPI</span>
+              <span>⬇ Descargar WPI Nexus</span>
               <small>Descarga directa oficial</small>
             </a>
           </div>
@@ -162,10 +162,30 @@
         </div>
         <button type="button" id="clearFilters" class="reset-button">↺ <span>Limpiar</span></button>
       </div>
+
       <div class="results-row"><p id="resultsCount" aria-live="polite">Cargando catálogo…</p><span>Elegí una ficha para ver sus datos</span></div>
-      <div id="programList" class="program-grid" aria-live="polite"><div class="loading-card">Preparando el catálogo…</div></div>
-      <div id="emptyState" class="empty-state" hidden><div class="empty-icon">⌕</div><h3>No encontramos resultados</h3><p>Probá con otra búsqueda o quitá alguno de los filtros.</p><button type="button" id="resetSearch">Ver todo el catálogo</button></div>
-      <div id="errorState" class="error-state" hidden><h3>No pudimos cargar el catálogo</h3><p>Verificá que <code>data/programas.json</code> esté publicado junto a esta página y abrí el sitio desde un servidor web.</p></div>
+      
+      <div id="programList" class="program-grid" aria-live="polite">
+        <div class="loading-card">Preparando el catálogo…</div>
+      </div>
+
+      <!-- Controles de Paginación -->
+      <nav class="pagination" id="paginationContainer" aria-label="Paginación del catálogo" hidden>
+        <button type="button" id="prevPage" class="page-button">← Anterior</button>
+        <span id="pageInfo" class="page-info">Página 1 de 1</span>
+        <button type="button" id="nextPage" class="page-button">Siguiente →</button>
+      </nav>
+
+      <div id="emptyState" class="empty-state" hidden>
+        <div class="empty-icon">⌕</div>
+        <h3>No encontramos resultados</h3>
+        <p>Probá con otra búsqueda o quitá alguno de los filtros.</p>
+        <button type="button" id="resetSearch">Ver todo el catálogo</button>
+      </div>
+      <div id="errorState" class="error-state" hidden>
+        <h3>No pudimos cargar el catálogo</h3>
+        <p>Verificá que <code>data/programas.json</code> esté publicado junto a esta página y abrí el sitio desde un servidor web.</p>
+      </div>
     </section>
 
     <section class="feature-band" id="seguridad">
