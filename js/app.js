@@ -202,12 +202,19 @@
       prog.descargas.forEach(function (item) {
         if (item && typeof item === "object") {
           var validHref = safeUrl(item.url);
-          if (validHref) {
-            validLinks.push({
-              etiqueta: sanitizeText(item.etiqueta, 45) || "⬇ Descargar",
-              url: validHref
-            });
+          if (!validHref) return;
+
+          // Si el usuario filtró por un Windows específico y el link indica sistemas, filtrarlo
+          if (state.system && Array.isArray(item.sistemas) && item.sistemas.length > 0) {
+            if (item.sistemas.indexOf(state.system) === -1) {
+              return;
+            }
           }
+
+          validLinks.push({
+            etiqueta: sanitizeText(item.etiqueta, 60) || "⬇ Descargar",
+            url: validHref
+          });
         }
       });
     }

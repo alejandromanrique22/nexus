@@ -324,3 +324,140 @@
     ]
   }
 ]
+{
+    "slug": "navegadores-windows-xp",
+    "nombre": "Navegadores para Windows XP",
+    "categoria": "Navegadores",
+    "editor": "Varios (Supermium, Mypal, Thorium, Mozilla)",
+    "version": "Actualizado (Motores modernos / Legados)",
+    "precio": "Gratis",
+    "sistemas": ["Windows XP"],
+    "arquitectura": "32 bits",
+    "tamano": "Variable (40 a 160 MB)",
+    "descripcion": "Soluciones de navegación web para Windows XP, incluyendo alternativas modernas con soporte TLS 1.3 y versiones de legado.",
+    "descargas": [
+      {
+        "etiqueta": "⬇ Supermium 150 (Instalador 32 bits - Recomendado)",
+        "sistemas": ["Windows XP"],
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/supermium_150_32_setup.exe"
+      },
+      {
+        "etiqueta": "⬇ Supermium 150 (Portable 32 bits)",
+        "sistemas": ["Windows XP"],
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/supermium_150_32_nonsetup.zip"
+      },
+      {
+        "etiqueta": "⬇ Thorium Win32 SSE2 (Portable - Liviano)",
+        "sistemas": ["Windows XP"],
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/Thorium_WIN32_SSE2_122.0.6261.171.zip"
+      },
+      {
+        "etiqueta": "⬇ Mypal 78 Quantum (Portable - Pentium 4 / SSE2)",
+        "sistemas": ["Windows XP"],
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/mypal-78.1.2.en-US.win32.zip"
+      },
+      {
+        "etiqueta": "⬇ Mypal 78 SSE (Portable - Pentium III / Sin SSE2)",
+        "sistemas": ["Windows XP"],
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/mypal-78.1.2.en-US.win32-sse.zip"
+      },
+      {
+        "etiqueta": "⬇ Firefox 52.9.0 ESR (Instalador Legado - Offline)",
+        "sistemas": ["Windows XP"],
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/FirefoxSetup52.9.0esr.exe"
+      },
+      {
+        "etiqueta": "⬇ Google Chrome 49 (Instalador Legado - Offline)",
+        "sistemas": ["Windows XP"],
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/Google_Chrome_(32bit)_v49.0.2623.112.exe"
+      }
+    ]
+  }{
+    "slug": "navegadores-windows-7",
+    "nombre": "Navegadores para Windows 7",
+    "categoria": "Navegadores",
+    "editor": "Varios (Supermium, Firefox ESR, Thorium, Pale Moon, Brave, Chrome)",
+    "version": "Actualizado (Motores modernos / Legados)",
+    "precio": "Gratis",
+    "sistemas": ["Windows 7"],
+    "arquitectura": "32 y 64 bits",
+    "tamano": "Variable (30 a 133 MB)",
+    "descripcion": "Colección completa para Windows 7: motores Chromium 150 y Firefox ESR con soporte web actual, compilaciones ligeras Thorium/Pale Moon y últimas versiones oficiales de Chrome y Brave.",
+    "descargas": [
+      {
+        "etiqueta": "⬇ Supermium 150 (64 bits - Recomendado)",
+        "sistemas": ["Windows 7"],
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/supermium_150_64_setup.exe"
+      },
+      {
+        "etiqueta": "⬇ Supermium 150 (32 bits - Recomendado)",
+        "sistemas": ["Windows 7"],
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/supermium_150_32_setup.exe"
+      },
+      {
+        "etiqueta": "⬇ Firefox 115.45.0 ESR (32 / 64 bits - Oficial)",
+        "sistemas": ["Windows 7"],
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/Firefox%20Setup%20115.45.0esr.exe"
+      },
+      {
+        "etiqueta": "⬇ Thorium 64 bits SSE3 (Core 2 / Phenom II+)",
+        "sistemas": ["Windows 7"],
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/thorium_SSE3_mini_installer.exe"
+      },
+      {
+        "etiqueta": "⬇ Thorium 64 bits SSE4 (Core i / Modernos)",
+        "sistemas": ["Windows 7"],
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/thorium_SSE4_mini_installer.exe"
+      },
+      {
+        "etiqueta": "⬇ Thorium 32 bits SSE2 (CPUs antiguos)",
+        "sistemas": ["Windows 7"],
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/thorium_WIN32_SSE2_mini_installer.exe"
+      },
+      {
+        "etiqueta": "⬇ Thorium 32 bits SSE3 (CPUs intermedios)",
+        "sistemas": ["Windows 7"],
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/thorium_WIN32_SSE3_mini_installer.exe"
+      },
+      {
+        "etiqueta": "⬇ Pale Moon 35.0.3 Portable (64 bits - .exe)",
+        "sistemas": ["Windows 7"],
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/Palemoon-Portable-35.0.3.win64.exe"
+      },
+      {
+        "etiqueta": "⬇ Pale Moon 35.0.3 Portable (32 bits - .exe)",
+        "sistemas": ["Windows 7"],
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/Palemoon-Portable-35.0.3.win32.exe"
+      },
+      {
+        "etiqueta": "⬇ Pale Moon 35.0.3 Binario (64 bits - .7z)",
+        "sistemas": ["Windows 7"],
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/palemoon-35.0.3.win64.7z"
+      },
+      {
+        "etiqueta": "⬇ Pale Moon 35.0.3 Binario (32 bits - .7z)",
+        "sistemas": ["Windows 7"],
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/palemoon-35.0.3.win32.7z"
+      },
+      {
+        "etiqueta": "⬇ Brave 1.47.186 Offline (64 bits - Legado)",
+        "sistemas": ["Windows 7"],
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/BraveBrowserStandaloneSetup.exe"
+      },
+      {
+        "etiqueta": "⬇ Brave 1.47.186 Offline (32 bits - Legado)",
+        "sistemas": ["Windows 7"],
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/BraveBrowserStandaloneSetup32.exe"
+      },
+      {
+        "etiqueta": "⬇ Google Chrome 109 Offline (64 bits - Legado)",
+        "sistemas": ["Windows 7"],
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/Google_Chrome_(64bit)_v109.0.5414.120.exe"
+      },
+      {
+        "etiqueta": "⬇ Google Chrome 109 Offline (32 bits - Legado)",
+        "sistemas": ["Windows 7"],
+        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/Google_Chrome_(32bit)_v109.0.5414.120.exe"
+      }
+    ]
+  }
