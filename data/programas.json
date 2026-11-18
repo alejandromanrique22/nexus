@@ -259,14 +259,10 @@
     "version": "4.15",
     "precio": "Gratis",
     "sistemas": ["Windows 11", "Windows 10", "Windows 8.1"],
-    "arquitectura": "32 y 64 bits",
+    "arquitectura": "64 bits",
     "tamano": "~1.5 MB",
     "descripcion": "Crea unidades USB booteables para instalar Windows, Linux y otros sistemas.",
     "descargas": [
-      {
-        "etiqueta": "⬇ 32 bits",
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/rufus-4.15_x86.exe"
-      },
       {
         "etiqueta": "⬇ 64 bits",
         "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/rufus-4.15.exe"
