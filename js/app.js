@@ -38,7 +38,20 @@
     paginationContainer: document.getElementById("paginationContainer"),
     prevPageBtn: document.getElementById("prevPage"),
     nextPageBtn: document.getElementById("nextPage"),
-    pageInfo: document.getElementById("pageInfo")
+    pageInfo: document.getElementById("pageInfo"),
+    // Elementos del Modal
+    programModal: document.getElementById("programModal"),
+    closeModal: document.getElementById("closeModal"),
+    modalIcon: document.getElementById("modalIcon"),
+    modalCategory: document.getElementById("modalCategory"),
+    modalTitle: document.getElementById("modalTitle"),
+    modalMeta: document.getElementById("modalMeta"),
+    modalDescription: document.getElementById("modalDescription"),
+    modalArch: document.getElementById("modalArch"),
+    modalSystems: document.getElementById("modalSystems"),
+    modalPrice: document.getElementById("modalPrice"),
+    modalUpdated: document.getElementById("modalUpdated"),
+    modalActions: document.getElementById("modalActions")
   };
 
   function safeUrl(value) {
@@ -71,7 +84,7 @@
     if (typeof value !== "string") {
       return "";
     }
-    return value.replace(/\s+/g, " ").trim().slice(0, maxLength || 300);
+    return value.replace(/\s+/g, " ").trim().slice(0, maxLength || 500);
   }
 
   function slugIsValid(slug) {
@@ -87,6 +100,63 @@
       el.textContent = text;
     }
     return el;
+  }
+
+  function openProgramModal(prog) {
+    if (!elements.programModal) return;
+
+    if (elements.modalIcon) {
+      elements.modalIcon.textContent = (prog.nombre || "?").charAt(0).toUpperCase();
+    }
+    if (elements.modalCategory) {
+      elements.modalCategory.textContent = prog.categoria || "Software";
+    }
+    if (elements.modalTitle) {
+      elements.modalTitle.textContent = prog.nombre || "Sin nombre";
+    }
+
+    var metaParts = [];
+    if (prog.editor) metaParts.push(prog.editor);
+    if (prog.version) metaParts.push("v" + prog.version.replace(/^v/i, ""));
+    if (prog.tamano) metaParts.push(prog.tamano);
+    if (elements.modalMeta) {
+      elements.modalMeta.textContent = metaParts.join(" · ") || "Información general";
+    }
+
+    if (elements.modalDescription) {
+      elements.modalDescription.textContent = prog.descripcion || "Sin descripción disponible para este programa.";
+    }
+    if (elements.modalArch) {
+      elements.modalArch.textContent = prog.arquitectura || "No especificada";
+    }
+    if (elements.modalSystems) {
+      elements.modalSystems.textContent = Array.isArray(prog.sistemas) && prog.sistemas.length > 0 
+        ? prog.sistemas.join(", ") 
+        : "Windows general";
+    }
+    if (elements.modalPrice) {
+      elements.modalPrice.textContent = prog.precio || "Gratis";
+    }
+    if (elements.modalUpdated) {
+      elements.modalUpdated.textContent = prog.actualizado || "Reciente";
+    }
+
+    if (elements.modalActions) {
+      elements.modalActions.innerHTML = "";
+      var actionsWrapper = buildDownloadActions(prog, true);
+      elements.modalActions.appendChild(actionsWrapper);
+    }
+
+    elements.programModal.hidden = false;
+    elements.programModal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeProgramModal() {
+    if (!elements.programModal) return;
+    elements.programModal.hidden = true;
+    elements.programModal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
   }
 
   function renderCategories() {
@@ -125,7 +195,7 @@
     });
   }
 
-  function buildDownloadActions(prog) {
+  function buildDownloadActions(prog, isModal) {
     var validLinks = [];
 
     if (Array.isArray(prog.descargas)) {
@@ -157,7 +227,7 @@
     if (validLinks.length > 0) {
       var wrapper = createEl(
         "div",
-        validLinks.length > 1 ? "download-options" : "program-actions"
+        isModal || validLinks.length > 1 ? "download-options" : "program-actions"
       );
 
       validLinks.forEach(function (linkItem) {
@@ -165,26 +235,35 @@
         anchor.href = linkItem.url;
         anchor.target = "_blank";
         anchor.rel = "noopener noreferrer";
+        anchor.addEventListener("click", function (e) {
+          e.stopPropagation();
+        });
         wrapper.appendChild(anchor);
       });
 
       if (officialUrl && officialUrl !== validLinks[0].url) {
-        var siteBtn = createEl("a", "details-button", "Sitio oficial");
+        var siteBtn = createEl("a", isModal ? "download-button" : "details-button", "Sitio oficial");
         siteBtn.href = officialUrl;
         siteBtn.target = "_blank";
         siteBtn.rel = "noopener noreferrer";
+        siteBtn.addEventListener("click", function (e) {
+          e.stopPropagation();
+        });
         wrapper.appendChild(siteBtn);
       }
 
       return wrapper;
     }
 
-    var actions = createEl("div", "program-actions");
+    var actions = createEl("div", isModal ? "download-options" : "program-actions");
     if (officialUrl) {
       var officialBtn = createEl("a", "download-button", "↗ Sitio oficial");
       officialBtn.href = officialUrl;
       officialBtn.target = "_blank";
       officialBtn.rel = "noopener noreferrer";
+      officialBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+      });
       actions.appendChild(officialBtn);
     } else {
       var disabledBtn = createEl("span", "download-button disabled", "Descarga próximamente");
@@ -196,6 +275,11 @@
 
   function createProgramCard(prog) {
     var card = createEl("article", "program-card");
+    
+    card.addEventListener("click", function () {
+      openProgramModal(prog);
+    });
+    card.style.cursor = "pointer";
 
     var imageBox = createEl("div", "program-image");
     var initial = (prog.nombre || "?").charAt(0).toUpperCase();
@@ -265,7 +349,7 @@
     }
 
     content.appendChild(badges);
-    content.appendChild(buildDownloadActions(prog));
+    content.appendChild(buildDownloadActions(prog, false));
 
     card.appendChild(content);
     return card;
@@ -505,6 +589,24 @@
         }
       });
     }
+
+    if (elements.closeModal) {
+      elements.closeModal.addEventListener("click", closeProgramModal);
+    }
+
+    if (elements.programModal) {
+      elements.programModal.addEventListener("click", function (e) {
+        if (e.target === elements.programModal) {
+          closeProgramModal();
+        }
+      });
+    }
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        closeProgramModal();
+      }
+    });
   }
 
   function normalizeProgram(raw) {
@@ -540,7 +642,7 @@
             return sanitizeText(s, 25);
           })
         : [],
-      descripcion: sanitizeText(raw.descripcion, 280),
+      descripcion: sanitizeText(raw.descripcion, 500),
       imagen: raw.imagen || null,
       urlDescarga: raw.urlDescarga || null,
       urlOficial: raw.urlOficial || null,

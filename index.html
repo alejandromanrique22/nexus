@@ -18,8 +18,8 @@
   <meta name="robots" content="index,follow,max-image-preview:large">
   <title>Nexus — Software FREE</title>
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./css/styles.css?v=3">
-  <script src="./js/app.js?v=3" defer></script>
+  <link rel="stylesheet" href="./css/styles.css?v=5">
+  <script src="./js/app.js?v=5" defer></script>
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Nexus">
   <meta property="og:title" content="Nexus — Software útil, sin vueltas">
@@ -31,6 +31,7 @@
     <div class="container nav-wrap">
       <a class="brand" href="index.html" aria-label="Nexus, inicio">
         <span class="brand-mark" aria-hidden="true"><img src="./assets/favicon.svg" alt=""></span>
+        <span>Nexus <b>Downloads</b></span>
         <span class="brand-sub">Por <b>Alejandro Manrique</b></span>
       </a>
       <nav class="desktop-nav" aria-label="Navegación principal">
@@ -163,7 +164,7 @@
         <button type="button" id="clearFilters" class="reset-button">↺ <span>Limpiar</span></button>
       </div>
 
-      <div class="results-row"><p id="resultsCount" aria-live="polite">Cargando catálogo…</p><span>Elegí una ficha para ver sus datos</span></div>
+      <div class="results-row"><p id="resultsCount" aria-live="polite">Cargando catálogo…</p><span>Hacé clic en cualquier tarjeta para ver detalles</span></div>
       
       <div id="programList" class="program-grid" aria-live="polite">
         <div class="loading-card">Preparando el catálogo…</div>
@@ -230,5 +231,51 @@
       <span>Hecho para encontrar software sin complicaciones.</span>
     </div>
   </footer>
+
+  <!-- Modal de Detalles del Programa -->
+  <div id="programModal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true" hidden>
+    <div class="modal-card">
+      <button type="button" id="closeModal" class="modal-close" aria-label="Cerrar ventana">✕</button>
+      
+      <div class="modal-header">
+        <div id="modalIcon" class="modal-icon-placeholder">?</div>
+        <div>
+          <span id="modalCategory" class="program-category">Categoría</span>
+          <h2 id="modalTitle">Nombre del Programa</h2>
+          <div id="modalMeta" class="program-meta">Editor · Versión · Tamaño</div>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-section">
+          <h3>Descripción completa</h3>
+          <p id="modalDescription">Cargando detalles...</p>
+        </div>
+
+        <div class="modal-specs">
+          <div class="spec-item">
+            <strong>Arquitectura</strong>
+            <span id="modalArch">—</span>
+          </div>
+          <div class="spec-item">
+            <strong>Sistemas compatibles</strong>
+            <span id="modalSystems">—</span>
+          </div>
+          <div class="spec-item">
+            <strong>Licencia</strong>
+            <span id="modalPrice">—</span>
+          </div>
+          <div class="spec-item">
+            <strong>Última actualización</strong>
+            <span id="modalUpdated">—</span>
+          </div>
+        </div>
+
+        <div class="modal-actions-box" id="modalActions">
+          <!-- Los botones de descarga se inyectarán aquí dinámicamente -->
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
