@@ -322,9 +322,8 @@
         "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/TeamViewer_Setup_x64.exe"
       }
     ]
-  }
-]
-{
+  },
+  {
     "slug": "navegadores-windows-xp",
     "nombre": "Navegadores para Windows XP",
     "categoria": "Navegadores",
@@ -372,7 +371,8 @@
         "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/Google_Chrome_(32bit)_v49.0.2623.112.exe"
       }
     ]
-  }{
+  },
+  {
     "slug": "navegadores-windows-7",
     "nombre": "Navegadores para Windows 7",
     "categoria": "Navegadores",
@@ -461,3 +461,4 @@
       }
     ]
   }
+]

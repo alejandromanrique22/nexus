@@ -696,7 +696,7 @@ h1, h2, h3 {
 
 .program-card {
   min-width: 0;
-  height: 215px;
+  height: 225px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -787,14 +787,19 @@ h1, h2, h3 {
 }
 
 .program-content h3 {
-  font-size: 16px;
+  font-size: 13.5px;
   font-weight: 800;
+  line-height: 1.25;
   letter-spacing: -.3px;
   color: #f0f6ff;
   margin: 2px 0;
-  white-space: nowrap;
+  white-space: normal;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  height: 35px;
 }
 
 .program-meta {
