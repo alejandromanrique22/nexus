@@ -16,7 +16,7 @@
     arch: "",
     sort: "nombre",
     currentPage: 1,
-    itemsPerPage: 6
+    itemsPerPage: 8
   };
 
   var elements = {
@@ -224,53 +224,77 @@
 
     var officialUrl = safeUrl(prog.urlOficial);
 
-    if (validLinks.length > 0) {
-      var wrapper = createEl(
-        "div",
-        isModal || validLinks.length > 1 ? "download-options" : "program-actions"
-      );
-
-      validLinks.forEach(function (linkItem) {
-        var anchor = createEl("a", "download-button", linkItem.etiqueta);
-        anchor.href = linkItem.url;
-        anchor.target = "_blank";
-        anchor.rel = "noopener noreferrer";
-        anchor.addEventListener("click", function (e) {
-          e.stopPropagation();
+    // VISTA MODAL: Muestra todos los links completos uno debajo del otro
+    if (isModal) {
+      var modalWrapper = createEl("div", "download-options");
+      if (validLinks.length > 0) {
+        validLinks.forEach(function (linkItem) {
+          var anchor = createEl("a", "download-button", linkItem.etiqueta);
+          anchor.href = linkItem.url;
+          anchor.target = "_blank";
+          anchor.rel = "noopener noreferrer";
+          modalWrapper.appendChild(anchor);
         });
-        wrapper.appendChild(anchor);
-      });
-
-      if (officialUrl && officialUrl !== validLinks[0].url) {
-        var siteBtn = createEl("a", isModal ? "download-button" : "details-button", "Sitio oficial");
+      }
+      if (officialUrl && (validLinks.length === 0 || officialUrl !== validLinks[0].url)) {
+        var siteBtn = createEl("a", validLinks.length > 0 ? "details-button" : "download-button", "↗ Sitio oficial");
         siteBtn.href = officialUrl;
         siteBtn.target = "_blank";
         siteBtn.rel = "noopener noreferrer";
-        siteBtn.addEventListener("click", function (e) {
-          e.stopPropagation();
-        });
-        wrapper.appendChild(siteBtn);
+        modalWrapper.appendChild(siteBtn);
       }
-
-      return wrapper;
+      if (validLinks.length === 0 && !officialUrl) {
+        var disabledModal = createEl("span", "download-button disabled", "Descarga próximamente");
+        disabledModal.setAttribute("aria-disabled", "true");
+        modalWrapper.appendChild(disabledModal);
+      }
+      return modalWrapper;
     }
 
-    var actions = createEl("div", isModal ? "download-options" : "program-actions");
-    if (officialUrl) {
-      var officialBtn = createEl("a", "download-button", "↗ Sitio oficial");
-      officialBtn.href = officialUrl;
-      officialBtn.target = "_blank";
-      officialBtn.rel = "noopener noreferrer";
-      officialBtn.addEventListener("click", function (e) {
+    // VISTA TARJETA: Siempre 1 sola fila fija de botones para mantener altura idéntica
+    var cardWrapper = createEl("div", "program-actions");
+
+    if (validLinks.length === 1) {
+      var singleAnchor = createEl("a", "download-button", "⬇ Descargar");
+      singleAnchor.href = validLinks[0].url;
+      singleAnchor.target = "_blank";
+      singleAnchor.rel = "noopener noreferrer";
+      singleAnchor.addEventListener("click", function (e) {
         e.stopPropagation();
       });
-      actions.appendChild(officialBtn);
-    } else {
-      var disabledBtn = createEl("span", "download-button disabled", "Descarga próximamente");
-      disabledBtn.setAttribute("aria-disabled", "true");
-      actions.appendChild(disabledBtn);
+      cardWrapper.appendChild(singleAnchor);
+    } else if (validLinks.length > 1) {
+      var multiBtn = createEl("button", "download-button", "⬇ Descargas (" + validLinks.length + ")");
+      multiBtn.type = "button";
+      multiBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        openProgramModal(prog);
+      });
+      cardWrapper.appendChild(multiBtn);
     }
-    return actions;
+
+    if (officialUrl && (validLinks.length === 0 || officialUrl !== validLinks[0].url)) {
+      var officialCardBtn = createEl(
+        "a",
+        validLinks.length > 0 ? "details-button" : "download-button",
+        validLinks.length > 0 ? "Web" : "↗ Sitio oficial"
+      );
+      officialCardBtn.href = officialUrl;
+      officialCardBtn.target = "_blank";
+      officialCardBtn.rel = "noopener noreferrer";
+      officialCardBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+      });
+      cardWrapper.appendChild(officialCardBtn);
+    }
+
+    if (validLinks.length === 0 && !officialUrl) {
+      var disabledCardBtn = createEl("span", "download-button disabled", "Próximamente");
+      disabledCardBtn.setAttribute("aria-disabled", "true");
+      cardWrapper.appendChild(disabledCardBtn);
+    }
+
+    return cardWrapper;
   }
 
   function createProgramCard(prog) {
@@ -281,50 +305,50 @@
     });
     card.style.cursor = "pointer";
 
-    var imageBox = createEl("div", "program-image");
+    var content = createEl("div", "program-content");
+
+    var header = createEl("div", "card-compact-header");
+    
+    var iconBox = createEl("div", "program-image");
     var initial = (prog.nombre || "?").charAt(0).toUpperCase();
     var placeholder = createEl("span", "image-placeholder", initial);
     placeholder.setAttribute("aria-hidden", "true");
-    imageBox.appendChild(placeholder);
+    iconBox.appendChild(placeholder);
 
     var imgSrc = safeAssetPath(prog.imagen);
     if (imgSrc) {
       var img = document.createElement("img");
       img.src = imgSrc;
-      img.alt = "Vista previa de " + prog.nombre;
+      img.alt = "Icono de " + prog.nombre;
       img.loading = "lazy";
       img.addEventListener("error", function () {
         img.remove();
       });
-      imageBox.appendChild(img);
+      iconBox.appendChild(img);
     }
 
+    var titleGroup = createEl("div", "card-title-group");
+    var topRow = createEl("div", "card-top-row");
+    topRow.appendChild(createEl("span", "program-category", prog.categoria || "Software"));
     if (prog.destacado === true) {
-      imageBox.appendChild(createEl("span", "featured-label", "DESTACADO"));
+      topRow.appendChild(createEl("span", "featured-label", "★"));
     }
-
-    card.appendChild(imageBox);
-
-    var content = createEl("div", "program-content");
-    content.appendChild(createEl("div", "program-category", prog.categoria || "Software"));
-    content.appendChild(createEl("h3", "", prog.nombre));
+    titleGroup.appendChild(topRow);
+    titleGroup.appendChild(createEl("h3", "", prog.nombre));
 
     var metaParts = [];
-    if (prog.editor) {
-      metaParts.push(prog.editor);
-    }
-    if (prog.version) {
-      metaParts.push("v" + prog.version.replace(/^v/i, ""));
-    }
-    if (prog.tamano) {
-      metaParts.push(prog.tamano);
-    }
-    if (metaParts.length > 0) {
-      content.appendChild(createEl("div", "program-meta", metaParts.join(" · ")));
-    }
+    if (prog.editor) metaParts.push(prog.editor);
+    if (prog.version) metaParts.push("v" + prog.version.replace(/^v/i, ""));
+    titleGroup.appendChild(createEl("div", "program-meta", metaParts.join(" · ") || "Software Windows"));
 
-    content.appendChild(createEl("p", "program-description", prog.descripcion));
+    header.appendChild(iconBox);
+    header.appendChild(titleGroup);
+    content.appendChild(header);
 
+    // Descripción con altura fija de 2 líneas
+    content.appendChild(createEl("p", "program-description", prog.descripcion || "Herramienta disponible para Windows."));
+
+    // Badges en una sola fila fija
     var badges = createEl("div", "badges");
     if (prog.precio) {
       var priceClass = "badge";
@@ -340,12 +364,12 @@
       badges.appendChild(createEl("span", "badge", prog.arquitectura));
     }
 
-    if (Array.isArray(prog.sistemas)) {
-      prog.sistemas.forEach(function (sys) {
-        if (typeof sys === "string" && sys.trim()) {
-          badges.appendChild(createEl("span", "badge", sys.trim()));
-        }
-      });
+    if (Array.isArray(prog.sistemas) && prog.sistemas.length > 0) {
+      var firstSys = prog.sistemas[0].trim().replace("Windows ", "Win ");
+      badges.appendChild(createEl("span", "badge", firstSys));
+      if (prog.sistemas.length > 1) {
+        badges.appendChild(createEl("span", "badge", "+" + (prog.sistemas.length - 1)));
+      }
     }
 
     content.appendChild(badges);
