@@ -120,6 +120,16 @@ button, a, select {
   color: var(--blue);
 }
 
+.brand-sub {
+  font-size: 11px;
+  color: #8ea4c4;
+  font-weight: 500;
+  letter-spacing: .5px;
+}
+.brand-sub b {
+  color: #38bdf8;
+}
+
 .brand-mark {
   display: grid;
   place-items: center;
