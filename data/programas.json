@@ -338,37 +338,42 @@
       {
         "etiqueta": "⬇ Supermium 150 (Instalador 32 bits - Recomendado)",
         "sistemas": ["Windows XP"],
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/Navegadores%20Windows%20XP/supermium_150_32_setup.exe"
+        "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/supermium_150_32_setup.exe"
       },
       {
         "etiqueta": "⬇ Supermium 150 (Portable 32 bits)",
         "sistemas": ["Windows XP"],
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/Navegadores%20Windows%20XP/supermium_150_32_nonsetup.zip"
+        "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/supermium_150_32_nonsetup.zip"
       },
       {
         "etiqueta": "⬇ Thorium Win32 SSE2 (Portable - Liviano)",
         "sistemas": ["Windows XP"],
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/Navegadores%20Windows%20XP/Thorium_WIN32_SSE2_122.0.6261.171.zip"
+        "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/Thorium_WIN32_SSE2_122.0.6261.171.zip"
+      },
+      {
+        "etiqueta": "⬇ Thorium Win32 SSE3 (Portable)",
+        "sistemas": ["Windows XP"],
+        "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/Thorium_WIN32_SSE3_122.0.6261.171.zip"
       },
       {
         "etiqueta": "⬇ Mypal 78 Quantum (Portable - Pentium 4 / SSE2)",
         "sistemas": ["Windows XP"],
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/Navegadores%20Windows%20XP/mypal-78.1.2.en-US.win32.zip"
+        "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/mypal-78.1.2.en-US.win32.zip"
       },
       {
         "etiqueta": "⬇ Mypal 78 SSE (Portable - Pentium III / Sin SSE2)",
         "sistemas": ["Windows XP"],
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/Navegadores%20Windows%20XP/mypal-78.1.2.en-US.win32-sse.zip"
+        "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/mypal-78.1.2.en-US.win32-sse.zip"
       },
       {
         "etiqueta": "⬇ Firefox 52.9.0 ESR (Instalador Legado - Offline)",
         "sistemas": ["Windows XP"],
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/Navegadores%20Windows%20XP/Firefox%20Setup%2052.9.0esr.exe"
+        "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/Firefox%20Setup%2052.9.0esr.exe"
       },
       {
         "etiqueta": "⬇ Google Chrome 49 (Instalador Legado - Offline)",
         "sistemas": ["Windows XP"],
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/Navegadores%20Windows%20XP/Google_Chrome_(32bit)_v49.0.2623.112.exe"
+        "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/Google_Chrome_(32bit)_v49.0.2623.112.exe"
       }
     ]
   },
