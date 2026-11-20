@@ -1,11 +1,13 @@
 /*!
-- Nexus — Catálogo y Biblioteca de Software
-- Autor: Alejandro Manrique
-- Ubicación: Trelew, Chubut, Argentina
-- Copyright (c) 2026 Alejandro Manrique. Todos los derechos reservados.
+ * Nexus — Catálogo y Biblioteca de Software
+ * Autor: Alejandro Manrique
+ * Ubicación: Trelew, Chubut, Argentina
+ * Copyright (c) 2026 Alejandro Manrique. Todos los derechos reservados.
  */
 (function () {
   "use strict";
+
+  var lastCatalogScrollY = 0;
 
   var state = {
     programs: [],
@@ -105,6 +107,36 @@
     return el;
   }
 
+  function buildItemThumb(prog) {
+    var initial = (prog.nombre || "?").charAt(0).toUpperCase();
+    var iconUrl = safeUrl(prog.icono);
+    if (!iconUrl) {
+      return createEl("span", "item-thumb-fallback", initial);
+    }
+
+    var img = document.createElement("img");
+    img.className = "item-thumb";
+    img.src = iconUrl;
+    img.alt = prog.nombre || "";
+    img.width = 34;
+    img.height = 34;
+    img.onerror = function () {
+      if (!img.parentNode) return;
+      var fallback = createEl("span", "item-thumb-fallback", initial);
+      img.parentNode.replaceChild(fallback, img);
+    };
+    return img;
+  }
+
+  function triggerViewFade(el) {
+    if (!el || !el.classList) {
+      return;
+    }
+    el.classList.remove("view-fade-in");
+    void el.offsetWidth;
+    el.classList.add("view-fade-in");
+  }
+
   function inferSection(prog) {
     if (prog.seccion) {
       return prog.seccion;
@@ -173,10 +205,11 @@
     allRow.appendChild(createEl("span", "", "Todos los apartados"));
     allRow.appendChild(createEl("span", "menu-count", String(state.programs.length)));
     allRow.addEventListener("click", function () {
+      lastCatalogScrollY = 0;
       state.category = "Todas";
       state.subFilter = "";
       state.currentPage = 1;
-      closeItemDetail(true, false);
+      closeItemDetail(true, false, true);
     });
     container.appendChild(allRow);
 
@@ -216,10 +249,11 @@
       row.appendChild(createEl("span", "menu-count", String(countInCat)));
 
       row.addEventListener("click", function () {
+        lastCatalogScrollY = 0;
         state.category = cat;
         state.subFilter = "";
         state.currentPage = 1;
-        closeItemDetail(true, false);
+        closeItemDetail(true, false, true);
       });
 
       group.appendChild(row);
@@ -234,10 +268,11 @@
           );
           li.addEventListener("click", function (e) {
             e.stopPropagation();
+            lastCatalogScrollY = 0;
             state.category = cat;
             state.subFilter = state.subFilter === sub ? "" : sub;
             state.currentPage = 1;
-            closeItemDetail(true, false);
+            closeItemDetail(true, false, true);
           });
           sublist.appendChild(li);
         });
@@ -274,9 +309,14 @@
       return;
     }
 
+    if (!state.activeItem && !elements.catalogView.hidden) {
+      lastCatalogScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+    }
+
     state.activeItem = prog;
     elements.catalogView.hidden = true;
     elements.detailView.hidden = false;
+    triggerViewFade(elements.detailView);
 
     if (!skipHashUpdate && prog.slug) {
       window.location.hash = "/item/" + prog.slug;
@@ -291,7 +331,21 @@
     }
 
     if (elements.detailIcon) {
-      elements.detailIcon.textContent = (prog.nombre || "?").charAt(0).toUpperCase();
+      var initial = (prog.nombre || "?").charAt(0).toUpperCase();
+      var iconUrl = safeUrl(prog.icono);
+      elements.detailIcon.innerHTML = "";
+      if (iconUrl) {
+        var detailImg = document.createElement("img");
+        detailImg.src = iconUrl;
+        detailImg.alt = prog.nombre || "";
+        detailImg.onerror = function () {
+          elements.detailIcon.innerHTML = "";
+          elements.detailIcon.textContent = initial;
+        };
+        elements.detailIcon.appendChild(detailImg);
+      } else {
+        elements.detailIcon.textContent = initial;
+      }
     }
     if (elements.detailSectionTag) {
       elements.detailSectionTag.textContent = secName;
@@ -453,10 +507,20 @@
     window.scrollTo(0, 0);
   }
 
-  function closeItemDetail(clearHash, shouldScrollTop) {
+  function closeItemDetail(clearHash, shouldScrollTop, resetSavedScroll) {
+    if (resetSavedScroll) {
+      lastCatalogScrollY = 0;
+    }
+
+    var wasDetailOpen = Boolean(state.activeItem || (elements.detailView && !elements.detailView.hidden));
     state.activeItem = null;
     if (elements.detailView) elements.detailView.hidden = true;
-    if (elements.catalogView) elements.catalogView.hidden = false;
+    if (elements.catalogView) {
+      elements.catalogView.hidden = false;
+      if (wasDetailOpen) {
+        triggerViewFade(elements.catalogView);
+      }
+    }
 
     if (clearHash && window.location.hash) {
       window.location.hash = "";
@@ -468,7 +532,7 @@
     renderPrograms();
 
     if (shouldScrollTop) {
-      window.scrollTo(0, 0);
+      window.scrollTo(0, resetSavedScroll ? 0 : lastCatalogScrollY || 0);
     }
   }
 
@@ -484,7 +548,7 @@
         }
       }
     } else if (state.activeItem) {
-      closeItemDetail(false, false);
+      closeItemDetail(false, false, false);
     }
   }
 
@@ -626,8 +690,6 @@
     var headRow = createEl("tr");
     headRow.appendChild(createEl("th", "", "Paquete / Descripción"));
     headRow.appendChild(createEl("th", "", "Sistema"));
-    headRow.appendChild(createEl("th", "", "Arq."));
-    headRow.appendChild(createEl("th", "", "Tamaño"));
     headRow.appendChild(createEl("th", "", "Acción"));
     thead.appendChild(headRow);
     table.appendChild(thead);
@@ -641,14 +703,18 @@
         openItemDetail(prog, false);
       });
 
+      tdName.appendChild(buildItemThumb(prog));
+
+      var textWrap = createEl("div", "item-text-wrap");
       var titleEl = createEl("span", "item-title", prog.nombre);
-      tdName.appendChild(titleEl);
+      textWrap.appendChild(titleEl);
       if (prog.version) {
-        tdName.appendChild(createEl("span", "mono-col", "  [" + prog.version + "]"));
+        textWrap.appendChild(createEl("span", "mono-col", "  [" + prog.version + "]"));
       }
       if (prog.descripcion) {
-        tdName.appendChild(createEl("p", "item-desc", prog.descripcion));
+        textWrap.appendChild(createEl("p", "item-desc", prog.descripcion));
       }
+      tdName.appendChild(textWrap);
       tr.appendChild(tdName);
 
       var sysText =
@@ -656,8 +722,6 @@
           ? prog.sistemas.join(", ")
           : "Windows";
       tr.appendChild(createEl("td", "mono-col", sysText));
-      tr.appendChild(createEl("td", "mono-col", prog.arquitectura || "—"));
-      tr.appendChild(createEl("td", "mono-col", prog.tamano || "—"));
 
       var tdAction = createEl("td", "action-links");
       var multiCount = Array.isArray(prog.descargas) ? prog.descargas.length : 0;
@@ -683,6 +747,7 @@
   }
 
   function resetAllFilters() {
+    lastCatalogScrollY = 0;
     state.section = "Todos";
     state.category = "Todas";
     state.subFilter = "";
@@ -697,30 +762,39 @@
     if (elements.archFilter) elements.archFilter.value = "";
     if (elements.sortFilter) elements.sortFilter.value = "nombre";
 
-    closeItemDetail(true, false);
+    closeItemDetail(true, false, true);
+    if (elements.catalogView && !elements.catalogView.hidden) {
+      triggerViewFade(elements.catalogView);
+    }
   }
 
   function bindEvents() {
     for (var i = 0; i < elements.topTabs.length; i++) {
       elements.topTabs[i].addEventListener("click", function () {
         var sec = this.getAttribute("data-section") || "Todos";
+        lastCatalogScrollY = 0;
         state.section = sec;
         state.category = "Todas";
         state.subFilter = "";
         state.currentPage = 1;
 
-        closeItemDetail(true, false);
+        closeItemDetail(true, false, true);
+        if (elements.catalogView && !elements.catalogView.hidden) {
+          triggerViewFade(elements.catalogView);
+        }
       });
     }
 
     for (var k = 0; k < elements.osChips.length; k++) {
       elements.osChips[k].addEventListener("click", function () {
+        lastCatalogScrollY = 0;
         state.system = this.getAttribute("data-os") || "";
         state.currentPage = 1;
         if (state.activeItem) {
-          closeItemDetail(true, false);
+          closeItemDetail(true, false, true);
         } else {
           renderPrograms();
+          triggerViewFade(elements.catalogView);
         }
       });
     }
@@ -728,18 +802,23 @@
     if (elements.searchForm) {
       elements.searchForm.addEventListener("submit", function (e) {
         e.preventDefault();
+        lastCatalogScrollY = 0;
         state.search = elements.searchInput ? elements.searchInput.value.replace(/^\s+|\s+$/g, "") : "";
         state.currentPage = 1;
-        closeItemDetail(true, false);
+        closeItemDetail(true, false, true);
+        if (elements.catalogView && !elements.catalogView.hidden) {
+          triggerViewFade(elements.catalogView);
+        }
       });
     }
 
     if (elements.searchInput) {
       elements.searchInput.addEventListener("input", function () {
+        lastCatalogScrollY = 0;
         state.search = elements.searchInput.value.replace(/^\s+|\s+$/g, "");
         state.currentPage = 1;
         if (state.activeItem) {
-          closeItemDetail(true, false);
+          closeItemDetail(true, false, true);
         } else {
           renderPrograms();
         }
@@ -748,36 +827,42 @@
 
     if (elements.systemFilter) {
       elements.systemFilter.addEventListener("change", function () {
+        lastCatalogScrollY = 0;
         state.system = elements.systemFilter.value;
         state.currentPage = 1;
         if (state.activeItem) {
-          closeItemDetail(true, false);
+          closeItemDetail(true, false, true);
         } else {
           renderPrograms();
+          triggerViewFade(elements.catalogView);
         }
       });
     }
 
     if (elements.archFilter) {
       elements.archFilter.addEventListener("change", function () {
+        lastCatalogScrollY = 0;
         state.arch = elements.archFilter.value;
         state.currentPage = 1;
         if (state.activeItem) {
-          closeItemDetail(true, false);
+          closeItemDetail(true, false, true);
         } else {
           renderPrograms();
+          triggerViewFade(elements.catalogView);
         }
       });
     }
 
     if (elements.sortFilter) {
       elements.sortFilter.addEventListener("change", function () {
+        lastCatalogScrollY = 0;
         state.sort = elements.sortFilter.value;
         state.currentPage = 1;
         if (state.activeItem) {
-          closeItemDetail(true, false);
+          closeItemDetail(true, false, true);
         } else {
           renderPrograms();
+          triggerViewFade(elements.catalogView);
         }
       });
     }
@@ -793,8 +878,11 @@
     if (elements.prevPageBtn) {
       elements.prevPageBtn.addEventListener("click", function () {
         if (state.currentPage > 1) {
+          lastCatalogScrollY = 0;
           state.currentPage--;
           renderPrograms();
+          triggerViewFade(elements.catalogView);
+          window.scrollTo(0, 0);
         }
       });
     }
@@ -803,21 +891,24 @@
       elements.nextPageBtn.addEventListener("click", function () {
         var totalPages = Math.ceil(getFilteredPrograms().length / state.itemsPerPage);
         if (state.currentPage < totalPages) {
+          lastCatalogScrollY = 0;
           state.currentPage++;
           renderPrograms();
+          triggerViewFade(elements.catalogView);
+          window.scrollTo(0, 0);
         }
       });
     }
 
     if (elements.backToListBtn) {
       elements.backToListBtn.addEventListener("click", function () {
-        closeItemDetail(true, true);
+        closeItemDetail(true, true, false);
       });
     }
 
     if (elements.backToListBottomBtn) {
       elements.backToListBottomBtn.addEventListener("click", function () {
-        closeItemDetail(true, true);
+        closeItemDetail(true, true, false);
       });
     }
 
@@ -847,6 +938,7 @@
 
     return {
       slug: slug,
+      icono: sanitizeText(raw.icono || raw.imagen, 300),
       nombre: nombre,
       seccion: sanitizeText(raw.seccion, 40),
       categoria: sanitizeText(raw.categoria, 40) || "General",

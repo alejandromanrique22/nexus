@@ -22,6 +22,7 @@
   },
   {
     "slug": "vlc-media-player",
+    "icono": "img/iconos/vlc.png",
     "seccion": "Programas",
     "categoria": "Multimedia",
     "subcategoria": "Reproductores de Video",
@@ -88,6 +89,7 @@
   },
   {
     "slug": "everything",
+    "icono": "img/iconos/everything.png",
     "seccion": "Utilidades",
     "categoria": "Sistema y Diagnóstico",
     "subcategoria": "Búsqueda de Archivos",
@@ -139,6 +141,7 @@
   },
   {
     "slug": "update-pack-7-r2",
+    "icono": "img/iconos/update.png",
     "seccion": "Utilidades",
     "categoria": "Sistema y Diagnóstico",
     "subcategoria": "Parches y Compatibilidad",
@@ -182,6 +185,7 @@
   },
   {
     "slug": "poweriso",
+    "icono": "img/iconos/poweriso.png",
     "seccion": "Utilidades",
     "categoria": "Imágenes y Discos",
     "subcategoria": "Montaje y Grabación ISO",
@@ -203,6 +207,7 @@
   },
   {
     "slug": "rufus",
+    "icono": "img/iconos/rufus.png",
     "seccion": "Utilidades",
     "categoria": "Imágenes y Discos",
     "subcategoria": "USB Booteables",
@@ -224,6 +229,7 @@
   },
   {
     "slug": "winrar",
+    "icono": "img/iconos/winrar.png",
     "seccion": "Utilidades",
     "categoria": "Compresores",
     "subcategoria": "RAR / ZIP",
@@ -257,6 +263,7 @@
   },
   {
     "slug": "7-zip",
+    "icono": "img/iconos/7zip.png",
     "seccion": "Utilidades",
     "categoria": "Compresores",
     "subcategoria": "7Z / Código Abierto",
@@ -282,6 +289,7 @@
   },
   {
     "slug": "sumatra-pdf",
+    "icono": "img/iconos/sumatra.png",
     "seccion": "Programas",
     "categoria": "Ofimática",
     "subcategoria": "Lectores PDF",
@@ -328,6 +336,7 @@
   },
   {
     "slug": "anydesk",
+    "icono": "img/iconos/anydesk.png",
     "seccion": "Programas",
     "categoria": "Internet y Red",
     "subcategoria": "Escritorio Remoto",
@@ -349,6 +358,7 @@
   },
   {
     "slug": "teamviewer",
+    "icono": "img/iconos/teamviwer.png",
     "seccion": "Programas",
     "categoria": "Internet y Red",
     "subcategoria": "Escritorio Remoto",
@@ -391,6 +401,7 @@
   },
   {
     "slug": "navegadores-windows-xp",
+    "icono": "img/iconos/firefox.png",
     "seccion": "Programas",
     "categoria": "Navegadores",
     "subcategoria": "Windows XP",
@@ -449,6 +460,7 @@
   },
   {
     "slug": "navegadores-windows-7",
+    "icono": "img/iconos/chrome.png",
     "seccion": "Programas",
     "categoria": "Navegadores",
     "subcategoria": "Windows 7",
