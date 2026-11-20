@@ -30,14 +30,22 @@
     "version": "3.0.24",
     "precio": "Gratis",
     "actualizado": "2026",
-    "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
-    "arquitectura": "64 bits",
+    "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7", "Windows XP"],
+    "arquitectura": "32 y 64 bits",
     "tamano": "~42 MB",
     "descripcion": "Reproductor multimedia libre con códecs integrados para reproducir prácticamente cualquier formato de audio y video.",
     "descargas": [
       {
-        "etiqueta": "Instalador Oficial (64-bit)",
-        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/vlc-3.0.24-win64.exe"
+        "etiqueta": "Instalador v3.0.24 (64-bit · Windows 7 – 11)",
+        "url": "https://descargas.error404-ar.com.ar/VLC/vlc-3.0.24-win64.exe"
+      },
+      {
+        "etiqueta": "Instalador v3.0.24 (32-bit · Windows 7 – 10)",
+        "url": "https://descargas.error404-ar.com.ar/VLC/vlc-3.0.24-win32.exe"
+      },
+      {
+        "etiqueta": "Instalador v3.0.20 (32-bit · Windows XP)",
+        "url": "https://descargas.error404-ar.com.ar/VLC/vlc-3.0.20-win32.exe"
       }
     ]
   },
@@ -224,18 +232,26 @@
     "version": "7.23",
     "precio": "Gratis",
     "actualizado": "2026",
-    "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "sistemas": ["Windows 11", "Windows 10", "Windows 7", "Windows XP"],
     "arquitectura": "32 y 64 bits",
     "tamano": "~4 MB",
-    "descripcion": "Compresor y extractor estándar en español para archivos RAR, ZIP, 7Z e ISO.",
+    "descripcion": "Compresor y extractor en español para archivos RAR, ZIP, 7Z e ISO, con instaladores según sistema operativo y arquitectura.",
     "descargas": [
       {
-        "etiqueta": "Instalador Español v7.01 (32-bit)",
-        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/winrar-x32-701es.exe"
+        "etiqueta": "Instalador Español v7.23 (64-bit · Windows 10 / 11)",
+        "url": "https://descargas.error404-ar.com.ar/WinRAR/winrar-x64-723es.exe"
       },
       {
-        "etiqueta": "Instalador Español v7.23 (64-bit)",
-        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/winrar-x64-723es.exe"
+        "etiqueta": "Instalador Español v7.23 (64-bit · Windows 7)",
+        "url": "https://descargas.error404-ar.com.ar/WinRAR/winrar-x64-723es.exe"
+      },
+      {
+        "etiqueta": "Instalador Español v7.01 (32-bit · Windows 7)",
+        "url": "https://descargas.error404-ar.com.ar/WinRAR/winrar-x32-701es.exe"
+      },
+      {
+        "etiqueta": "Instalador Español v6.02 (Windows XP)",
+        "url": "https://descargas.error404-ar.com.ar/WinRAR/wrar602es.exe"
       }
     ]
   },
@@ -249,18 +265,18 @@
     "version": "26.05",
     "precio": "Gratis",
     "actualizado": "2026",
-    "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7", "Windows XP"],
     "arquitectura": "32 y 64 bits",
     "tamano": "~2 MB",
     "descripcion": "Archivador libre de alto ratio de compresión con soporte nativo para 7z, XZ, GZIP, TAR y ZIP.",
     "descargas": [
       {
         "etiqueta": "Instalador (32-bit)",
-        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/7z2605.exe"
+        "url": "https://descargas.error404-ar.com.ar/7z2606.exe"
       },
       {
         "etiqueta": "Instalador (64-bit)",
-        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/7z2605-x64.exe"
+        "url": "https://descargas.error404-ar.com.ar/7z2606-x64.exe"
       }
     ]
   },
@@ -281,11 +297,11 @@
     "descargas": [
       {
         "etiqueta": "Instalador (32-bit)",
-        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/SumatraPDF-3.6.1-install.exe"
+        "url": "https://descargas.error404-ar.com.ar/SumatraPDF-3.6.1-install.exe"
       },
       {
         "etiqueta": "Instalador (64-bit)",
-        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/SumatraPDF-3.6.1-64-install.exe"
+        "url": "https://descargas.error404-ar.com.ar/SumatraPDF-3.6.1-64-install.exe"
       }
     ]
   },
@@ -327,7 +343,7 @@
     "descargas": [
       {
         "etiqueta": "Ejecutable Directo",
-        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/AnyDesk.exe"
+        "url": "https://descargas.error404-ar.com.ar/AnyDesk.exe"
       }
     ]
   },
