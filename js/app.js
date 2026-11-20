@@ -83,7 +83,7 @@
     if (!trimmed) {
       return null;
     }
-    if (/^(https?:\/\/|\.\/|\/)/i.test(trimmed) && !/^javascript:/i.test(trimmed)) {
+    if (/^(https?:\/\/|\.\/|\/|img\/)/i.test(trimmed) && !/^javascript:/i.test(trimmed)) {
       return trimmed;
     }
     return null;
