@@ -1,26 +1,33 @@
 /*!
- * Nexus — Catálogo y Biblioteca de Software
- * Autor: Alejandro Manrique
- * Ubicación: Trelew, Chubut, Argentina
- * Copyright (c) 2026 Alejandro Manrique. Todos los derechos reservados.
- * Prohibida su reproducción total o parcial sin autorización expresa del autor.
+- Nexus — Catálogo y Biblioteca de Software
+- Autor: Alejandro Manrique
+- Ubicación: Trelew, Chubut, Argentina
+- Copyright (c) 2026 Alejandro Manrique. Todos los derechos reservados.
  */
 (function () {
   "use strict";
 
   var state = {
     programs: [],
+    activeItem: null,
+    section: "Todos",
     category: "Todas",
+    subFilter: "",
     search: "",
     system: "",
     arch: "",
     sort: "nombre",
     currentPage: 1,
-    itemsPerPage: 8
+    itemsPerPage: 12
   };
 
   var elements = {
-    categories: document.getElementById("categories"),
+    topTabs: document.querySelectorAll(".top-tab"),
+    osChips: document.querySelectorAll(".os-chip"),
+    sidebarMenu: document.getElementById("sidebarMenu"),
+    catalogView: document.getElementById("catalogView"),
+    detailView: document.getElementById("detailView"),
+    currentBreadcrumb: document.getElementById("currentBreadcrumb"),
     programList: document.getElementById("programList"),
     resultsCount: document.getElementById("resultsCount"),
     emptyState: document.getElementById("emptyState"),
@@ -39,56 +46,52 @@
     prevPageBtn: document.getElementById("prevPage"),
     nextPageBtn: document.getElementById("nextPage"),
     pageInfo: document.getElementById("pageInfo"),
-    // Elementos del Modal
-    programModal: document.getElementById("programModal"),
-    closeModal: document.getElementById("closeModal"),
-    modalIcon: document.getElementById("modalIcon"),
-    modalCategory: document.getElementById("modalCategory"),
-    modalTitle: document.getElementById("modalTitle"),
-    modalMeta: document.getElementById("modalMeta"),
-    modalDescription: document.getElementById("modalDescription"),
-    modalArch: document.getElementById("modalArch"),
-    modalSystems: document.getElementById("modalSystems"),
-    modalPrice: document.getElementById("modalPrice"),
-    modalUpdated: document.getElementById("modalUpdated"),
-    modalActions: document.getElementById("modalActions")
+    // Elementos de la Ficha Dedicada
+    backToListBtn: document.getElementById("backToListBtn"),
+    backToListBottomBtn: document.getElementById("backToListBottomBtn"),
+    detailBreadcrumb: document.getElementById("detailBreadcrumb"),
+    detailIcon: document.getElementById("detailIcon"),
+    detailSectionTag: document.getElementById("detailSectionTag"),
+    detailCatTag: document.getElementById("detailCatTag"),
+    detailTitle: document.getElementById("detailTitle"),
+    detailSubtitle: document.getElementById("detailSubtitle"),
+    detailPrimaryCta: document.getElementById("detailPrimaryCta"),
+    detailDescription: document.getElementById("detailDescription"),
+    detailNotesBox: document.getElementById("detailNotesBox"),
+    detailNotes: document.getElementById("detailNotes"),
+    detailFilesList: document.getElementById("detailFilesList"),
+    detailEditor: document.getElementById("detailEditor"),
+    detailVersion: document.getElementById("detailVersion"),
+    detailSystems: document.getElementById("detailSystems"),
+    detailArch: document.getElementById("detailArch"),
+    detailSize: document.getElementById("detailSize"),
+    detailPrice: document.getElementById("detailPrice"),
+    detailSlug: document.getElementById("detailSlug"),
+    detailUpdated: document.getElementById("detailUpdated"),
+    detailHashRow: document.getElementById("detailHashRow"),
+    detailHash: document.getElementById("detailHash"),
+    detailShareUrl: document.getElementById("detailShareUrl")
   };
 
   function safeUrl(value) {
-    if (typeof value !== "string" || !value.trim()) {
-      return null;
-    }
-    try {
-      var parsed = new URL(value.trim(), window.location.origin);
-      if (parsed.protocol === "https:" || parsed.protocol === "http:") {
-        return parsed.href;
-      }
-      return null;
-    } catch (e) {
-      return null;
-    }
-  }
-
-  function safeAssetPath(value) {
     if (typeof value !== "string") {
       return null;
     }
-    var trimmed = value.trim();
-    if (/^\.\/assets\/[a-zA-Z0-9._-]+$/.test(trimmed)) {
+    var trimmed = value.replace(/^\s+|\s+$/g, "");
+    if (!trimmed) {
+      return null;
+    }
+    if (/^(https?:\/\/|\.\/|\/)/i.test(trimmed) && !/^javascript:/i.test(trimmed)) {
       return trimmed;
     }
-    return safeUrl(trimmed);
+    return null;
   }
 
   function sanitizeText(value, maxLength) {
     if (typeof value !== "string") {
       return "";
     }
-    return value.replace(/\s+/g, " ").trim().slice(0, maxLength || 500);
-  }
-
-  function slugIsValid(slug) {
-    return typeof slug === "string" && /^[a-z0-9-]{2,60}$/.test(slug);
+    return value.replace(/\s+/g, " ").replace(/^\s+|\s+$/g, "").slice(0, maxLength || 600);
   }
 
   function createEl(tag, className, text) {
@@ -102,311 +105,430 @@
     return el;
   }
 
-  function openProgramModal(prog) {
-    if (!elements.programModal) return;
-
-    if (elements.modalIcon) {
-      elements.modalIcon.textContent = (prog.nombre || "?").charAt(0).toUpperCase();
+  function inferSection(prog) {
+    if (prog.seccion) {
+      return prog.seccion;
     }
-    if (elements.modalCategory) {
-      elements.modalCategory.textContent = prog.categoria || "Software";
+    var cat = (prog.categoria || "").toLowerCase();
+    var name = (prog.nombre || "").toLowerCase();
+    if (cat.indexOf("iso") !== -1 || cat.indexOf("sistema") !== -1 || name.indexOf("iso") !== -1) {
+      return "Sistemas / ISOs";
     }
-    if (elements.modalTitle) {
-      elements.modalTitle.textContent = prog.nombre || "Sin nombre";
+    if (cat.indexOf("util") !== -1 || cat.indexOf("driver") !== -1 || cat.indexOf("compresor") !== -1) {
+      return "Utilidades";
     }
-
-    var metaParts = [];
-    if (prog.editor) metaParts.push(prog.editor);
-    if (prog.version) metaParts.push("v" + prog.version.replace(/^v/i, ""));
-    if (prog.tamano) metaParts.push(prog.tamano);
-    if (elements.modalMeta) {
-      elements.modalMeta.textContent = metaParts.join(" · ") || "Información general";
-    }
-
-    if (elements.modalDescription) {
-      elements.modalDescription.textContent = prog.descripcion || "Sin descripción disponible para este programa.";
-    }
-    if (elements.modalArch) {
-      elements.modalArch.textContent = prog.arquitectura || "No especificada";
-    }
-    if (elements.modalSystems) {
-      elements.modalSystems.textContent = Array.isArray(prog.sistemas) && prog.sistemas.length > 0 
-        ? prog.sistemas.join(", ") 
-        : "Windows general";
-    }
-    if (elements.modalPrice) {
-      elements.modalPrice.textContent = prog.precio || "Gratis";
-    }
-    if (elements.modalUpdated) {
-      elements.modalUpdated.textContent = prog.actualizado || "Reciente";
-    }
-
-    if (elements.modalActions) {
-      elements.modalActions.innerHTML = "";
-      var actionsWrapper = buildDownloadActions(prog, true);
-      elements.modalActions.appendChild(actionsWrapper);
-    }
-
-    elements.programModal.hidden = false;
-    elements.programModal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
+    return "Programas";
   }
 
-  function closeProgramModal() {
-    if (!elements.programModal) return;
-    elements.programModal.hidden = true;
-    elements.programModal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
+  function syncOsControls() {
+    if (elements.systemFilter && elements.systemFilter.value !== state.system) {
+      elements.systemFilter.value = state.system;
+    }
+    for (var i = 0; i < elements.osChips.length; i++) {
+      var chip = elements.osChips[i];
+      var chipOs = chip.getAttribute("data-os") || "";
+      chip.className = chipOs === state.system ? "os-chip active" : "os-chip";
+    }
   }
 
-  function renderCategories() {
-    var container = elements.categories;
+  function syncTopTabs() {
+    for (var i = 0; i < elements.topTabs.length; i++) {
+      var tab = elements.topTabs[i];
+      var sec = tab.getAttribute("data-section") || "Todos";
+      tab.className = sec === state.section ? "top-tab active" : "top-tab";
+    }
+  }
+
+  function getSubitemsForCategory(catName) {
+    var subs = [];
+    state.programs.forEach(function (prog) {
+      if (prog.categoria !== catName) {
+        return;
+      }
+      if (prog.subcategoria && subs.indexOf(prog.subcategoria) === -1) {
+        subs.push(prog.subcategoria);
+      } else if (Array.isArray(prog.sistemas)) {
+        prog.sistemas.forEach(function (sys) {
+          if (sys && subs.indexOf(sys) === -1) {
+            subs.push(sys);
+          }
+        });
+      }
+    });
+    return subs;
+  }
+
+  function renderSidebarMenu() {
+    var container = elements.sidebarMenu;
     if (!container) {
       return;
     }
     container.innerHTML = "";
 
-    var unique = ["Todas"];
+    var allRow = createEl(
+      "div",
+      "menu-cat-row" + (!state.activeItem && state.category === "Todas" && !state.subFilter ? " active" : "")
+    );
+    allRow.appendChild(createEl("span", "menu-toggle", "•"));
+    allRow.appendChild(createEl("span", "", "Todos los apartados"));
+    allRow.appendChild(createEl("span", "menu-count", String(state.programs.length)));
+    allRow.addEventListener("click", function () {
+      state.category = "Todas";
+      state.subFilter = "";
+      state.currentPage = 1;
+      closeItemDetail(true, false);
+    });
+    container.appendChild(allRow);
+
+    var categories = [];
     state.programs.forEach(function (prog) {
-      if (prog.categoria && unique.indexOf(prog.categoria) === -1) {
-        unique.push(prog.categoria);
+      if (state.section !== "Todos" && inferSection(prog) !== state.section) {
+        return;
+      }
+      if (prog.categoria && categories.indexOf(prog.categoria) === -1) {
+        categories.push(prog.categoria);
       }
     });
 
     if (elements.totalCategorias) {
-      elements.totalCategorias.textContent = String(Math.max(0, unique.length - 1));
-    }
-
-    unique.forEach(function (cat) {
-      var btn = createEl(
-        "button",
-        "category-button" + (state.category === cat ? " active" : ""),
-        cat
-      );
-      btn.type = "button";
-      btn.setAttribute("aria-pressed", state.category === cat ? "true" : "false");
-      btn.addEventListener("click", function () {
-        state.category = cat;
-        state.currentPage = 1;
-        renderCategories();
-        renderPrograms();
-      });
-      container.appendChild(btn);
-    });
-  }
-
-  function buildDownloadActions(prog, isModal) {
-    var validLinks = [];
-
-    if (Array.isArray(prog.descargas)) {
-      prog.descargas.forEach(function (item) {
-        if (item && typeof item === "object") {
-          var validHref = safeUrl(item.url);
-          if (!validHref) return;
-
-          // Si el usuario filtró por un Windows específico y el link indica sistemas, filtrarlo
-          if (state.system && Array.isArray(item.sistemas) && item.sistemas.length > 0) {
-            if (item.sistemas.indexOf(state.system) === -1) {
-              return;
-            }
-          }
-
-          validLinks.push({
-            etiqueta: sanitizeText(item.etiqueta, 60) || "⬇ Descargar",
-            url: validHref
-          });
+      var allCats = [];
+      state.programs.forEach(function (p) {
+        if (p.categoria && allCats.indexOf(p.categoria) === -1) {
+          allCats.push(p.categoria);
         }
       });
+      elements.totalCategorias.textContent = String(allCats.length);
     }
 
-    if (validLinks.length === 0) {
-      var singleUrl = safeUrl(prog.urlDescarga);
-      if (singleUrl) {
-        validLinks.push({
-          etiqueta: "⬇ Descargar",
-          url: singleUrl
+    categories.forEach(function (cat) {
+      var group = createEl("div", "menu-group");
+      var isCatSelected = state.category === cat;
+      var subitems = getSubitemsForCategory(cat);
+
+      var countInCat = state.programs.filter(function (p) {
+        return p.categoria === cat;
+      }).length;
+
+      var row = createEl("div", "menu-cat-row" + (!state.activeItem && isCatSelected && !state.subFilter ? " active" : ""));
+      var toggle = createEl("span", "menu-toggle", subitems.length > 0 ? (isCatSelected ? "-" : "+") : "•");
+      row.appendChild(toggle);
+      row.appendChild(createEl("span", "", cat));
+      row.appendChild(createEl("span", "menu-count", String(countInCat)));
+
+      row.addEventListener("click", function () {
+        state.category = cat;
+        state.subFilter = "";
+        state.currentPage = 1;
+        closeItemDetail(true, false);
+      });
+
+      group.appendChild(row);
+
+      if (subitems.length > 0 && isCatSelected) {
+        var sublist = createEl("ul", "menu-sublist");
+        subitems.forEach(function (sub) {
+          var li = createEl(
+            "li",
+            "menu-subitem" + (!state.activeItem && state.subFilter === sub ? " active" : ""),
+            sub
+          );
+          li.addEventListener("click", function (e) {
+            e.stopPropagation();
+            state.category = cat;
+            state.subFilter = state.subFilter === sub ? "" : sub;
+            state.currentPage = 1;
+            closeItemDetail(true, false);
+          });
+          sublist.appendChild(li);
         });
+        group.appendChild(sublist);
       }
-    }
 
-    var officialUrl = safeUrl(prog.urlOficial);
-
-    // VISTA MODAL: Muestra todos los links completos uno debajo del otro
-    if (isModal) {
-      var modalWrapper = createEl("div", "download-options");
-      if (validLinks.length > 0) {
-        validLinks.forEach(function (linkItem) {
-          var anchor = createEl("a", "download-button", linkItem.etiqueta);
-          anchor.href = linkItem.url;
-          anchor.target = "_blank";
-          anchor.rel = "noopener noreferrer";
-          modalWrapper.appendChild(anchor);
-        });
-      }
-      if (officialUrl && (validLinks.length === 0 || officialUrl !== validLinks[0].url)) {
-        var siteBtn = createEl("a", validLinks.length > 0 ? "details-button" : "download-button", "↗ Sitio oficial");
-        siteBtn.href = officialUrl;
-        siteBtn.target = "_blank";
-        siteBtn.rel = "noopener noreferrer";
-        modalWrapper.appendChild(siteBtn);
-      }
-      if (validLinks.length === 0 && !officialUrl) {
-        var disabledModal = createEl("span", "download-button disabled", "Descarga próximamente");
-        disabledModal.setAttribute("aria-disabled", "true");
-        modalWrapper.appendChild(disabledModal);
-      }
-      return modalWrapper;
-    }
-
-    // VISTA TARJETA: Siempre 1 sola fila fija de botones para mantener altura idéntica
-    var cardWrapper = createEl("div", "program-actions");
-
-    if (validLinks.length === 1) {
-      var singleAnchor = createEl("a", "download-button", "⬇ Descargar");
-      singleAnchor.href = validLinks[0].url;
-      singleAnchor.target = "_blank";
-      singleAnchor.rel = "noopener noreferrer";
-      singleAnchor.addEventListener("click", function (e) {
-        e.stopPropagation();
-      });
-      cardWrapper.appendChild(singleAnchor);
-    } else if (validLinks.length > 1) {
-      var multiBtn = createEl("button", "download-button", "⬇ Descargas (" + validLinks.length + ")");
-      multiBtn.type = "button";
-      multiBtn.addEventListener("click", function (e) {
-        e.stopPropagation();
-        openProgramModal(prog);
-      });
-      cardWrapper.appendChild(multiBtn);
-    }
-
-    if (officialUrl && (validLinks.length === 0 || officialUrl !== validLinks[0].url)) {
-      var officialCardBtn = createEl(
-        "a",
-        validLinks.length > 0 ? "details-button" : "download-button",
-        validLinks.length > 0 ? "Web" : "↗ Sitio oficial"
-      );
-      officialCardBtn.href = officialUrl;
-      officialCardBtn.target = "_blank";
-      officialCardBtn.rel = "noopener noreferrer";
-      officialCardBtn.addEventListener("click", function (e) {
-        e.stopPropagation();
-      });
-      cardWrapper.appendChild(officialCardBtn);
-    }
-
-    if (validLinks.length === 0 && !officialUrl) {
-      var disabledCardBtn = createEl("span", "download-button disabled", "Próximamente");
-      disabledCardBtn.setAttribute("aria-disabled", "true");
-      cardWrapper.appendChild(disabledCardBtn);
-    }
-
-    return cardWrapper;
+      container.appendChild(group);
+    });
   }
 
-  function createProgramCard(prog) {
-    var card = createEl("article", "program-card");
-    
-    card.addEventListener("click", function () {
-      openProgramModal(prog);
-    });
-    card.style.cursor = "pointer";
+  function updateBreadcrumb() {
+    if (!elements.currentBreadcrumb) {
+      return;
+    }
+    var parts = [];
+    parts.push(state.section === "Todos" ? "Inicio" : state.section);
+    if (state.category !== "Todas") {
+      parts.push(state.category);
+    }
+    if (state.subFilter) {
+      parts.push(state.subFilter);
+    }
+    if (state.system) {
+      parts.push(state.system);
+    }
+    elements.currentBreadcrumb.textContent = parts.join(" / ");
+  }
 
-    var content = createEl("div", "program-content");
-
-    var header = createEl("div", "card-compact-header");
-    
-    var iconBox = createEl("div", "program-image");
-    var initial = (prog.nombre || "?").charAt(0).toUpperCase();
-    var placeholder = createEl("span", "image-placeholder", initial);
-    placeholder.setAttribute("aria-hidden", "true");
-    iconBox.appendChild(placeholder);
-
-    var imgSrc = safeAssetPath(prog.imagen);
-    if (imgSrc) {
-      var img = document.createElement("img");
-      img.src = imgSrc;
-      img.alt = "Icono de " + prog.nombre;
-      img.loading = "lazy";
-      img.addEventListener("error", function () {
-        img.remove();
-      });
-      iconBox.appendChild(img);
+  /* =========================================================
+     VISTA DE FICHA DEDICADA
+     ========================================================= */
+  function openItemDetail(prog, skipHashUpdate) {
+    if (!prog || !elements.detailView || !elements.catalogView) {
+      return;
     }
 
-    var titleGroup = createEl("div", "card-title-group");
-    var topRow = createEl("div", "card-top-row");
-    topRow.appendChild(createEl("span", "program-category", prog.categoria || "Software"));
-    if (prog.destacado === true) {
-      topRow.appendChild(createEl("span", "featured-label", "★"));
+    state.activeItem = prog;
+    elements.catalogView.hidden = true;
+    elements.detailView.hidden = false;
+
+    if (!skipHashUpdate && prog.slug) {
+      window.location.hash = "/item/" + prog.slug;
     }
-    titleGroup.appendChild(topRow);
-    titleGroup.appendChild(createEl("h3", "", prog.nombre));
 
-    var metaParts = [];
-    if (prog.editor) metaParts.push(prog.editor);
-    if (prog.version) metaParts.push("v" + prog.version.replace(/^v/i, ""));
-    titleGroup.appendChild(createEl("div", "program-meta", metaParts.join(" · ") || "Software Windows"));
+    var secName = inferSection(prog);
+    if (elements.detailBreadcrumb) {
+      var crumbParts = [secName, prog.categoria];
+      if (prog.subcategoria) crumbParts.push(prog.subcategoria);
+      crumbParts.push(prog.nombre);
+      elements.detailBreadcrumb.textContent = crumbParts.join(" / ");
+    }
 
-    header.appendChild(iconBox);
-    header.appendChild(titleGroup);
-    content.appendChild(header);
+    if (elements.detailIcon) {
+      elements.detailIcon.textContent = (prog.nombre || "?").charAt(0).toUpperCase();
+    }
+    if (elements.detailSectionTag) {
+      elements.detailSectionTag.textContent = secName;
+    }
+    if (elements.detailCatTag) {
+      elements.detailCatTag.textContent = prog.subcategoria
+        ? prog.categoria + " · " + prog.subcategoria
+        : prog.categoria;
+    }
+    if (elements.detailTitle) {
+      elements.detailTitle.textContent = prog.nombre;
+    }
 
-    // Descripción con altura fija de 2 líneas
-    content.appendChild(createEl("p", "program-description", prog.descripcion || "Herramienta disponible para Windows."));
+    var subParts = [];
+    if (prog.editor) subParts.push("Por " + prog.editor);
+    if (prog.version) subParts.push("Versión " + prog.version.replace(/^v/i, ""));
+    if (prog.tamano) subParts.push(prog.tamano);
+    if (elements.detailSubtitle) {
+      elements.detailSubtitle.textContent = subParts.join(" · ") || "Paquete de software";
+    }
 
-    // Badges en una sola fila fija
-    var badges = createEl("div", "badges");
-    if (prog.precio) {
-      var priceClass = "badge";
-      if (/gratis/i.test(prog.precio)) {
-        priceClass += " badge-free";
-      } else if (/pago/i.test(prog.precio)) {
-        priceClass += " badge-paid";
+    if (elements.detailPrimaryCta) {
+      elements.detailPrimaryCta.innerHTML = "";
+      var primaryUrl = getFirstDownloadUrl(prog);
+      if (primaryUrl) {
+        var mainDl = createEl(
+          "a",
+          "btn-classic btn-green",
+          Array.isArray(prog.descargas) && prog.descargas.length > 1
+            ? "Descargar Principal"
+            : "Descargar Archivo"
+        );
+        mainDl.href = primaryUrl;
+        mainDl.target = "_blank";
+        mainDl.rel = "noopener noreferrer";
+        elements.detailPrimaryCta.appendChild(mainDl);
       }
-      badges.appendChild(createEl("span", priceClass, prog.precio));
     }
 
-    if (prog.arquitectura) {
-      badges.appendChild(createEl("span", "badge", prog.arquitectura));
+    if (elements.detailDescription) {
+      elements.detailDescription.textContent =
+        prog.descripcion || "Sin descripción detallada disponible.";
     }
 
-    if (Array.isArray(prog.sistemas) && prog.sistemas.length > 0) {
-      var firstSys = prog.sistemas[0].trim().replace("Windows ", "Win ");
-      badges.appendChild(createEl("span", "badge", firstSys));
-      if (prog.sistemas.length > 1) {
-        badges.appendChild(createEl("span", "badge", "+" + (prog.sistemas.length - 1)));
+    if (elements.detailNotesBox && elements.detailNotes) {
+      if (prog.notas) {
+        elements.detailNotes.textContent = prog.notas;
+        elements.detailNotesBox.hidden = false;
+      } else {
+        elements.detailNotesBox.hidden = true;
       }
     }
 
-    content.appendChild(badges);
-    content.appendChild(buildDownloadActions(prog, false));
+    if (elements.detailFilesList) {
+      elements.detailFilesList.innerHTML = "";
+      var hasRows = false;
 
-    card.appendChild(content);
-    return card;
+      if (Array.isArray(prog.descargas) && prog.descargas.length > 0) {
+        prog.descargas.forEach(function (d) {
+          if (!d || typeof d !== "object") return;
+          var href = safeUrl(d.url);
+          if (!href) return;
+
+          var tr = createEl("tr");
+          var tdLabel = createEl("td");
+          tdLabel.appendChild(createEl("strong", "", sanitizeText(d.etiqueta, 100) || "Archivo de descarga"));
+          var fileName = href.split("/").pop();
+          if (fileName) {
+            tdLabel.appendChild(createEl("div", "mono-col", decodeURIComponent(fileName)));
+          }
+          tr.appendChild(tdLabel);
+
+          var sysList =
+            Array.isArray(d.sistemas) && d.sistemas.length > 0
+              ? d.sistemas.join(", ")
+              : Array.isArray(prog.sistemas) && prog.sistemas.length > 0
+              ? prog.sistemas.join(", ")
+              : "Windows";
+          tr.appendChild(createEl("td", "mono-col", sysList));
+
+          var tdBtn = createEl("td", "action-links");
+          var a = createEl("a", "btn-classic btn-primary", "Descargar");
+          a.href = href;
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+          tdBtn.appendChild(a);
+          tr.appendChild(tdBtn);
+
+          elements.detailFilesList.appendChild(tr);
+          hasRows = true;
+        });
+      }
+
+      var singleHref = safeUrl(prog.urlDescarga);
+      if (!hasRows && singleHref) {
+        var trSingle = createEl("tr");
+        trSingle.appendChild(createEl("td", "", "Paquete de instalación"));
+        trSingle.appendChild(createEl("td", "mono-col", (prog.sistemas || []).join(", ") || "Windows"));
+        var tdSingle = createEl("td");
+        var aSingle = createEl("a", "btn-classic btn-primary", "Descargar");
+        aSingle.href = singleHref;
+        aSingle.target = "_blank";
+        aSingle.rel = "noopener noreferrer";
+        tdSingle.appendChild(aSingle);
+        trSingle.appendChild(tdSingle);
+        elements.detailFilesList.appendChild(trSingle);
+        hasRows = true;
+      }
+
+      var officialHref = safeUrl(prog.urlOficial);
+      if (officialHref) {
+        var trOff = createEl("tr");
+        trOff.appendChild(createEl("td", "", "Sitio oficial del desarrollador"));
+        trOff.appendChild(createEl("td", "mono-col", "Enlace externo"));
+        var tdOff = createEl("td");
+        var aOff = createEl("a", "btn-classic", "Abrir web oficial");
+        aOff.href = officialHref;
+        aOff.target = "_blank";
+        aOff.rel = "noopener noreferrer";
+        tdOff.appendChild(aOff);
+        trOff.appendChild(tdOff);
+        elements.detailFilesList.appendChild(trOff);
+        hasRows = true;
+      }
+
+      if (!hasRows) {
+        var trEmpty = createEl("tr");
+        var tdEmpty = createEl("td", "", "No hay archivos publicados todavía para este elemento.");
+        tdEmpty.colSpan = 3;
+        trEmpty.appendChild(tdEmpty);
+        elements.detailFilesList.appendChild(trEmpty);
+      }
+    }
+
+    if (elements.detailEditor) elements.detailEditor.textContent = prog.editor || "No especificado";
+    if (elements.detailVersion) elements.detailVersion.textContent = prog.version || "—";
+    if (elements.detailSystems) {
+      elements.detailSystems.textContent =
+        Array.isArray(prog.sistemas) && prog.sistemas.length > 0
+          ? prog.sistemas.join(", ")
+          : "Windows";
+    }
+    if (elements.detailArch) elements.detailArch.textContent = prog.arquitectura || "—";
+    if (elements.detailSize) elements.detailSize.textContent = prog.tamano || "—";
+    if (elements.detailPrice) elements.detailPrice.textContent = prog.precio || "Gratis";
+    if (elements.detailSlug) elements.detailSlug.textContent = prog.slug || "—";
+    if (elements.detailUpdated) elements.detailUpdated.textContent = prog.actualizado || "2026";
+
+    if (elements.detailHashRow && elements.detailHash) {
+      if (prog.sha256) {
+        elements.detailHash.textContent = prog.sha256;
+        elements.detailHashRow.hidden = false;
+      } else {
+        elements.detailHashRow.hidden = true;
+      }
+    }
+
+    renderSidebarMenu();
+    window.scrollTo(0, 0);
+  }
+
+  function closeItemDetail(clearHash, shouldScrollTop) {
+    state.activeItem = null;
+    if (elements.detailView) elements.detailView.hidden = true;
+    if (elements.catalogView) elements.catalogView.hidden = false;
+
+    if (clearHash && window.location.hash) {
+      window.location.hash = "";
+    }
+
+    syncTopTabs();
+    syncOsControls();
+    renderSidebarMenu();
+    renderPrograms();
+
+    if (shouldScrollTop) {
+      window.scrollTo(0, 0);
+    }
+  }
+
+  function checkUrlHash() {
+    var hash = window.location.hash || "";
+    var match = hash.match(/^#\/item\/([a-z0-9-]+)$/i);
+    if (match && match[1]) {
+      var targetSlug = match[1].toLowerCase();
+      for (var i = 0; i < state.programs.length; i++) {
+        if ((state.programs[i].slug || "").toLowerCase() === targetSlug) {
+          openItemDetail(state.programs[i], true);
+          return;
+        }
+      }
+    } else if (state.activeItem) {
+      closeItemDetail(false, false);
+    }
+  }
+
+  function getFirstDownloadUrl(prog) {
+    if (Array.isArray(prog.descargas)) {
+      for (var i = 0; i < prog.descargas.length; i++) {
+        var d = prog.descargas[i];
+        if (d && typeof d === "object") {
+          var u = safeUrl(d.url);
+          if (u) return u;
+        }
+      }
+    }
+    return safeUrl(prog.urlDescarga) || safeUrl(prog.urlOficial) || null;
   }
 
   function matchesArchitecture(progArch, selectedArch) {
-    if (!selectedArch) {
-      return true;
+    if (!selectedArch) return true;
+    var a = String(progArch || "").toLowerCase();
+    var t = selectedArch.toLowerCase();
+    if (!a) return false;
+    if (t === "32 y 64 bits") {
+      return a.indexOf("32") !== -1 && a.indexOf("64") !== -1;
     }
-    var archLower = String(progArch || "").toLowerCase();
-    var targetLower = selectedArch.toLowerCase();
-    if (!archLower) {
-      return false;
-    }
-    if (targetLower === "32 y 64 bits") {
-      return archLower.indexOf("32") !== -1 && archLower.indexOf("64") !== -1;
-    }
-    return archLower.indexOf(targetLower) !== -1;
+    return a.indexOf(t) !== -1;
   }
 
   function getFilteredPrograms() {
     var query = state.search.toLowerCase();
 
-    var filtered = state.programs.filter(function (prog) {
+    var list = state.programs.filter(function (prog) {
+      if (state.section !== "Todos" && inferSection(prog) !== state.section) {
+        return false;
+      }
       if (state.category !== "Todas" && prog.categoria !== state.category) {
         return false;
+      }
+      if (state.subFilter) {
+        var matchesSub =
+          prog.subcategoria === state.subFilter ||
+          (Array.isArray(prog.sistemas) && prog.sistemas.indexOf(state.subFilter) !== -1);
+        if (!matchesSub) {
+          return false;
+        }
       }
       if (state.system) {
         var systems = Array.isArray(prog.sistemas) ? prog.sistemas : [];
@@ -421,6 +543,7 @@
         var haystack = [
           prog.nombre,
           prog.categoria,
+          prog.subcategoria,
           prog.editor,
           prog.descripcion,
           prog.arquitectura,
@@ -435,7 +558,7 @@
       return true;
     });
 
-    filtered.sort(function (a, b) {
+    list.sort(function (a, b) {
       if (state.sort === "recientes") {
         return String(b.actualizado || "").localeCompare(String(a.actualizado || ""));
       }
@@ -445,27 +568,20 @@
       return String(a.nombre || "").localeCompare(String(b.nombre || ""), "es");
     });
 
-    return filtered;
+    return list;
   }
 
   function renderPagination(totalFiltered) {
-    var paginationEl = elements.paginationContainer;
-    if (!paginationEl) {
-      return;
-    }
-
+    if (!elements.paginationContainer) return;
     var totalPages = Math.ceil(totalFiltered / state.itemsPerPage);
-
     if (totalPages <= 1) {
-      paginationEl.hidden = true;
+      elements.paginationContainer.hidden = true;
       return;
     }
-
-    paginationEl.hidden = false;
+    elements.paginationContainer.hidden = false;
     if (elements.pageInfo) {
       elements.pageInfo.textContent = "Página " + state.currentPage + " de " + totalPages;
     }
-
     if (elements.prevPageBtn) {
       elements.prevPageBtn.disabled = state.currentPage <= 1;
     }
@@ -475,95 +591,158 @@
   }
 
   function renderPrograms() {
-    var list = elements.programList;
-    if (!list) {
-      return;
-    }
+    syncTopTabs();
+    syncOsControls();
+    updateBreadcrumb();
+    if (!elements.programList) return;
 
     var filtered = getFilteredPrograms();
     var totalFiltered = filtered.length;
     var totalPages = Math.ceil(totalFiltered / state.itemsPerPage) || 1;
 
-    if (state.currentPage > totalPages) {
-      state.currentPage = totalPages;
-    }
-    if (state.currentPage < 1) {
-      state.currentPage = 1;
-    }
+    if (state.currentPage > totalPages) state.currentPage = totalPages;
+    if (state.currentPage < 1) state.currentPage = 1;
 
-    var startIndex = (state.currentPage - 1) * state.itemsPerPage;
-    var paginatedItems = filtered.slice(startIndex, startIndex + state.itemsPerPage);
+    var start = (state.currentPage - 1) * state.itemsPerPage;
+    var pageItems = filtered.slice(start, start + state.itemsPerPage);
 
-    list.innerHTML = "";
+    elements.programList.innerHTML = "";
 
     if (elements.resultsCount) {
       elements.resultsCount.textContent =
-        totalFiltered === 1 ? "Mostrando 1 programa" : "Mostrando " + totalFiltered + " programas";
+        totalFiltered === 1 ? "1 resultado" : totalFiltered + " resultados";
     }
 
     if (totalFiltered === 0) {
-      if (elements.emptyState) {
-        elements.emptyState.hidden = false;
-      }
-      if (elements.paginationContainer) {
-        elements.paginationContainer.hidden = true;
-      }
+      if (elements.emptyState) elements.emptyState.hidden = false;
+      if (elements.paginationContainer) elements.paginationContainer.hidden = true;
       return;
     }
 
-    if (elements.emptyState) {
-      elements.emptyState.hidden = true;
-    }
+    if (elements.emptyState) elements.emptyState.hidden = true;
 
-    var fragment = document.createDocumentFragment();
-    paginatedItems.forEach(function (prog) {
-      fragment.appendChild(createProgramCard(prog));
+    var table = createEl("table", "catalog-table");
+    var thead = createEl("thead");
+    var headRow = createEl("tr");
+    headRow.appendChild(createEl("th", "", "Paquete / Descripción"));
+    headRow.appendChild(createEl("th", "", "Sistema"));
+    headRow.appendChild(createEl("th", "", "Arq."));
+    headRow.appendChild(createEl("th", "", "Tamaño"));
+    headRow.appendChild(createEl("th", "", "Acción"));
+    thead.appendChild(headRow);
+    table.appendChild(thead);
+
+    var tbody = createEl("tbody");
+    pageItems.forEach(function (prog) {
+      var tr = createEl("tr");
+
+      var tdName = createEl("td", "item-cell");
+      tdName.addEventListener("click", function () {
+        openItemDetail(prog, false);
+      });
+
+      var titleEl = createEl("span", "item-title", prog.nombre);
+      tdName.appendChild(titleEl);
+      if (prog.version) {
+        tdName.appendChild(createEl("span", "mono-col", "  [" + prog.version + "]"));
+      }
+      if (prog.descripcion) {
+        tdName.appendChild(createEl("p", "item-desc", prog.descripcion));
+      }
+      tr.appendChild(tdName);
+
+      var sysText =
+        Array.isArray(prog.sistemas) && prog.sistemas.length > 0
+          ? prog.sistemas.join(", ")
+          : "Windows";
+      tr.appendChild(createEl("td", "mono-col", sysText));
+      tr.appendChild(createEl("td", "mono-col", prog.arquitectura || "—"));
+      tr.appendChild(createEl("td", "mono-col", prog.tamano || "—"));
+
+      var tdAction = createEl("td", "action-links");
+      var multiCount = Array.isArray(prog.descargas) ? prog.descargas.length : 0;
+
+      var openBtn = createEl(
+        "button",
+        "btn-classic btn-primary btn-open-detail",
+        multiCount > 1 ? "Abrir ficha (" + multiCount + ") →" : "Abrir ficha →"
+      );
+      openBtn.type = "button";
+      openBtn.addEventListener("click", function () {
+        openItemDetail(prog, false);
+      });
+      tdAction.appendChild(openBtn);
+
+      tr.appendChild(tdAction);
+      tbody.appendChild(tr);
     });
-    list.appendChild(fragment);
 
+    table.appendChild(tbody);
+    elements.programList.appendChild(table);
     renderPagination(totalFiltered);
   }
 
   function resetAllFilters() {
+    state.section = "Todos";
     state.category = "Todas";
+    state.subFilter = "";
     state.search = "";
     state.system = "";
     state.arch = "";
     state.sort = "nombre";
     state.currentPage = 1;
 
-    if (elements.searchInput) {
-      elements.searchInput.value = "";
-    }
-    if (elements.systemFilter) {
-      elements.systemFilter.value = "";
-    }
-    if (elements.archFilter) {
-      elements.archFilter.value = "";
-    }
-    if (elements.sortFilter) {
-      elements.sortFilter.value = "nombre";
-    }
+    if (elements.searchInput) elements.searchInput.value = "";
+    if (elements.systemFilter) elements.systemFilter.value = "";
+    if (elements.archFilter) elements.archFilter.value = "";
+    if (elements.sortFilter) elements.sortFilter.value = "nombre";
 
-    renderCategories();
-    renderPrograms();
+    closeItemDetail(true, false);
   }
 
   function bindEvents() {
+    for (var i = 0; i < elements.topTabs.length; i++) {
+      elements.topTabs[i].addEventListener("click", function () {
+        var sec = this.getAttribute("data-section") || "Todos";
+        state.section = sec;
+        state.category = "Todas";
+        state.subFilter = "";
+        state.currentPage = 1;
+
+        closeItemDetail(true, false);
+      });
+    }
+
+    for (var k = 0; k < elements.osChips.length; k++) {
+      elements.osChips[k].addEventListener("click", function () {
+        state.system = this.getAttribute("data-os") || "";
+        state.currentPage = 1;
+        if (state.activeItem) {
+          closeItemDetail(true, false);
+        } else {
+          renderPrograms();
+        }
+      });
+    }
+
     if (elements.searchForm) {
       elements.searchForm.addEventListener("submit", function (e) {
         e.preventDefault();
-        state.search = elements.searchInput ? elements.searchInput.value.trim() : "";
+        state.search = elements.searchInput ? elements.searchInput.value.replace(/^\s+|\s+$/g, "") : "";
         state.currentPage = 1;
-        renderPrograms();
+        closeItemDetail(true, false);
       });
     }
 
     if (elements.searchInput) {
       elements.searchInput.addEventListener("input", function () {
-        state.search = elements.searchInput.value.trim();
+        state.search = elements.searchInput.value.replace(/^\s+|\s+$/g, "");
         state.currentPage = 1;
-        renderPrograms();
+        if (state.activeItem) {
+          closeItemDetail(true, false);
+        } else {
+          renderPrograms();
+        }
       });
     }
 
@@ -571,7 +750,11 @@
       elements.systemFilter.addEventListener("change", function () {
         state.system = elements.systemFilter.value;
         state.currentPage = 1;
-        renderPrograms();
+        if (state.activeItem) {
+          closeItemDetail(true, false);
+        } else {
+          renderPrograms();
+        }
       });
     }
 
@@ -579,7 +762,11 @@
       elements.archFilter.addEventListener("change", function () {
         state.arch = elements.archFilter.value;
         state.currentPage = 1;
-        renderPrograms();
+        if (state.activeItem) {
+          closeItemDetail(true, false);
+        } else {
+          renderPrograms();
+        }
       });
     }
 
@@ -587,7 +774,11 @@
       elements.sortFilter.addEventListener("change", function () {
         state.sort = elements.sortFilter.value;
         state.currentPage = 1;
-        renderPrograms();
+        if (state.activeItem) {
+          closeItemDetail(true, false);
+        } else {
+          renderPrograms();
+        }
       });
     }
 
@@ -600,8 +791,7 @@
     }
 
     if (elements.prevPageBtn) {
-      elements.prevPageBtn.addEventListener("click", function (e) {
-        e.preventDefault();
+      elements.prevPageBtn.addEventListener("click", function () {
         if (state.currentPage > 1) {
           state.currentPage--;
           renderPrograms();
@@ -610,10 +800,8 @@
     }
 
     if (elements.nextPageBtn) {
-      elements.nextPageBtn.addEventListener("click", function (e) {
-        e.preventDefault();
-        var filtered = getFilteredPrograms();
-        var totalPages = Math.ceil(filtered.length / state.itemsPerPage);
+      elements.nextPageBtn.addEventListener("click", function () {
+        var totalPages = Math.ceil(getFilteredPrograms().length / state.itemsPerPage);
         if (state.currentPage < totalPages) {
           state.currentPage++;
           renderPrograms();
@@ -621,60 +809,63 @@
       });
     }
 
-    if (elements.closeModal) {
-      elements.closeModal.addEventListener("click", closeProgramModal);
-    }
-
-    if (elements.programModal) {
-      elements.programModal.addEventListener("click", function (e) {
-        if (e.target === elements.programModal) {
-          closeProgramModal();
-        }
+    if (elements.backToListBtn) {
+      elements.backToListBtn.addEventListener("click", function () {
+        closeItemDetail(true, true);
       });
     }
 
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") {
-        closeProgramModal();
-      }
-    });
+    if (elements.backToListBottomBtn) {
+      elements.backToListBottomBtn.addEventListener("click", function () {
+        closeItemDetail(true, true);
+      });
+    }
+
+    if (window.addEventListener) {
+      window.addEventListener("hashchange", checkUrlHash, false);
+    }
   }
 
   function normalizeProgram(raw) {
-    if (!raw || typeof raw !== "object" || Array.isArray(raw)) {
+    if (!raw || typeof raw !== "object") {
       return null;
     }
     var nombre = sanitizeText(raw.nombre, 80);
     if (!nombre) {
       return null;
     }
-
-    var slug = slugIsValid(raw.slug)
-      ? raw.slug
-      : nombre
-          .toLowerCase()
-          .replace(/[^a-z0-9]+/g, "-")
-          .replace(/^-|-$/g, "");
+    var slug = sanitizeText(raw.slug, 60)
+      .toLowerCase()
+      .replace(/[^a-z0-9-]+/g, "-")
+      .replace(/^-|-$/g, "");
+    if (!slug) {
+      slug = nombre
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "");
+    }
 
     return {
       slug: slug,
       nombre: nombre,
+      seccion: sanitizeText(raw.seccion, 40),
       categoria: sanitizeText(raw.categoria, 40) || "General",
+      subcategoria: sanitizeText(raw.subcategoria, 50),
       editor: sanitizeText(raw.editor, 60),
-      version: sanitizeText(raw.version, 30),
+      version: sanitizeText(raw.version, 40),
       precio: sanitizeText(raw.precio, 25),
       arquitectura: sanitizeText(raw.arquitectura, 25),
-      tamano: sanitizeText(raw.tamano, 25),
-      destacado: Boolean(raw.destacado),
+      tamano: sanitizeText(raw.tamano, 30),
       actualizado: sanitizeText(raw.actualizado, 20),
+      sha256: sanitizeText(raw.sha256, 128),
+      notas: sanitizeText(raw.notas, 600),
       totalDescargas: Number(raw.totalDescargas) || 0,
       sistemas: Array.isArray(raw.sistemas)
         ? raw.sistemas.map(function (s) {
             return sanitizeText(s, 25);
           })
         : [],
-      descripcion: sanitizeText(raw.descripcion, 500),
-      imagen: raw.imagen || null,
+      descripcion: sanitizeText(raw.descripcion, 800),
       urlDescarga: raw.urlDescarga || null,
       urlOficial: raw.urlOficial || null,
       descargas: Array.isArray(raw.descargas) ? raw.descargas : []
@@ -682,42 +873,46 @@
   }
 
   function loadCatalog() {
-    var catalogUrl = "./data/programas.json?v=" + String(Date.now());
-    fetch(catalogUrl, { cache: "no-store" })
-      .then(function (response) {
-        if (!response.ok) {
-          throw new Error("HTTP " + response.status);
-        }
-        return response.json();
-      })
-      .then(function (data) {
-        if (!Array.isArray(data)) {
-          throw new Error("Formato de catálogo inválido");
-        }
-        state.programs = data
-          .map(normalizeProgram)
-          .filter(function (item) {
-            return item !== null;
-          });
+    var xhr = new XMLHttpRequest();
+    var url = "./data/programas.json?v=" + String(new Date().getTime());
+    xhr.open("GET", url, true);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState !== 4) {
+        return;
+      }
+      if (xhr.status >= 200 && xhr.status < 300) {
+        try {
+          var data = JSON.parse(xhr.responseText);
+          if (!Array.isArray(data)) {
+            throw new Error("Formato inválido");
+          }
+          state.programs = data
+            .map(normalizeProgram)
+            .filter(function (item) {
+              return item !== null;
+            });
 
-        if (elements.totalProgramas) {
-          elements.totalProgramas.textContent = String(state.programs.length);
-        }
+          if (elements.totalProgramas) {
+            elements.totalProgramas.textContent = String(state.programs.length);
+          }
 
-        renderCategories();
-        renderPrograms();
-      })
-      .catch(function () {
-        if (elements.programList) {
-          elements.programList.innerHTML = "";
+          renderSidebarMenu();
+          renderPrograms();
+          checkUrlHash();
+        } catch (err) {
+          showLoadError();
         }
-        if (elements.resultsCount) {
-          elements.resultsCount.textContent = "Catálogo no disponible";
-        }
-        if (elements.errorState) {
-          elements.errorState.hidden = false;
-        }
-      });
+      } else {
+        showLoadError();
+      }
+    };
+    xhr.send();
+  }
+
+  function showLoadError() {
+    if (elements.programList) elements.programList.innerHTML = "";
+    if (elements.resultsCount) elements.resultsCount.textContent = "Error al cargar";
+    if (elements.errorState) elements.errorState.hidden = false;
   }
 
   if (elements.currentYear) {

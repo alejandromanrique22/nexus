@@ -1,377 +1,431 @@
 [
   {
     "slug": "winamp",
-    "nombre": "Winamp",
+    "seccion": "Programas",
     "categoria": "Multimedia",
+    "subcategoria": "Reproductores de Audio",
+    "nombre": "Winamp",
     "editor": "Nullsoft / Llama Group",
     "version": "5.9.2",
     "precio": "Gratis",
+    "actualizado": "2026",
     "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7", "Windows XP"],
     "arquitectura": "32 bits",
-    "tamano": "Actualizado",
-    "descripcion": "El reproductor de MP3 clásico, famoso por sus skins y su consumo mínimo de recursos.",
+    "tamano": "~12 MB",
+    "descripcion": "Reproductor clásico de audio y MP3 con soporte de skins y consumo mínimo de memoria RAM.",
     "descargas": [
       {
-        "etiqueta": "⬇ Descargar (32 bits)",
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/winamp_latest_full.exe"
-      }
-    ]
-  },
-  {
-    "slug": "hwmonitor",
-    "nombre": "HWMonitor",
-    "categoria": "Sistema",
-    "editor": "CPUID",
-    "version": "1.55",
-    "precio": "Gratis",
-    "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7", "Windows XP"],
-    "arquitectura": "32 bits",
-    "tamano": "Actualizado",
-    "descripcion": "Monitorea temperaturas, voltajes y velocidad de ventiladores del hardware.",
-    "descargas": [
-      {
-        "etiqueta": "⬇ Descargar (32 bits)",
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/HWMonitor_x32.exe"
-      }
-    ]
-  },
-  {
-    "slug": "poweriso",
-    "nombre": "PowerISO",
-    "categoria": "Utilidades",
-    "editor": "Power Software Ltd",
-    "version": "8.9",
-    "precio": "Gratis",
-    "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7", "Windows XP"],
-    "arquitectura": "32 bits",
-    "tamano": "Actualizado",
-    "descripcion": "Una referencia de la época para grabar CD y DVD y crear imágenes de disco.",
-    "descargas": [
-      {
-        "etiqueta": "⬇ Descargar (32 bits)",
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/poweriso_setup.exe"
-      }
-    ]
-  },
-  {
-    "slug": "sumatra-pdf",
-    "nombre": "Sumatra PDF",
-    "categoria": "Ofimática",
-    "editor": "Krzysztof Kowalczyk",
-    "version": "3.6.1",
-    "precio": "Gratis",
-    "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7", "Windows XP"],
-    "arquitectura": "32 y 64 bits",
-    "tamano": "Actualizado",
-    "descripcion": "Lector liviano de PDF, ePub, MOBI y CBZ.",
-    "descargas": [
-      {
-        "etiqueta": "⬇ 32 bits",
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/SumatraPDF-3.6.1-install.exe"
-      },
-      {
-        "etiqueta": "⬇ 64 bits",
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/SumatraPDF-3.6.1-64-install.exe"
-      }
-    ]
-  },
-  {
-    "slug": "one-core-api",
-    "nombre": "One-Core-API",
-    "categoria": "Sistema",
-    "editor": "Skulltrail192",
-    "version": "4.0",
-    "precio": "Gratis",
-    "destacado": true,
-    "sistemas": ["Windows XP"],
-    "arquitectura": "32 y 64 bits",
-    "tamano": "15 MB",
-    "descripcion": "Capa de compatibilidad para ejecutar aplicaciones modernas en Windows XP y Vista.",
-    "descargas": [
-      {
-        "etiqueta": "⬇ 32 bits",
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/one-core-api-pack-x86.zip"
-      },
-      {
-        "etiqueta": "⬇ 64 bits",
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/one-core-api-pack-x64.zip"
-      }
-    ]
-  },
-  {
-    "slug": "everything",
-    "nombre": "Everything",
-    "categoria": "Sistema",
-    "editor": "voidtools",
-    "version": "1.4.1.1032",
-    "precio": "Gratis",
-    "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7", "Windows XP"],
-    "arquitectura": "32 y 64 bits",
-    "tamano": "Actualizado",
-    "descripcion": "Utilidad para buscar archivos instantáneamente en discos locales.",
-    "descargas": [
-      {
-        "etiqueta": "⬇ 32 bits",
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/Everything-1.4.1.1032.x86-Setup.exe"
-      },
-      {
-        "etiqueta": "⬇ 64 bits",
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/Everything-1.4.1.1032.x64-Setup.exe"
-      }
-    ]
-  },
-  {
-    "slug": "update-pack-7-r2",
-    "nombre": "UpdatePack7R2",
-    "categoria": "Sistema",
-    "editor": "simplix",
-    "version": "26.1.15",
-    "precio": "Gratis",
-    "destacado": true,
-    "sistemas": ["Windows 7"],
-    "arquitectura": "32 y 64 bits",
-    "tamano": "Actualizado",
-    "descripcion": "Paquete acumulativo de actualizaciones para Windows 7 y Windows Server 2008 R2.",
-    "descargas": [
-      {
-        "etiqueta": "⬇ Descargar (32 / 64 bits)",
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/UpdatePack7R2-26.1.15.exe"
-      }
-    ]
-  },
-  {
-    "slug": "crystaldiskinfo",
-    "nombre": "CrystalDiskInfo",
-    "categoria": "Sistema",
-    "editor": "hiyohiyo",
-    "version": "9.5",
-    "precio": "Gratis",
-    "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
-    "arquitectura": "32 y 64 bits",
-    "tamano": "Actualizado",
-    "descripcion": "Consulta el estado SMART y la temperatura de discos duros y SSD compatibles.",
-    "urlOficial": "https://crystalmark.info/en/software/crystaldiskinfo/"
-  },
-  {
-    "slug": "anydesk",
-    "nombre": "AnyDesk",
-    "categoria": "Internet",
-    "editor": "AnyDesk Software GmbH",
-    "version": "9.0",
-    "precio": "Gratis",
-    "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7", "Windows XP"],
-    "arquitectura": "64 bits",
-    "tamano": "Actualizado",
-    "descripcion": "Software de acceso y control remoto que permite conectarse a una computadora u otro dispositivo desde cualquier lugar.",
-    "descargas": [
-      {
-        "etiqueta": "⬇ Descargar",
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/AnyDesk.exe"
-      }
-    ]
-  },
-  {
-    "slug": "winrar",
-    "nombre": "WinRAR",
-    "categoria": "Utilidades",
-    "editor": "win.rar GmbH",
-    "version": "7.23",
-    "precio": "Gratis",
-    "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
-    "arquitectura": "32 y 64 bits",
-    "tamano": "Actualizado",
-    "descripcion": "Compresión y extracción de archivos RAR, ZIP y otros formatos.",
-    "descargas": [
-      {
-        "etiqueta": "⬇ 32 bits",
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/winrar-x32-701es.exe"
-      },
-      {
-        "etiqueta": "⬇ 64 bits",
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/winrar-x64-723es.exe"
-      }
-    ]
-  },
-  {
-    "slug": "foxit-pdf-reader",
-    "nombre": "Foxit PDF Reader",
-    "categoria": "Ofimática",
-    "editor": "Foxit Software",
-    "version": "2026.2.1",
-    "precio": "Gratis",
-    "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
-    "arquitectura": "64 bits",
-    "tamano": "Actualizado",
-    "descripcion": "Lector de documentos PDF rápido y ligero con herramientas de anotación.",
-    "descargas": [
-      {
-        "etiqueta": "⬇ Descargar (64 bits)",
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/FoxitPDFReader202621_L10N_Setup_Prom_x64.exe"
+        "etiqueta": "Instalador Completo (32-bit)",
+        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/winamp_latest_full.exe"
       }
     ]
   },
   {
     "slug": "vlc-media-player",
-    "nombre": "VLC media player",
+    "seccion": "Programas",
     "categoria": "Multimedia",
+    "subcategoria": "Reproductores de Video",
+    "nombre": "VLC media player",
     "editor": "VideoLAN",
     "version": "3.0.24",
     "precio": "Gratis",
-    "destacado": true,
+    "actualizado": "2026",
     "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
     "arquitectura": "64 bits",
-    "tamano": "Actualizado",
-    "descripcion": "Reproductor multimedia libre conocido por admitir numerosos formatos de audio y video.",
+    "tamano": "~42 MB",
+    "descripcion": "Reproductor multimedia libre con códecs integrados para reproducir prácticamente cualquier formato de audio y video.",
     "descargas": [
       {
-        "etiqueta": "⬇ Descargar (64 bits)",
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/vlc-3.0.24-win64.exe"
+        "etiqueta": "Instalador Oficial (64-bit)",
+        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/vlc-3.0.24-win64.exe"
       }
     ]
   },
   {
-    "slug": "7-zip",
-    "nombre": "7-Zip",
-    "categoria": "Utilidades",
-    "editor": "Igor Pavlov",
-    "version": "26.05",
+    "slug": "hwmonitor",
+    "seccion": "Utilidades",
+    "categoria": "Sistema y Diagnóstico",
+    "subcategoria": "Monitoreo de Hardware",
+    "nombre": "HWMonitor",
+    "editor": "CPUID",
+    "version": "1.55",
     "precio": "Gratis",
+    "actualizado": "2026",
+    "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7", "Windows XP"],
+    "arquitectura": "32 bits",
+    "tamano": "~2 MB",
+    "descripcion": "Lectura en tiempo real de sensores de temperatura, voltajes y velocidad de ventiladores.",
+    "descargas": [
+      {
+        "etiqueta": "Ejecutable (32-bit)",
+        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/HWMonitor_x32.exe"
+      }
+    ]
+  },
+  {
+    "slug": "crystaldiskinfo",
+    "seccion": "Utilidades",
+    "categoria": "Sistema y Diagnóstico",
+    "subcategoria": "Discos y Almacenamiento",
+    "nombre": "CrystalDiskInfo",
+    "editor": "hiyohiyo",
+    "version": "9.5",
+    "precio": "Gratis",
+    "actualizado": "2026",
     "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
     "arquitectura": "32 y 64 bits",
-    "tamano": "Actualizado",
-    "descripcion": "Archivador gratuito y de código abierto con alta tasa de compresión para múltiples formatos.",
+    "tamano": "Web Oficial",
+    "descripcion": "Diagnóstico de salud S.M.A.R.T., horas de encendido y temperatura en discos rígidos y unidades SSD.",
+    "urlOficial": "https://crystalmark.info/en/software/crystaldiskinfo/"
+  },
+  {
+    "slug": "everything",
+    "seccion": "Utilidades",
+    "categoria": "Sistema y Diagnóstico",
+    "subcategoria": "Búsqueda de Archivos",
+    "nombre": "Everything",
+    "editor": "voidtools",
+    "version": "1.4.1.1032",
+    "precio": "Gratis",
+    "actualizado": "2026",
+    "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7", "Windows XP"],
+    "arquitectura": "32 y 64 bits",
+    "tamano": "~2 MB",
+    "descripcion": "Indexador instantáneo de archivos y carpetas en unidades NTFS locales.",
     "descargas": [
       {
-        "etiqueta": "⬇ 32 bits",
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/7z2605.exe"
+        "etiqueta": "Instalador (32-bit)",
+        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/Everything-1.4.1.1032.x86-Setup.exe"
       },
       {
-        "etiqueta": "⬇ 64 bits",
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/7z2605-x64.exe"
+        "etiqueta": "Instalador (64-bit)",
+        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/Everything-1.4.1.1032.x64-Setup.exe"
       }
     ]
   },
   {
-    "slug": "rufus",
-    "nombre": "Rufus",
-    "categoria": "Utilidades",
-    "editor": "Pete Batard",
-    "version": "4.15",
+    "slug": "one-core-api",
+    "seccion": "Utilidades",
+    "categoria": "Sistema y Diagnóstico",
+    "subcategoria": "Parches y Compatibilidad",
+    "nombre": "One-Core-API",
+    "editor": "Skulltrail192",
+    "version": "4.0",
     "precio": "Gratis",
-    "sistemas": ["Windows 11", "Windows 10", "Windows 8.1"],
-    "arquitectura": "64 bits",
-    "tamano": "~1.5 MB",
-    "descripcion": "Crea unidades USB booteables para instalar Windows, Linux y otros sistemas.",
+    "actualizado": "2026",
+    "sistemas": ["Windows XP"],
+    "arquitectura": "32 y 64 bits",
+    "tamano": "15 MB",
+    "descripcion": "Capa de compatibilidad de APIs modernas para ejecutar software reciente sobre Windows XP y Server 2003.",
+    "notas": "Requiere Windows XP SP3 (32-bit) o Windows XP Professional x64 SP2. Se recomienda crear un punto de restauración o copia de seguridad antes de aplicar los parches.",
     "descargas": [
       {
-        "etiqueta": "⬇ 64 bits",
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/rufus-4.15.exe"
+        "etiqueta": "Paquete x86 (32-bit)",
+        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/one-core-api-pack-x86.zip"
+      },
+      {
+        "etiqueta": "Paquete x64 (64-bit)",
+        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/one-core-api-pack-x64.zip"
+      }
+    ]
+  },
+  {
+    "slug": "update-pack-7-r2",
+    "seccion": "Utilidades",
+    "categoria": "Sistema y Diagnóstico",
+    "subcategoria": "Parches y Compatibilidad",
+    "nombre": "UpdatePack7R2",
+    "editor": "simplix",
+    "version": "26.1.15",
+    "precio": "Gratis",
+    "actualizado": "2026-01",
+    "sistemas": ["Windows 7"],
+    "arquitectura": "32 y 64 bits",
+    "tamano": "Acumulativo",
+    "descripcion": "Paquete acumulativo offline con todas las actualizaciones críticas y de seguridad para Windows 7 SP1.",
+    "notas": "Requiere Windows 7 con Service Pack 1 instalado. El proceso realiza varios reinicios automáticos hasta completar la integración.",
+    "descargas": [
+      {
+        "etiqueta": "Instalador Offline (32 / 64-bit)",
+        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/UpdatePack7R2-26.1.15.exe"
       }
     ]
   },
   {
     "slug": "driver-booster",
+    "seccion": "Utilidades",
+    "categoria": "Sistema y Diagnóstico",
+    "subcategoria": "Controladores / Drivers",
     "nombre": "Driver Booster",
-    "categoria": "Utilidades",
     "editor": "IObit",
-    "version": "Actualizado",
+    "version": "Última",
     "precio": "Gratis",
+    "actualizado": "2026",
     "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
     "arquitectura": "32 y 64 bits",
-    "tamano": "Actualizado",
-    "descripcion": "Detecta y actualiza controladores del sistema.",
+    "tamano": "Comprimido (.zip)",
+    "descripcion": "Escaneo y actualización automática de controladores de placa base, red, audio y video.",
     "descargas": [
       {
-        "etiqueta": "⬇ Descargar",
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/DriverBooster.zip"
+        "etiqueta": "Archivo ZIP (32 / 64-bit)",
+        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/DriverBooster.zip"
       }
     ]
   },
   {
-    "slug": "qbittorrent",
-    "nombre": "qBittorrent",
-    "categoria": "Descargas",
-    "editor": "The qBittorrent project",
-    "version": "5.3.0",
+    "slug": "poweriso",
+    "seccion": "Utilidades",
+    "categoria": "Imágenes y Discos",
+    "subcategoria": "Montaje y Grabación ISO",
+    "nombre": "PowerISO",
+    "editor": "Power Software Ltd",
+    "version": "8.9",
     "precio": "Gratis",
-    "sistemas": ["Windows 11", "Windows 10"],
-    "arquitectura": "64 bits",
-    "tamano": "~50 MB",
-    "descripcion": "Cliente BitTorrent gratuito y de código abierto, sin publicidad, para descargar y compartir archivos.",
+    "actualizado": "2026",
+    "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7", "Windows XP"],
+    "arquitectura": "32 bits",
+    "tamano": "~5 MB",
+    "descripcion": "Herramienta clásica para montar unidades virtuales, extraer, editar y grabar imágenes ISO, BIN y DAA.",
     "descargas": [
       {
-        "etiqueta": "⬇ 64 bits",
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/qbittorrent_5.3.0_x64_setup.exe"
+        "etiqueta": "Instalador (32-bit)",
+        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/poweriso_setup.exe"
+      }
+    ]
+  },
+  {
+    "slug": "rufus",
+    "seccion": "Utilidades",
+    "categoria": "Imágenes y Discos",
+    "subcategoria": "USB Booteables",
+    "nombre": "Rufus",
+    "editor": "Pete Batard",
+    "version": "4.15",
+    "precio": "Gratis",
+    "actualizado": "2026",
+    "sistemas": ["Windows 11", "Windows 10", "Windows 8.1"],
+    "arquitectura": "64 bits",
+    "tamano": "1.5 MB",
+    "descripcion": "Creación rápida de memorias USB de arranque para instalar Windows, Linux o herramientas de rescate.",
+    "descargas": [
+      {
+        "etiqueta": "Ejecutable Portable (64-bit)",
+        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/rufus-4.15.exe"
+      }
+    ]
+  },
+  {
+    "slug": "winrar",
+    "seccion": "Utilidades",
+    "categoria": "Compresores",
+    "subcategoria": "RAR / ZIP",
+    "nombre": "WinRAR",
+    "editor": "win.rar GmbH",
+    "version": "7.23",
+    "precio": "Gratis",
+    "actualizado": "2026",
+    "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "arquitectura": "32 y 64 bits",
+    "tamano": "~4 MB",
+    "descripcion": "Compresor y extractor estándar en español para archivos RAR, ZIP, 7Z e ISO.",
+    "descargas": [
+      {
+        "etiqueta": "Instalador Español v7.01 (32-bit)",
+        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/winrar-x32-701es.exe"
+      },
+      {
+        "etiqueta": "Instalador Español v7.23 (64-bit)",
+        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/winrar-x64-723es.exe"
+      }
+    ]
+  },
+  {
+    "slug": "7-zip",
+    "seccion": "Utilidades",
+    "categoria": "Compresores",
+    "subcategoria": "7Z / Código Abierto",
+    "nombre": "7-Zip",
+    "editor": "Igor Pavlov",
+    "version": "26.05",
+    "precio": "Gratis",
+    "actualizado": "2026",
+    "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "arquitectura": "32 y 64 bits",
+    "tamano": "~2 MB",
+    "descripcion": "Archivador libre de alto ratio de compresión con soporte nativo para 7z, XZ, GZIP, TAR y ZIP.",
+    "descargas": [
+      {
+        "etiqueta": "Instalador (32-bit)",
+        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/7z2605.exe"
+      },
+      {
+        "etiqueta": "Instalador (64-bit)",
+        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/7z2605-x64.exe"
+      }
+    ]
+  },
+  {
+    "slug": "sumatra-pdf",
+    "seccion": "Programas",
+    "categoria": "Ofimática",
+    "subcategoria": "Lectores PDF",
+    "nombre": "Sumatra PDF",
+    "editor": "Krzysztof Kowalczyk",
+    "version": "3.6.1",
+    "precio": "Gratis",
+    "actualizado": "2026",
+    "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7", "Windows XP"],
+    "arquitectura": "32 y 64 bits",
+    "tamano": "~8 MB",
+    "descripcion": "Visor ultrarrápido y minimalista para documentos PDF, ePub, MOBI, XPS y cómics CBZ/CBR.",
+    "descargas": [
+      {
+        "etiqueta": "Instalador (32-bit)",
+        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/SumatraPDF-3.6.1-install.exe"
+      },
+      {
+        "etiqueta": "Instalador (64-bit)",
+        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/SumatraPDF-3.6.1-64-install.exe"
+      }
+    ]
+  },
+  {
+    "slug": "foxit-pdf-reader",
+    "seccion": "Programas",
+    "categoria": "Ofimática",
+    "subcategoria": "Lectores PDF",
+    "nombre": "Foxit PDF Reader",
+    "editor": "Foxit Software",
+    "version": "2026.2.1",
+    "precio": "Gratis",
+    "actualizado": "2026",
+    "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "arquitectura": "64 bits",
+    "tamano": "~180 MB",
+    "descripcion": "Lector de PDF completo con firma digital, relleno de formularios y herramientas de anotación.",
+    "descargas": [
+      {
+        "etiqueta": "Instalador (64-bit)",
+        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/FoxitPDFReader202621_L10N_Setup_Prom_x64.exe"
+      }
+    ]
+  },
+  {
+    "slug": "anydesk",
+    "seccion": "Programas",
+    "categoria": "Internet y Red",
+    "subcategoria": "Escritorio Remoto",
+    "nombre": "AnyDesk",
+    "editor": "AnyDesk Software GmbH",
+    "version": "9.0",
+    "precio": "Gratis",
+    "actualizado": "2026",
+    "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7", "Windows XP"],
+    "arquitectura": "32 y 64 bits",
+    "tamano": "~5 MB",
+    "descripcion": "Cliente ligero de soporte y control remoto de baja latencia sin necesidad de instalación previa.",
+    "descargas": [
+      {
+        "etiqueta": "Ejecutable Directo",
+        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/AnyDesk.exe"
       }
     ]
   },
   {
     "slug": "teamviewer",
+    "seccion": "Programas",
+    "categoria": "Internet y Red",
+    "subcategoria": "Escritorio Remoto",
     "nombre": "TeamViewer",
-    "categoria": "Internet",
     "editor": "TeamViewer Germany GmbH",
-    "version": "Actualizado",
+    "version": "Última",
     "precio": "Gratis",
+    "actualizado": "2026",
     "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
     "arquitectura": "64 bits",
-    "tamano": "Actualizado",
-    "descripcion": "Software de acceso y control remoto que permite conectarse a una computadora u otro dispositivo desde cualquier lugar.",
+    "tamano": "~45 MB",
+    "descripcion": "Plataforma de acceso remoto, asistencia técnica y transferencia de archivos entre equipos.",
     "descargas": [
       {
-        "etiqueta": "⬇ Descargar (64 bits)",
-        "url": "https://descargas.error404-ar.com.ar/file/Programas-error404/ProgramasTODOS/TeamViewer_Setup_x64.exe"
+        "etiqueta": "Instalador (64-bit)",
+        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/TeamViewer_Setup_x64.exe"
+      }
+    ]
+  },
+  {
+    "slug": "qbittorrent",
+    "seccion": "Programas",
+    "categoria": "Internet y Red",
+    "subcategoria": "Clientes P2P / Torrent",
+    "nombre": "qBittorrent",
+    "editor": "The qBittorrent project",
+    "version": "5.3.0",
+    "precio": "Gratis",
+    "actualizado": "2026",
+    "sistemas": ["Windows 11", "Windows 10"],
+    "arquitectura": "64 bits",
+    "tamano": "50 MB",
+    "descripcion": "Cliente BitTorrent de código abierto y libre de publicidad con buscador integrado y soporte magnet.",
+    "descargas": [
+      {
+        "etiqueta": "Instalador (64-bit)",
+        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/qbittorrent_5.3.0_x64_setup.exe"
       }
     ]
   },
   {
     "slug": "navegadores-windows-xp",
-    "nombre": "Navegadores para Windows XP",
+    "seccion": "Programas",
     "categoria": "Navegadores",
-    "editor": "Varios (Supermium, Mypal, Thorium, Mozilla)",
-    "version": "Actualizado (Motores modernos / Legados)",
+    "subcategoria": "Windows XP",
+    "nombre": "Navegadores para Windows XP",
+    "editor": "Supermium / Mypal / Thorium / Mozilla",
+    "version": "Pack 2026",
     "precio": "Gratis",
+    "actualizado": "2026",
     "sistemas": ["Windows XP"],
     "arquitectura": "32 bits",
-    "tamano": "Variable (40 a 160 MB)",
-    "descripcion": "Soluciones de navegación web para Windows XP, incluyendo alternativas modernas con soporte TLS 1.3 y versiones de legado.",
+    "tamano": "40 - 160 MB",
+    "descripcion": "Supermium 150 mantiene TLS 1.3 y compatibilidad web actual en XP; Mypal 78 y Thorium cubren equipos Pentium III/4; Firefox 52.9 y Chrome 49 quedan como respaldo legado.",
+    "notas": "Para equipos con procesadores Pentium III (sin instrucciones SSE2), utilizá únicamente la variante Mypal 78.1.2 Sin SSE2.",
     "descargas": [
       {
-        "etiqueta": "⬇ Supermium 150 (Instalador 32 bits - Recomendado)",
+        "etiqueta": "Supermium 150 — Instalador (32-bit, Recomendado)",
         "sistemas": ["Windows XP"],
         "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/supermium_150_32_setup.exe"
       },
       {
-        "etiqueta": "⬇ Supermium 150 (Portable 32 bits)",
+        "etiqueta": "Supermium 150 — Portable (.zip, 32-bit)",
         "sistemas": ["Windows XP"],
         "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/supermium_150_32_nonsetup.zip"
       },
       {
-        "etiqueta": "⬇ Thorium Win32 SSE2 (Portable - Liviano)",
+        "etiqueta": "Thorium 122 — Win32 SSE2 Portable (.zip)",
         "sistemas": ["Windows XP"],
         "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/Thorium_WIN32_SSE2_122.0.6261.171.zip"
       },
       {
-        "etiqueta": "⬇ Thorium Win32 SSE3 (Portable)",
+        "etiqueta": "Thorium 122 — Win32 SSE3 Portable (.zip)",
         "sistemas": ["Windows XP"],
         "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/Thorium_WIN32_SSE3_122.0.6261.171.zip"
       },
       {
-        "etiqueta": "⬇ Mypal 78 Quantum (Portable - Pentium 4 / SSE2)",
+        "etiqueta": "Mypal 78.1.2 — Quantum SSE2 Portable (.zip)",
         "sistemas": ["Windows XP"],
         "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/mypal-78.1.2.en-US.win32.zip"
       },
       {
-        "etiqueta": "⬇ Mypal 78 SSE (Portable - Pentium III / Sin SSE2)",
+        "etiqueta": "Mypal 78.1.2 — Sin SSE2 / Pentium III (.zip)",
         "sistemas": ["Windows XP"],
         "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/mypal-78.1.2.en-US.win32-sse.zip"
       },
       {
-        "etiqueta": "⬇ Firefox 52.9.0 ESR (Instalador Legado - Offline)",
+        "etiqueta": "Firefox 52.9.0 ESR — Instalador Offline (Legado)",
         "sistemas": ["Windows XP"],
         "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/Firefox%20Setup%2052.9.0esr.exe"
       },
       {
-        "etiqueta": "⬇ Google Chrome 49 (Instalador Legado - Offline)",
+        "etiqueta": "Google Chrome 49.0 — Instalador Offline (Legado)",
         "sistemas": ["Windows XP"],
         "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/Google_Chrome_(32bit)_v49.0.2623.112.exe"
       }
@@ -379,81 +433,85 @@
   },
   {
     "slug": "navegadores-windows-7",
-    "nombre": "Navegadores para Windows 7",
+    "seccion": "Programas",
     "categoria": "Navegadores",
-    "editor": "Varios (Supermium, Firefox ESR, Thorium, Pale Moon, Brave, Chrome)",
-    "version": "Actualizado (Motores modernos / Legados)",
+    "subcategoria": "Windows 7",
+    "nombre": "Navegadores para Windows 7",
+    "editor": "Supermium / Mozilla / Thorium / Pale Moon",
+    "version": "Pack 2026",
     "precio": "Gratis",
+    "actualizado": "2026",
     "sistemas": ["Windows 7"],
     "arquitectura": "32 y 64 bits",
-    "tamano": "Variable (30 a 133 MB)",
-    "descripcion": "Colección completa para Windows 7: motores Chromium 150 y Firefox ESR con soporte web actual, compilaciones ligeras Thorium/Pale Moon y últimas versiones oficiales de Chrome y Brave.",
+    "tamano": "30 - 133 MB",
+    "descripcion": "Motores Chromium 150 (Supermium) y Firefox 115 ESR con soporte web moderno, variantes optimizadas de Thorium y Pale Moon, más últimos instaladores oficiales de Chrome 109 y Brave.",
+    "notas": "Elegí la variante de Thorium según el soporte de instrucciones de tu procesador (SSE2, SSE3 o SSE4). Supermium y Firefox 115 ESR funcionan en cualquier equipo con Windows 7 SP1.",
     "descargas": [
       {
-        "etiqueta": "⬇ Supermium 150 (64 bits - Recomendado)",
+        "etiqueta": "Supermium 150 — Instalador (64-bit, Recomendado)",
         "sistemas": ["Windows 7"],
         "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/supermium_150_64_setup.exe"
       },
       {
-        "etiqueta": "⬇ Supermium 150 (32 bits - Recomendado)",
+        "etiqueta": "Supermium 150 — Instalador (32-bit, Recomendado)",
         "sistemas": ["Windows 7"],
         "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/supermium_150_32_setup.exe"
       },
       {
-        "etiqueta": "⬇ Firefox 115.45.0 ESR (32 / 64 bits - Oficial)",
+        "etiqueta": "Firefox 115.45.0 ESR — Instalador Oficial",
         "sistemas": ["Windows 7"],
         "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Firefox%20Setup%20115.45.0esr.exe"
       },
       {
-        "etiqueta": "⬇ Thorium 64 bits SSE3 (Core 2 / Phenom II+)",
+        "etiqueta": "Thorium 64-bit SSE3 — Core 2 / Phenom II+",
         "sistemas": ["Windows 7"],
         "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Thorium%2064%20bits%20-%20Windows%207/thorium_SSE3_mini_installer.exe"
       },
       {
-        "etiqueta": "⬇ Thorium 64 bits SSE4 (Core i / Modernos)",
+        "etiqueta": "Thorium 64-bit SSE4 — Core i / Modernos",
         "sistemas": ["Windows 7"],
         "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Thorium%2064%20bits%20-%20Windows%207/thorium_SSE4_mini_installer.exe"
       },
       {
-        "etiqueta": "⬇ Thorium 32 bits SSE2 (CPUs antiguos)",
+        "etiqueta": "Thorium 32-bit SSE2 — CPUs Antiguos",
         "sistemas": ["Windows 7"],
         "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Thorium%2032%20bits%20-%20Windows%207/thorium_WIN32_SSE2_mini_installer.exe"
       },
       {
-        "etiqueta": "⬇ Thorium 32 bits SSE3 (CPUs intermedios)",
+        "etiqueta": "Thorium 32-bit SSE3 — CPUs Intermedios",
         "sistemas": ["Windows 7"],
         "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Thorium%2032%20bits%20-%20Windows%207/thorium_WIN32_SSE3_mini_installer.exe"
       },
       {
-        "etiqueta": "⬇ Pale Moon 35.0.3 Portable (64 bits - .exe)",
+        "etiqueta": "Pale Moon 35.0.3 — Portable (64-bit)",
         "sistemas": ["Windows 7"],
         "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Palemoon-Portable-35.0.3.win64.exe"
       },
       {
-        "etiqueta": "⬇ Pale Moon 35.0.3 Portable (32 bits - .exe)",
+        "etiqueta": "Pale Moon 35.0.3 — Portable (32-bit)",
         "sistemas": ["Windows 7"],
         "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Palemoon-Portable-35.0.3.win32.exe"
       },
       {
-        "etiqueta": "⬇ Brave 1.47.186 Offline (64 bits - Legado)",
+        "etiqueta": "Brave 1.47.186 — Offline (64-bit, Legado)",
         "sistemas": ["Windows 7"],
         "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/BraveBrowserStandaloneSetup.exe"
       },
       {
-        "etiqueta": "⬇ Brave 1.47.186 Offline (32 bits - Legado)",
+        "etiqueta": "Brave 1.47.186 — Offline (32-bit, Legado)",
         "sistemas": ["Windows 7"],
         "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/BraveBrowserStandaloneSetup32.exe"
       },
       {
-        "etiqueta": "⬇ Google Chrome 109 Offline (64 bits - Legado)",
+        "etiqueta": "Google Chrome 109 — Offline (64-bit, Legado)",
         "sistemas": ["Windows 7"],
         "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Google_Chrome_(64bit)_v109.0.5414.120.exe"
       },
       {
-        "etiqueta": "⬇ Google Chrome 109 Offline (32 bits - Legado)",
+        "etiqueta": "Google Chrome 109 — Offline (32-bit, Legado)",
         "sistemas": ["Windows 7"],
         "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Google_Chrome_(32bit)_v109.0.5414.120.exe"
       }
     ]
   }
- ]
+]

@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-# Agregá la URL absoluta del sitemap cuando configures tu dominio.
+# Si generás un sitemap.xml en la raíz de tu web, descomentá y ajustá esta línea:
+# Sitemap: https://error404-ar.com.ar/sitemap.xml

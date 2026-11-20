@@ -2,280 +2,264 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' https: data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#050b16">
   <meta name="author" content="Alejandro Manrique">
   <meta name="copyright" content="© 2026 Alejandro Manrique - Trelew, Chubut, Argentina. Todos los derechos reservados.">
   <meta name="application-name" content="Nexus">
-  <meta name="description" content="Explorá software gratuito para Windows. Compará programas, consultá sus características y encontrá fuentes de descarga confiables.">
+  <meta name="description" content="Archivo y biblioteca de programas e ISOs para Windows XP a Windows 11.">
   <meta name="robots" content="index,follow,max-image-preview:large">
-  <title>Nexus — Software FREE</title>
+  <title>Nexus — Archivo de Software e ISOs</title>
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./css/styles.css?v=11">
-  <script src="./js/app.js?v=7" defer></script>
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Nexus">
-  <meta property="og:title" content="Nexus — Software útil, sin vueltas">
-  <meta property="og:description" content="Encontrá herramientas gratuitas para trabajar, crear y proteger tu PC con Windows.">
+  <link rel="stylesheet" href="./css/styles.css?v=18">
+  <script src="./js/app.js?v=18" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#contenido">Saltar al contenido</a>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="index.html" aria-label="Nexus, inicio">
-        <span class="brand-mark" aria-hidden="true"><img src="./assets/favicon.svg" alt=""></span>
-        <span>Nexus <b>Downloads</b></span>
-        <span class="brand-sub">Por <b>Alejandro Manrique</b></span>
-      </a>
-      <nav class="desktop-nav" aria-label="Navegación principal">
-        <a href="#catalogo">Catálogo</a>
-        <a href="#categorias">Categorías</a>
-        <a href="#seguridad">Seguridad</a>
+  <a class="skip-link" href="#main-panel">Saltar al contenido</a>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand-box">
+        <a class="brand-link" href="index.html">
+          <img class="brand-logo" src="./assets/favicon.svg" alt="">
+          <span class="brand-title">NEXUS</span>
+          <span class="brand-tag">Software &amp; ISOs</span>
+        </a>
+      </div>
+
+      <nav class="top-tabs" aria-label="Secciones principales">
+        <button type="button" class="top-tab active" data-section="Todos">Inicio</button>
+        <button type="button" class="top-tab" data-section="Programas">Programas</button>
+        <button type="button" class="top-tab" data-section="Sistemas / ISOs">Sistemas / ISOs</button>
+        <button type="button" class="top-tab" data-section="Utilidades">Utilidades</button>
       </nav>
-      <a class="header-cta" href="#catalogo">Explorar software <span aria-hidden="true">↗</span></a>
+
+      <form class="top-search" id="searchForm" role="search">
+        <label class="sr-only" for="search">Buscar</label>
+        <input id="search" type="search" placeholder="Buscar programa o ISO..." autocomplete="off">
+        <button type="submit">Buscar</button>
+      </form>
     </div>
   </header>
 
-  <main id="contenido">
-    <section class="hero">
-      <div class="hero-glow glow-one"></div><div class="hero-glow glow-two"></div>
-      <div class="container hero-inner">
-        <div class="hero-copy">
-          <span class="eyebrow"><span class="eyebrow-dot"></span> TU BIBLIOTECA DE SOFTWARE</span>
-          <h1>Las herramientas<br>correctas. <span>Sin vueltas.</span></h1>
-          <p class="hero-lead">Descubrí programas para trabajar, crear y mantener tus dispositivos en marcha. Compará opciones y encontrá lo que necesitás.</p>
-          <div class="hero-proof">
-            <span><i class="proof-check">✓</i> Catálogo organizado</span>
-            <span><i class="proof-check">✓</i> Filtros simples</span>
-            <span><i class="proof-check">✓</i> Información clara</span>
-          </div>
-        </div>
-        <div class="hero-visual" aria-hidden="true">
-          <div class="visual-orbit orbit-a"></div><div class="visual-orbit orbit-b"></div>
-          <div class="visual-window">
-            <div class="window-top"><span></span><span></span><span></span><small>nexus / library</small></div>
-            <div class="window-body">
-              <div class="visual-label">DESCUBRÍ ALGO NUEVO</div>
-              <div class="visual-feature">
-                <div class="visual-app-icon">↗</div>
-                <div><strong>Tu próxima herramienta</strong><small>Productividad · Creatividad · Seguridad</small></div>
-              </div>
-              <div class="visual-lines"><i></i><i></i><i></i></div>
-              <div class="visual-bottom"><span>Explorá a tu ritmo</span><b>↗</b></div>
-            </div>
-          </div>
-          <div class="floating-chip chip-top"><span>✦</span> Descubrí</div>
-          <div class="floating-chip chip-bottom"><span>⌘</span> Para tu Windows</div>
-        </div>
-      </div>
-      <div class="hero-bottom container">
-        <div><strong id="totalProgramas">—</strong><span>programas en catálogo</span></div>
-        <div><strong id="totalCategorias">—</strong><span>categorías para explorar</span></div>
-        <div><strong>100%</strong><span>software gratis para Windows</span></div>
-      </div>
-    </section>
-
-    <section class="section container" id="categorias">
-      <div class="section-heading">
-        <div><span class="eyebrow">ENCONTRÁ TU CAMINO</span><h2>Explorá por categoría</h2><p>Un buen punto de partida para encontrar tu próxima herramienta.</p></div>
-      </div>
-      <div class="category-list" id="categories" aria-label="Filtrar por categoría"></div>
-    </section>
-
-    <section class="section container" id="proyecto-estrella">
-      <div class="star-project">
-        <div class="star-badge-row">
-          <span class="star-pill">★ PROYECTO WINDOWS POST-INSTALL · DESARROLLO PROPIO</span>
-          <span class="star-meta">Windows 7 / 8.1 / 10 / 11 · 32 &amp; 64 bits</span>
-        </div>
-
-        <div class="star-grid">
-          <div class="star-info">
-            <h2>WPI Nexus <span class="star-version">v2.0</span></h2>
-            <p class="star-desc">
-              Asistente automatizado de post-instalación para Windows. Seleccioná e instalá todos tus programas esenciales, runtimes y utilidades en un solo clic y de forma desatendida.
-            </p>
-            <ul class="star-features">
-              <li><span>✓</span> Instalación rápida y desatendida</li>
-              <li><span>✓</span> Paquete todo en uno listo para usar</li>
-              <li><span>✓</span> Desarrollado por Alejandro Manrique</li>
-            </ul>
-          </div>
-
-          <div class="star-actions">
-            <a class="star-btn-primary" href="https://github.com/alejandromanrique22/nexus/releases/latest" target="_blank" rel="noopener noreferrer">
-              <span>⬇ Descargar WPI Nexus</span>
-              <small>Descarga directa oficial</small>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section catalog-section container" id="catalogo">
-      <div class="section-heading catalog-heading">
-        <div><span class="eyebrow">LA BIBLIOTECA</span><h2>Software para cada tarea<span class="title-period">.</span></h2><p>Compará características y filtrá el catálogo a tu manera.</p></div>
-        <span class="catalog-note"><span class="live-dot"></span> Catálogo disponible</span>
-      </div>
-
-      <form class="search-form catalog-search" id="searchForm" role="search">
-        <span class="search-symbol" aria-hidden="true">⌕</span>
-        <label class="sr-only" for="search">Buscar programas</label>
-        <input id="search" type="search" placeholder="Buscá un programa, categoría o versión de Windows…" autocomplete="off">
-        <button type="submit">Buscar <span aria-hidden="true">→</span></button>
-      </form>
-
-      <div class="filter-panel">
-        <div class="filter-field">
-          <label for="systemFilter">Versión de Windows</label>
-          <select id="systemFilter">
-            <option value="">Todas las versiones</option>
-            <option>Windows 11</option>
-            <option>Windows 10</option>
-            <option>Windows 8.1</option>
-            <option>Windows 7</option>
-            <option>Windows XP</option>
-          </select>
-        </div>
-        <div class="filter-field">
-          <label for="archFilter">Arquitectura</label>
-          <select id="archFilter">
-            <option value="">Todas (32 / 64 bits)</option>
-            <option value="64 bits">64 bits</option>
-            <option value="32 bits">32 bits</option>
-            <option value="32 y 64 bits">32 y 64 bits</option>
-          </select>
-        </div>
-        <div class="filter-field">
-          <label for="sortFilter">Ordenar por</label>
-          <select id="sortFilter">
-            <option value="nombre">Nombre: A a Z</option>
-            <option value="recientes">Más recientes</option>
-            <option value="descargas">Más populares</option>
-          </select>
-        </div>
-        <button type="button" id="clearFilters" class="reset-button">↺ <span>Limpiar</span></button>
-      </div>
-
-      <div class="results-row"><p id="resultsCount" aria-live="polite">Cargando catálogo…</p><span>Hacé clic en cualquier tarjeta para ver detalles</span></div>
-      
-      <div id="programList" class="program-grid" aria-live="polite">
-        <div class="loading-card">Preparando el catálogo…</div>
-      </div>
-
-      <!-- Controles de Paginación -->
-      <nav class="pagination" id="paginationContainer" aria-label="Paginación del catálogo" hidden>
-        <button type="button" id="prevPage" class="page-button">← Anterior</button>
-        <span id="pageInfo" class="page-info">Página 1 de 1</span>
-        <button type="button" id="nextPage" class="page-button">Siguiente →</button>
-      </nav>
-
-      <div id="emptyState" class="empty-state" hidden>
-        <div class="empty-icon">⌕</div>
-        <h3>No encontramos resultados</h3>
-        <p>Probá con otra búsqueda o quitá alguno de los filtros.</p>
-        <button type="button" id="resetSearch">Ver todo el catálogo</button>
-      </div>
-      <div id="errorState" class="error-state" hidden>
-        <h3>No pudimos cargar el catálogo</h3>
-        <p>Verificá que <code>data/programas.json</code> esté publicado junto a esta página y abrí el sitio desde un servidor web.</p>
-      </div>
-    </section>
-
-    <section class="feature-band" id="seguridad">
-      <div class="container feature-inner">
-        <div class="feature-copy"><span class="eyebrow">DESCARGÁ CON CRITERIO</span><h2>Tu seguridad<br>también importa.</h2><p>Antes de instalar cualquier programa, verificá de dónde viene y que sea la versión que necesitás.</p></div>
-        <div class="safety-points">
-          <article><span class="safety-icon">↗</span><div><h3>Preferí fuentes oficiales</h3><p>Descargá desde el sitio del desarrollador siempre que sea posible.</p></div></article>
-          <article><span class="safety-icon">✓</span><div><h3>Verificá la integridad</h3><p>Si se publica un hash SHA-256, comparalo con el archivo descargado.</p></div></article>
-          <article><span class="safety-icon">⌁</span><div><h3>Revisá antes de instalar</h3><p>Comprobá editor, permisos, compatibilidad y firma digital cuando esté disponible.</p></div></article>
-        </div>
-      </div>
-    </section>
-    <section class="closing container">
-      <div><span class="eyebrow">MENOS BÚSQUEDA. MÁS SOLUCIONES.</span><h2>Encontrá tu próxima herramienta.</h2><p>Explorá el catálogo y descubrí qué puede hacer más simple tu día.</p></div>
-      <a href="#catalogo" class="closing-cta">Explorar catálogo <span>→</span></a>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-main">
-      <div class="footer-brand">
-        <a class="brand" href="index.html">
-          <span class="brand-mark"><img src="./assets/favicon.svg" alt=""></span>
-          <span>Nexus <b>Downloads</b></span>
-        </a>
-        <p>Un lugar simple para descubrir software útil. Proyecto creado y mantenido por <strong>Alejandro Manrique</strong>.</p>
-      </div>
-      <div class="footer-column">
-        <strong>Explorar</strong>
-        <a href="#catalogo">Catálogo</a>
-        <a href="#categorias">Categorías</a>
-        <a href="#seguridad">Seguridad</a>
-      </div>
-      <div class="footer-column">
-        <strong>Información</strong>
-        <a href="./legal/contacto.html">Contacto y Autoría</a>
-        <a href="https://github.com/alejandromanrique22/nexus" target="_blank" rel="noopener noreferrer">Código en GitHub</a>
-      </div>
-    </div>
-    <div class="container footer-bottom">
-      <span>© <span id="currentYear">2026</span> Nexus · Desarrollado por Alejandro Manrique (Trelew, Chubut, Argentina). Todos los derechos reservados.</span>
-      <span>Hecho para encontrar software sin complicaciones.</span>
-    </div>
-  </footer>
-
-  <!-- Modal de Detalles del Programa -->
-  <div id="programModal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true" hidden>
-    <div class="modal-card">
-      <button type="button" id="closeModal" class="modal-close" aria-label="Cerrar ventana">✕</button>
-      
-      <div class="modal-header">
-        <div id="modalIcon" class="modal-icon-placeholder">?</div>
-        <div>
-          <span id="modalCategory" class="program-category">Categoría</span>
-          <h2 id="modalTitle">Nombre del Programa</h2>
-          <div id="modalMeta" class="program-meta">Editor · Versión · Tamaño</div>
-        </div>
-      </div>
-
-      <div class="modal-body">
-        <div class="modal-section">
-          <h3>Descripción completa</h3>
-          <p id="modalDescription">Cargando detalles...</p>
-        </div>
-
-        <div class="modal-specs">
-          <div class="spec-item">
-            <strong>Arquitectura</strong>
-            <span id="modalArch">—</span>
-          </div>
-          <div class="spec-item">
-            <strong>Sistemas compatibles</strong>
-            <span id="modalSystems">—</span>
-          </div>
-          <div class="spec-item">
-            <strong>Licencia</strong>
-            <span id="modalPrice">—</span>
-          </div>
-          <div class="spec-item">
-            <strong>Última actualización</strong>
-            <span id="modalUpdated">—</span>
-          </div>
-        </div>
-
-        <div class="modal-actions-box" id="modalActions">
-          <!-- Los botones de descarga se inyectarán aquí dinámicamente -->
-        </div>
-      </div>
+  <div class="status-strip">
+    <div class="status-inner">
+      <span><strong>Paquetes:</strong> <span id="totalProgramas">—</span></span>
+      <span class="sep">|</span>
+      <span><strong>Categorías:</strong> <span id="totalCategorias">—</span></span>
+      <span class="sep">|</span>
+      <span><strong>Sistemas:</strong> Windows XP · 7 · 8.1 · 10 · 11</span>
+      <span class="sep">|</span>
+      <a href="./legal/contacto.html">Contacto y Autoría</a>
     </div>
   </div>
+
+  <div class="portal-layout">
+    <aside class="sidebar" aria-label="Menú de categorías y submenús">
+      <div class="sidebar-box">
+        <div class="sidebar-header">MENÚ DE APARTADOS</div>
+        <div id="sidebarMenu" class="sidebar-tree"></div>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="sidebar-header">FILTROS DEL CATÁLOGO</div>
+        <div class="sidebar-filters">
+          <div class="filter-row">
+            <label for="systemFilter">Sistema operativo</label>
+            <select id="systemFilter">
+              <option value="">Todos los sistemas</option>
+              <option value="Windows XP">Windows XP</option>
+              <option value="Windows 7">Windows 7</option>
+              <option value="Windows 8.1">Windows 8.1</option>
+              <option value="Windows 10">Windows 10</option>
+              <option value="Windows 11">Windows 11</option>
+            </select>
+          </div>
+
+          <div class="filter-row">
+            <label for="archFilter">Arquitectura</label>
+            <select id="archFilter">
+              <option value="">Todas (32 / 64 bits)</option>
+              <option value="32 bits">32 bits</option>
+              <option value="64 bits">64 bits</option>
+              <option value="32 y 64 bits">32 y 64 bits</option>
+            </select>
+          </div>
+
+          <div class="filter-row">
+            <label for="sortFilter">Ordenar por</label>
+            <select id="sortFilter">
+              <option value="nombre">Nombre (A-Z)</option>
+              <option value="recientes">Más recientes</option>
+              <option value="descargas">Más descargados</option>
+            </select>
+          </div>
+
+          <button type="button" id="clearFilters" class="btn-classic btn-secondary btn-full">Restablecer filtros</button>
+        </div>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="sidebar-header">HERRAMIENTA PROPIA</div>
+        <div class="sidebar-wpi">
+          <strong>WPI Nexus v2.0</strong>
+          <p>Asistente post-instalación para Windows.</p>
+          <a class="btn-classic btn-primary btn-full" href="https://github.com/alejandromanrique22/nexus/releases/latest" target="_blank" rel="noopener noreferrer">Descargar WPI Nexus</a>
+        </div>
+      </div>
+    </aside>
+
+    <main id="main-panel" class="content-area">
+      <!-- VISTA 1: LISTADO DEL CATÁLOGO -->
+      <div id="catalogView">
+        <div class="os-quickbar" role="group" aria-label="Filtrar rápido por sistema operativo">
+          <span class="os-label">Sistema:</span>
+          <button type="button" class="os-chip active" data-os="">Todos</button>
+          <button type="button" class="os-chip" data-os="Windows XP">Windows XP</button>
+          <button type="button" class="os-chip" data-os="Windows 7">Windows 7</button>
+          <button type="button" class="os-chip" data-os="Windows 8.1">Windows 8.1</button>
+          <button type="button" class="os-chip" data-os="Windows 10">Windows 10</button>
+          <button type="button" class="os-chip" data-os="Windows 11">Windows 11</button>
+        </div>
+
+        <div class="breadcrumb-bar">
+          <span id="currentBreadcrumb">Inicio / Todos los apartados</span>
+          <span id="resultsCount" aria-live="polite">Cargando...</span>
+        </div>
+
+        <div id="programList" class="classic-table-wrap" aria-live="polite">
+          <div class="classic-notice">Cargando índice de programas e ISOs...</div>
+        </div>
+
+        <nav class="pagination" id="paginationContainer" aria-label="Paginación" hidden>
+          <button type="button" id="prevPage" class="btn-classic">« Anterior</button>
+          <span id="pageInfo" class="page-info">Página 1 de 1</span>
+          <button type="button" id="nextPage" class="btn-classic">Siguiente »</button>
+        </nav>
+
+        <div id="emptyState" class="classic-notice" hidden>
+          <strong>Sin resultados</strong>
+          <p>No hay programas o ISOs que coincidan con los filtros seleccionados.</p>
+          <button type="button" id="resetSearch" class="btn-classic">Mostrar todo el catálogo</button>
+        </div>
+
+        <div id="errorState" class="classic-notice classic-error" hidden>
+          <strong>No se pudo cargar el catálogo</strong>
+          <p>Verificá que <code>data/programas.json</code> exista y tenga formato JSON válido.</p>
+        </div>
+
+        <div class="safety-box">
+          <div class="safety-title">NOTAS DE COMPATIBILIDAD Y VERIFICACIÓN</div>
+          <ul>
+            <li><strong>Sistemas y arquitecturas:</strong> Verificá si el instalador o ISO corresponde a 32 bits (x86) o 64 bits (x64) y qué versión o Service Pack de Windows admite.</li>
+            <li><strong>Integridad de archivos:</strong> Revisá el peso aproximado del paquete y, cuando esté publicado, el hash SHA-256 antes de instalar o grabar.</li>
+            <li><strong>Ficha del paquete:</strong> Hacé clic en el nombre o en <em>Ver ficha</em> para abrir la página completa con todos los archivos y metadatos.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- VISTA 2: FICHA DEDICADA DE PROGRAMA / ISO -->
+      <article id="detailView" class="detail-page" hidden>
+        <div class="detail-nav-bar">
+          <button type="button" id="backToListBtn" class="btn-classic">« Volver al listado</button>
+          <span id="detailBreadcrumb" class="detail-crumb">Inicio / Detalle</span>
+        </div>
+
+        <div class="detail-header-box">
+          <div id="detailIcon" class="detail-badge-icon">?</div>
+          <div id="detailPrimaryCta" class="detail-primary-cta"></div>
+          <div class="detail-header-info">
+            <div class="detail-kicker">
+              <span id="detailSectionTag" class="detail-tag">Programas</span>
+              <span id="detailCatTag" class="detail-tag detail-tag-alt">Categoría</span>
+            </div>
+            <h1 id="detailTitle">Nombre del Programa</h1>
+            <div id="detailSubtitle" class="detail-subtitle">Por Editor · Versión · Tamaño</div>
+          </div>
+        </div>
+
+        <div class="detail-block">
+          <div class="detail-block-title">DESCRIPCIÓN DEL PAQUETE</div>
+          <div class="detail-block-body">
+            <p id="detailDescription" class="detail-text"></p>
+            <div id="detailNotesBox" class="detail-notes" hidden>
+              <strong>Notas técnicas / Instalación:</strong>
+              <p id="detailNotes"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-block">
+          <div class="detail-block-title">ARCHIVOS Y VARIANTES DE DESCARGA</div>
+          <div class="detail-block-body no-pad">
+            <table class="catalog-table files-table">
+              <thead>
+                <tr>
+                  <th>Variante / Nombre de archivo</th>
+                  <th>Compatibilidad</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody id="detailFilesList"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="detail-block">
+          <div class="detail-block-title">ESPECIFICACIONES Y METADATOS</div>
+          <div class="detail-block-body no-pad">
+            <table class="specs-table detail-specs">
+              <tbody>
+                <tr>
+                  <th>Desarrollador / Editor</th>
+                  <td id="detailEditor">—</td>
+                  <th>Versión / Compilación</th>
+                  <td id="detailVersion">—</td>
+                </tr>
+                <tr>
+                  <th>Sistemas Soportados</th>
+                  <td id="detailSystems">—</td>
+                  <th>Arquitectura</th>
+                  <td id="detailArch">—</td>
+                </tr>
+                <tr>
+                  <th>Tamaño Aproximado</th>
+                  <td id="detailSize">—</td>
+                  <th>Licencia</th>
+                  <td id="detailPrice">—</td>
+                </tr>
+                <tr>
+                  <th>Identificador (Slug)</th>
+                  <td id="detailSlug" class="mono-col">—</td>
+                  <th>Actualizado</th>
+                  <td id="detailUpdated">—</td>
+                </tr>
+                <tr id="detailHashRow" hidden>
+                  <th>Hash SHA-256</th>
+                  <td colspan="3" id="detailHash" class="mono-col hash-cell">—</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="detail-footer-bar">
+          <button type="button" id="backToListBottomBtn" class="btn-classic">« Volver al listado</button>
+        </div>
+      </article>
+    </main>
+  </div>
+
+  <footer class="footer-bar">
+    <div class="footer-inner">
+      <span>© <span id="currentYear">2026</span> Nexus · Alejandro Manrique (Trelew, Chubut, Argentina).</span>
+      <span><a href="./legal/contacto.html">Contacto y Autoría</a> · <a href="https://github.com/alejandromanrique22/nexus" target="_blank" rel="noopener noreferrer">GitHub</a></span>
+    </div>
+  </footer>
 </body>
 </html>
