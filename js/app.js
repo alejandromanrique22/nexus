@@ -369,20 +369,7 @@
 
     if (elements.detailPrimaryCta) {
       elements.detailPrimaryCta.innerHTML = "";
-      var primaryUrl = getFirstDownloadUrl(prog);
-      if (primaryUrl) {
-        var mainDl = createEl(
-          "a",
-          "btn-classic btn-green",
-          Array.isArray(prog.descargas) && prog.descargas.length > 1
-            ? "Descargar Principal"
-            : "Descargar Archivo"
-        );
-        mainDl.href = primaryUrl;
-        mainDl.target = "_blank";
-        mainDl.rel = "noopener noreferrer";
-        elements.detailPrimaryCta.appendChild(mainDl);
-      }
+      elements.detailPrimaryCta.hidden = true;
     }
 
     if (elements.detailDescription) {

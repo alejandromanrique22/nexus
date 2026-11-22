@@ -611,8 +611,8 @@ code {
   width: 34px;
   height: 34px;
   margin-right: 10px;
-  border: 1px solid #b4c0cc;
-  background-color: #f7f9fb;
+  border: none;
+  background-color: transparent;
   display: block;
 }
 
@@ -759,22 +759,25 @@ code {
   border: 1px solid #0e1926;
 }
 
+.detail-badge-icon:has(img) {
+  background-color: transparent;
+  border: none;
+}
+
 .detail-badge-icon img {
   width: 100%;
   height: 100%;
+  object-fit: contain;
   display: block;
 }
 
 .detail-primary-cta {
-  float: right;
-  width: 170px;
-  padding-top: 8px;
-  text-align: right;
+  display: none !important;
 }
 
 .detail-header-info {
   margin-left: 60px;
-  margin-right: 180px;
+  margin-right: 0;
 }
 
 .detail-kicker {
