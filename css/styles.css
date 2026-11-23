@@ -63,10 +63,9 @@ code {
   padding: 6px 10px;
 }
 
-/* Barra superior fija con botones más cómodos */
+/* Barra superior clásica (sin sticky para evitar fallos en IE 11) */
 .topbar {
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 1000;
   background-color: #1c2f45;
   border-bottom: 2px solid #0e1926;
@@ -225,7 +224,14 @@ code {
   min-height: 760px;
   margin: 12px auto 12px auto;
   padding: 0 12px;
-  overflow: hidden;
+  overflow: visible;
+  zoom: 1;
+}
+
+.portal-layout:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .sidebar {
@@ -240,6 +246,7 @@ code {
   background-color: #ffffff;
   border: 1px solid #b4c0cc;
   padding: 10px 12px;
+  overflow: hidden;
 }
 
 /* Cajas laterales y menús desplegables */

@@ -16,6 +16,23 @@ function Escape-Html([string]$text) {
   return [System.Net.WebUtility]::HtmlEncode($text)
 }
 
+function Get-SafeIconSrc([string]$rawIcon) {
+  if ([string]::IsNullOrWhiteSpace($rawIcon)) { return "" }
+  $trimmed = $rawIcon.Trim()
+  if ($trimmed -match '^(?i)javascript:') { return "" }
+
+  if ($trimmed -match '^(?i)https?://') {
+    return $trimmed
+  }
+
+  $cleanRel = ($trimmed -replace '^\./', '' -replace '^/', '')
+  if ($cleanRel -match '^(?i)img/') {
+    return "../$cleanRel"
+  }
+
+  return ""
+}
+
 $rawJson = Get-Content -Path $jsonPath -Raw -Encoding UTF8
 $items = $rawJson | ConvertFrom-Json
 
@@ -28,7 +45,8 @@ foreach ($item in $items) {
     ($item.nombre.ToLower() -replace '[^a-z0-9]+', '-').Trim('-')
   }
 
-  $nombreSafe   = Escape-Html ([string]$item.nombre)
+  $nombreRaw    = [string]$item.nombre
+  $nombreSafe   = Escape-Html $nombreRaw
   $editorSafe   = Escape-Html ([string]$item.editor)
   $versionSafe  = Escape-Html ([string]$item.version)
   $archSafe     = Escape-Html ([string]$item.arquitectura)
@@ -37,6 +55,16 @@ foreach ($item in $items) {
   $descSafe     = Escape-Html ([string]$item.descripcion)
   $notasSafe    = Escape-Html ([string]$item.notas)
   $sistemasText = if ($item.sistemas) { Escape-Html (($item.sistemas) -join ", ") } else { "Windows" }
+
+  $initialSafe  = Escape-Html ($nombreRaw.Substring(0, 1).ToUpper())
+  $iconSrc      = Get-SafeIconSrc ([string]$item.icono)
+  $iconSrcSafe  = Escape-Html $iconSrc
+
+  $badgeHtml = if ($iconSrcSafe) {
+    "<div class=`"detail-badge-icon has-icon`"><img src=`"$iconSrcSafe`" alt=`"$nombreSafe`"></div>"
+  } else {
+    "<div class=`"detail-badge-icon`">$initialSafe</div>"
+  }
 
   $descargasHtml = ""
   if ($item.descargas -and $item.descargas.Count -gt 0) {
@@ -71,12 +99,11 @@ foreach ($item in $items) {
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="$descSafe">
   <title>$nombreSafe — Nexus</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/styles.css?v=30">
 </head>
 <body>
   <header class="topbar">
@@ -99,7 +126,8 @@ foreach ($item in $items) {
       </div>
 
       <div class="detail-header-box">
-        <div class="detail-header-info" style="margin-left: 0; margin-right: 0;">
+        $badgeHtml
+        <div class="detail-header-info" style="margin-right: 0;">
           <h1>$nombreSafe</h1>
           <div class="detail-subtitle">Editor: $editorSafe · Version: $versionSafe · Tamano: $tamanoSafe</div>
         </div>
