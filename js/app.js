@@ -335,15 +335,18 @@
       var iconUrl = safeUrl(prog.icono);
       elements.detailIcon.innerHTML = "";
       if (iconUrl) {
+        elements.detailIcon.className = "detail-badge-icon has-icon";
         var detailImg = document.createElement("img");
         detailImg.src = iconUrl;
         detailImg.alt = prog.nombre || "";
         detailImg.onerror = function () {
+          elements.detailIcon.className = "detail-badge-icon";
           elements.detailIcon.innerHTML = "";
           elements.detailIcon.textContent = initial;
         };
         elements.detailIcon.appendChild(detailImg);
       } else {
+        elements.detailIcon.className = "detail-badge-icon";
         elements.detailIcon.textContent = initial;
       }
     }

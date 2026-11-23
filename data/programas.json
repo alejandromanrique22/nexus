@@ -1,6 +1,7 @@
 [
   {
     "slug": "winamp",
+    "icono": "img/iconos/winamp.png",
     "seccion": "Programas",
     "categoria": "Multimedia",
     "subcategoria": "Reproductores de Audio",
@@ -52,6 +53,7 @@
   },
   {
     "slug": "hwmonitor",
+    "icono": "img/iconos/hwmonitor.jpg",
     "seccion": "Utilidades",
     "categoria": "Sistema y Diagnóstico",
     "subcategoria": "Monitoreo de Hardware",
@@ -73,6 +75,7 @@
   },
   {
     "slug": "crystaldiskinfo",
+    "icono": "img/iconos/crystaldisk.jpg",
     "seccion": "Utilidades",
     "categoria": "Sistema y Diagnóstico",
     "subcategoria": "Discos y Almacenamiento",
@@ -115,6 +118,7 @@
   },
   {
     "slug": "one-core-api",
+    "icono": "img/iconos/onecoreapi.png",
     "seccion": "Utilidades",
     "categoria": "Sistema y Diagnóstico",
     "subcategoria": "Parches y Compatibilidad",
@@ -141,7 +145,7 @@
   },
   {
     "slug": "update-pack-7-r2",
-    "icono": "img/iconos/update.png",
+    "icono": "img/iconos/UpdatePack7R2.png",
     "seccion": "Utilidades",
     "categoria": "Sistema y Diagnóstico",
     "subcategoria": "Parches y Compatibilidad",
@@ -164,6 +168,7 @@
   },
   {
     "slug": "driver-booster",
+    "icono": "img/iconos/driverbooster.png",
     "seccion": "Utilidades",
     "categoria": "Sistema y Diagnóstico",
     "subcategoria": "Controladores / Drivers",
@@ -224,6 +229,28 @@
       {
         "etiqueta": "Ejecutable Portable (64-bit)",
         "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/rufus-4.15.exe"
+      }
+    ]
+  },
+  {
+    "slug": "ventoy",
+    "icono": "img/iconos/ventoy.png",
+    "seccion": "Utilidades",
+    "categoria": "Imágenes y Discos",
+    "subcategoria": "USB Booteables",
+    "nombre": "Ventoy",
+    "editor": "longpanda",
+    "version": "1.1.00",
+    "precio": "Gratis",
+    "actualizado": "2026",
+    "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "arquitectura": "32 y 64 bits",
+    "tamano": "~16 MB",
+    "descripcion": "Herramienta para crear unidades USB multiboot y arrancar archivos ISO, WIM, IMG, VHD y EFI directamente sin reformatear.",
+    "descargas": [
+      {
+        "etiqueta": "Instalador Windows (ZIP)",
+        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/ventoy-windows.zip"
       }
     ]
   },
@@ -315,6 +342,7 @@
   },
   {
     "slug": "foxit-pdf-reader",
+    "icono": "img/iconos/foxit.png",
     "seccion": "Programas",
     "categoria": "Ofimática",
     "subcategoria": "Lectores PDF",
@@ -358,7 +386,7 @@
   },
   {
     "slug": "teamviewer",
-    "icono": "img/iconos/teamviwer.png",
+    "icono": "img/iconos/teamviewer.png",
     "seccion": "Programas",
     "categoria": "Internet y Red",
     "subcategoria": "Escritorio Remoto",
@@ -380,6 +408,7 @@
   },
   {
     "slug": "qbittorrent",
+    "icono": "img/iconos/qbittorrent.png",
     "seccion": "Programas",
     "categoria": "Internet y Red",
     "subcategoria": "Clientes P2P / Torrent",

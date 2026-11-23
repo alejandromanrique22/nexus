@@ -19,9 +19,8 @@ html, body {
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  display: block;
+  min-height: 100%;
 }
 
 a {
@@ -221,11 +220,10 @@ code {
 
 /* Layout principal adaptable con tope máximo (Sidebar fija + Contenido fluido) */
 .portal-layout {
-  flex: 1 0 auto;
   width: 96%;
   max-width: 1180px;
   min-height: 760px;
-  margin: 12px auto 0 auto;
+  margin: 12px auto 12px auto;
   padding: 0 12px;
   overflow: hidden;
 }
@@ -759,6 +757,7 @@ code {
   border: 1px solid #0e1926;
 }
 
+.detail-badge-icon.has-icon,
 .detail-badge-icon:has(img) {
   background-color: transparent;
   border: none;
@@ -908,8 +907,6 @@ code {
 
 /* Pie de página azul fijo al fondo */
 .footer-bar {
-  flex-shrink: 0;
-  margin-top: auto;
   clear: both;
   background-color: #1c2f45;
   color: #c8d7e8;
