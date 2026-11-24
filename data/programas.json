@@ -450,145 +450,236 @@
     ]
   },
   {
-    "slug": "navegadores-windows-xp",
-    "icono": "img/iconos/firefox.png",
+    "slug": "supermium",
+    "icono": "img/iconos/supermium.png",
     "seccion": "Programas",
     "categoria": "Navegadores",
-    "subcategoria": "Windows XP",
-    "nombre": "Navegadores para Windows XP",
-    "editor": "Supermium / Mypal / Thorium / Mozilla",
-    "version": "Pack 2026",
+    "subcategoria": "Chromium / Modernos",
+    "nombre": "Supermium",
+    "editor": "win32ss",
+    "version": "150",
     "precio": "Gratis",
     "actualizado": "2026",
-    "sistemas": ["Windows XP"],
-    "arquitectura": "32 bits",
-    "tamano": "40 - 160 MB",
-    "descripcion": "Supermium 150 mantiene TLS 1.3 y compatibilidad web actual en XP; Mypal 78 y Thorium cubren equipos Pentium III/4; Firefox 52.9 y Chrome 49 quedan como respaldo legado.",
-    "notas": "Para equipos con procesadores Pentium III (sin instrucciones SSE2), utilizá únicamente la variante Mypal 78.1.2 Sin SSE2.",
+    "sistemas": ["Windows 7", "Windows XP"],
+    "arquitectura": "32 y 64 bits",
+    "tamano": "~120 MB",
+    "descripcion": "Navegador moderno basado en Chromium 150 con soporte TLS 1.3, WebAssembly y compatibilidad web actual para Windows XP y Windows 7.",
+    "notas": "Funciona de forma nativa en Windows XP SP3 y Windows 7 SP1 (32 y 64 bits).",
     "descargas": [
       {
-        "etiqueta": "Supermium 150 — Instalador (32-bit, Recomendado)",
+        "etiqueta": "Instalador v150 (64-bit · Windows 7)",
+        "sistemas": ["Windows 7"],
+        "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/supermium_150_64_setup.exe"
+      },
+      {
+        "etiqueta": "Instalador v150 (32-bit · Windows 7)",
+        "sistemas": ["Windows 7"],
+        "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/supermium_150_32_setup.exe"
+      },
+      {
+        "etiqueta": "Instalador v150 (32-bit · Windows XP)",
         "sistemas": ["Windows XP"],
         "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/supermium_150_32_setup.exe"
       },
       {
-        "etiqueta": "Supermium 150 — Portable (.zip, 32-bit)",
+        "etiqueta": "Portable v150 (.zip · 32-bit · Windows XP)",
         "sistemas": ["Windows XP"],
         "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/supermium_150_32_nonsetup.zip"
+      }
+    ]
+  },
+  {
+    "slug": "mozilla-firefox-esr",
+    "icono": "img/iconos/firefox.png",
+    "seccion": "Programas",
+    "categoria": "Navegadores",
+    "subcategoria": "Gecko / Firefox",
+    "nombre": "Mozilla Firefox ESR",
+    "editor": "Mozilla Foundation",
+    "version": "115.45.0 / 52.9.0",
+    "precio": "Gratis",
+    "actualizado": "2026",
+    "sistemas": ["Windows 7", "Windows XP"],
+    "arquitectura": "32 y 64 bits",
+    "tamano": "45 - 60 MB",
+    "descripcion": "Ediciones oficiales Extended Support Release (ESR) de Mozilla Firefox para sistemas Windows 7 y Windows XP.",
+    "descargas": [
+      {
+        "etiqueta": "Firefox 115.45.0 ESR — Instalador Oficial (Windows 7)",
+        "sistemas": ["Windows 7"],
+        "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Firefox%20Setup%20115.45.0esr.exe"
       },
       {
-        "etiqueta": "Thorium 122 — Win32 SSE2 Portable (.zip)",
-        "sistemas": ["Windows XP"],
-        "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/Thorium_WIN32_SSE2_122.0.6261.171.zip"
-      },
-      {
-        "etiqueta": "Thorium 122 — Win32 SSE3 Portable (.zip)",
-        "sistemas": ["Windows XP"],
-        "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/Thorium_WIN32_SSE3_122.0.6261.171.zip"
-      },
-      {
-        "etiqueta": "Mypal 78.1.2 — Quantum SSE2 Portable (.zip)",
-        "sistemas": ["Windows XP"],
-        "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/mypal-78.1.2.en-US.win32.zip"
-      },
-      {
-        "etiqueta": "Mypal 78.1.2 — Sin SSE2 / Pentium III (.zip)",
-        "sistemas": ["Windows XP"],
-        "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/mypal-78.1.2.en-US.win32-sse.zip"
-      },
-      {
-        "etiqueta": "Firefox 52.9.0 ESR — Instalador Offline (Legado)",
+        "etiqueta": "Firefox 52.9.0 ESR — Instalador Offline (Windows XP)",
         "sistemas": ["Windows XP"],
         "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/Firefox%20Setup%2052.9.0esr.exe"
+      }
+    ]
+  },
+  {
+    "slug": "google-chrome",
+    "icono": "img/iconos/chrome.png",
+    "seccion": "Programas",
+    "categoria": "Navegadores",
+    "subcategoria": "Legados Oficiales",
+    "nombre": "Google Chrome",
+    "editor": "Google LLC",
+    "version": "109.0 / 49.0",
+    "precio": "Gratis",
+    "actualizado": "2026",
+    "sistemas": ["Windows 7", "Windows XP"],
+    "arquitectura": "32 y 64 bits",
+    "tamano": "45 - 95 MB",
+    "descripcion": "Últimas versiones oficiales estables de Google Chrome publicadas para Windows 7 (v109) y Windows XP (v49).",
+    "descargas": [
+      {
+        "etiqueta": "Chrome 109.0.5414.120 — Offline (64-bit · Windows 7)",
+        "sistemas": ["Windows 7"],
+        "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Google_Chrome_(64bit)_v109.0.5414.120.exe"
       },
       {
-        "etiqueta": "Google Chrome 49.0 — Instalador Offline (Legado)",
+        "etiqueta": "Chrome 109.0.5414.120 — Offline (32-bit · Windows 7)",
+        "sistemas": ["Windows 7"],
+        "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Google_Chrome_(32bit)_v109.0.5414.120.exe"
+      },
+      {
+        "etiqueta": "Chrome 49.0.2623.112 — Offline (32-bit · Windows XP)",
         "sistemas": ["Windows XP"],
         "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/Google_Chrome_(32bit)_v49.0.2623.112.exe"
       }
     ]
   },
   {
-    "slug": "navegadores-windows-7",
-    "icono": "img/iconos/chrome.png",
+    "slug": "brave-browser",
+    "icono": "img/iconos/brave.png",
     "seccion": "Programas",
     "categoria": "Navegadores",
-    "subcategoria": "Windows 7",
-    "nombre": "Navegadores para Windows 7",
-    "editor": "Supermium / Mozilla / Thorium / Pale Moon",
-    "version": "Pack 2026",
+    "subcategoria": "Legados Oficiales",
+    "nombre": "Brave Browser",
+    "editor": "Brave Software",
+    "version": "1.47.186",
     "precio": "Gratis",
     "actualizado": "2026",
     "sistemas": ["Windows 7"],
     "arquitectura": "32 y 64 bits",
-    "tamano": "30 - 133 MB",
-    "descripcion": "Motores Chromium 150 (Supermium) y Firefox 115 ESR con soporte web moderno, variantes optimizadas de Thorium y Pale Moon, más últimos instaladores oficiales de Chrome 109 y Brave.",
-    "notas": "Elegí la variante de Thorium según el soporte de instrucciones de tu procesador (SSE2, SSE3 o SSE4). Supermium y Firefox 115 ESR funcionan en cualquier equipo con Windows 7 SP1.",
+    "tamano": "~90 MB",
+    "descripcion": "Última versión oficial de Brave Browser compatible con Windows 7, con bloqueo de anuncios y rastreadores integrado.",
     "descargas": [
       {
-        "etiqueta": "Supermium 150 — Instalador (64-bit, Recomendado)",
-        "sistemas": ["Windows 7"],
-        "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/supermium_150_64_setup.exe"
-      },
-      {
-        "etiqueta": "Supermium 150 — Instalador (32-bit, Recomendado)",
-        "sistemas": ["Windows 7"],
-        "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/supermium_150_32_setup.exe"
-      },
-      {
-        "etiqueta": "Firefox 115.45.0 ESR — Instalador Oficial",
-        "sistemas": ["Windows 7"],
-        "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Firefox%20Setup%20115.45.0esr.exe"
-      },
-      {
-        "etiqueta": "Thorium 64-bit SSE3 — Core 2 / Phenom II+",
-        "sistemas": ["Windows 7"],
-        "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Thorium%2064%20bits%20-%20Windows%207/thorium_SSE3_mini_installer.exe"
-      },
-      {
-        "etiqueta": "Thorium 64-bit SSE4 — Core i / Modernos",
-        "sistemas": ["Windows 7"],
-        "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Thorium%2064%20bits%20-%20Windows%207/thorium_SSE4_mini_installer.exe"
-      },
-      {
-        "etiqueta": "Thorium 32-bit SSE2 — CPUs Antiguos",
-        "sistemas": ["Windows 7"],
-        "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Thorium%2032%20bits%20-%20Windows%207/thorium_WIN32_SSE2_mini_installer.exe"
-      },
-      {
-        "etiqueta": "Thorium 32-bit SSE3 — CPUs Intermedios",
-        "sistemas": ["Windows 7"],
-        "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Thorium%2032%20bits%20-%20Windows%207/thorium_WIN32_SSE3_mini_installer.exe"
-      },
-      {
-        "etiqueta": "Pale Moon 35.0.3 — Portable (64-bit)",
-        "sistemas": ["Windows 7"],
-        "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Palemoon-Portable-35.0.3.win64.exe"
-      },
-      {
-        "etiqueta": "Pale Moon 35.0.3 — Portable (32-bit)",
-        "sistemas": ["Windows 7"],
-        "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Palemoon-Portable-35.0.3.win32.exe"
-      },
-      {
-        "etiqueta": "Brave 1.47.186 — Offline (64-bit, Legado)",
+        "etiqueta": "Brave 1.47.186 — Instalador Offline (64-bit · Windows 7)",
         "sistemas": ["Windows 7"],
         "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/BraveBrowserStandaloneSetup.exe"
       },
       {
-        "etiqueta": "Brave 1.47.186 — Offline (32-bit, Legado)",
+        "etiqueta": "Brave 1.47.186 — Instalador Offline (32-bit · Windows 7)",
         "sistemas": ["Windows 7"],
         "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/BraveBrowserStandaloneSetup32.exe"
+      }
+    ]
+  },
+  {
+    "slug": "thorium",
+    "icono": "img/iconos/thorium.png",
+    "seccion": "Programas",
+    "categoria": "Navegadores",
+    "subcategoria": "Chromium / Modernos",
+    "nombre": "Thorium",
+    "editor": "Alex313031",
+    "version": "122 / Win7",
+    "precio": "Gratis",
+    "actualizado": "2026",
+    "sistemas": ["Windows 7", "Windows XP"],
+    "arquitectura": "32 y 64 bits",
+    "tamano": "85 - 115 MB",
+    "descripcion": "Bifurcación de Chromium compilada con optimizaciones de rendimiento por juego de instrucciones (SSE2, SSE3 y SSE4) para equipos clásicos.",
+    "notas": "Elegí la variante según las instrucciones soportadas por tu CPU (SSE2 para Pentium 4 / Athlon 64, SSE3 para Core 2 / Phenom, SSE4 para procesadores Intel Core i o superiores).",
+    "descargas": [
+      {
+        "etiqueta": "Thorium 64-bit SSE3 — Core 2 / Phenom II+ (Windows 7)",
+        "sistemas": ["Windows 7"],
+        "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Thorium%2064%20bits%20-%20Windows%207/thorium_SSE3_mini_installer.exe"
       },
       {
-        "etiqueta": "Google Chrome 109 — Offline (64-bit, Legado)",
+        "etiqueta": "Thorium 64-bit SSE4 — Core i / Modernos (Windows 7)",
         "sistemas": ["Windows 7"],
-        "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Google_Chrome_(64bit)_v109.0.5414.120.exe"
+        "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Thorium%2064%20bits%20-%20Windows%207/thorium_SSE4_mini_installer.exe"
       },
       {
-        "etiqueta": "Google Chrome 109 — Offline (32-bit, Legado)",
+        "etiqueta": "Thorium 32-bit SSE2 — CPUs Antiguos (Windows 7)",
         "sistemas": ["Windows 7"],
-        "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Google_Chrome_(32bit)_v109.0.5414.120.exe"
+        "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Thorium%2032%20bits%20-%20Windows%207/thorium_WIN32_SSE2_mini_installer.exe"
+      },
+      {
+        "etiqueta": "Thorium 32-bit SSE3 — CPUs Intermedios (Windows 7)",
+        "sistemas": ["Windows 7"],
+        "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Thorium%2032%20bits%20-%20Windows%207/thorium_WIN32_SSE3_mini_installer.exe"
+      },
+      {
+        "etiqueta": "Thorium 122 — Win32 SSE2 Portable (.zip · Windows XP)",
+        "sistemas": ["Windows XP"],
+        "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/Thorium_WIN32_SSE2_122.0.6261.171.zip"
+      },
+      {
+        "etiqueta": "Thorium 122 — Win32 SSE3 Portable (.zip · Windows XP)",
+        "sistemas": ["Windows XP"],
+        "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/Thorium_WIN32_SSE3_122.0.6261.171.zip"
+      }
+    ]
+  },
+  {
+    "slug": "mypal",
+    "icono": "img/iconos/mypal.png",
+    "seccion": "Programas",
+    "categoria": "Navegadores",
+    "subcategoria": "Gecko / Firefox",
+    "nombre": "Mypal",
+    "editor": "Feodor2",
+    "version": "78.1.2",
+    "precio": "Gratis",
+    "actualizado": "2026",
+    "sistemas": ["Windows XP"],
+    "arquitectura": "32 bits",
+    "tamano": "~45 MB",
+    "descripcion": "Navegador basado en Mozilla Quantum mantenido específicamente para Windows XP, con soporte para procesadores con y sin instrucciones SSE2.",
+    "notas": "Para equipos con procesadores Pentium III o Athlon XP (sin instrucciones SSE2), utilizá únicamente la variante Sin SSE2.",
+    "descargas": [
+      {
+        "etiqueta": "Mypal 78.1.2 — Quantum SSE2 Portable (.zip · Windows XP)",
+        "sistemas": ["Windows XP"],
+        "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/mypal-78.1.2.en-US.win32.zip"
+      },
+      {
+        "etiqueta": "Mypal 78.1.2 — Sin SSE2 / Pentium III (.zip · Windows XP)",
+        "sistemas": ["Windows XP"],
+        "url": "https://descargas.error404-ar.com.ar/Navegadores%20Windows%20XP/mypal-78.1.2.en-US.win32-sse.zip"
+      }
+    ]
+  },
+  {
+    "slug": "pale-moon",
+    "icono": "img/iconos/palemoon.png",
+    "seccion": "Programas",
+    "categoria": "Navegadores",
+    "subcategoria": "Gecko / Firefox",
+    "nombre": "Pale Moon",
+    "editor": "Moonchild Productions",
+    "version": "35.0.3",
+    "precio": "Gratis",
+    "actualizado": "2026",
+    "sistemas": ["Windows 7"],
+    "arquitectura": "32 y 64 bits",
+    "tamano": "~40 MB",
+    "descripcion": "Navegador ligero con motor Goanna (derivado de Gecko) e interfaz clásica, ideal para equipos con pocos recursos en Windows 7.",
+    "descargas": [
+      {
+        "etiqueta": "Pale Moon 35.0.3 — Portable (64-bit · Windows 7)",
+        "sistemas": ["Windows 7"],
+        "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Palemoon-Portable-35.0.3.win64.exe"
+      },
+      {
+        "etiqueta": "Pale Moon 35.0.3 — Portable (32-bit · Windows 7)",
+        "sistemas": ["Windows 7"],
+        "url": "https://descargas.error404-ar.com.ar/Navegadore%20Windows%207/Palemoon-Portable-35.0.3.win32.exe"
       }
     ]
   }

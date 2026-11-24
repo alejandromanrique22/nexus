@@ -1,4 +1,3 @@
 BORRAR Y REGENERAR FICHAS DE PROGRAMAS SI NO ANDAN LOS ENLACES
 
-Remove-Item .\ficha\*.html -Force
 powershell -ExecutionPolicy Bypass -File .\scripts\generar-fichas.ps1

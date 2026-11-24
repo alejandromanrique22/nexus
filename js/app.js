@@ -36,7 +36,6 @@
     errorState: document.getElementById("errorState"),
     searchForm: document.getElementById("searchForm"),
     searchInput: document.getElementById("search"),
-    systemFilter: document.getElementById("systemFilter"),
     archFilter: document.getElementById("archFilter"),
     sortFilter: document.getElementById("sortFilter"),
     clearFilters: document.getElementById("clearFilters"),
@@ -50,14 +49,12 @@
     pageInfo: document.getElementById("pageInfo"),
     // Elementos de la Ficha Dedicada
     backToListBtn: document.getElementById("backToListBtn"),
-    backToListBottomBtn: document.getElementById("backToListBottomBtn"),
     detailBreadcrumb: document.getElementById("detailBreadcrumb"),
     detailIcon: document.getElementById("detailIcon"),
     detailSectionTag: document.getElementById("detailSectionTag"),
     detailCatTag: document.getElementById("detailCatTag"),
     detailTitle: document.getElementById("detailTitle"),
     detailSubtitle: document.getElementById("detailSubtitle"),
-    detailPrimaryCta: document.getElementById("detailPrimaryCta"),
     detailDescription: document.getElementById("detailDescription"),
     detailNotesBox: document.getElementById("detailNotesBox"),
     detailNotes: document.getElementById("detailNotes"),
@@ -71,8 +68,7 @@
     detailSlug: document.getElementById("detailSlug"),
     detailUpdated: document.getElementById("detailUpdated"),
     detailHashRow: document.getElementById("detailHashRow"),
-    detailHash: document.getElementById("detailHash"),
-    detailShareUrl: document.getElementById("detailShareUrl")
+    detailHash: document.getElementById("detailHash")
   };
 
   function safeUrl(value) {
@@ -152,10 +148,18 @@
     return "Programas";
   }
 
-  function syncOsControls() {
-    if (elements.systemFilter && elements.systemFilter.value !== state.system) {
-      elements.systemFilter.value = state.system;
+  function matchesSection(prog, targetSection) {
+    if (!targetSection || targetSection === "Todos") {
+      return true;
     }
+    var sec = inferSection(prog);
+    if (targetSection === "Programas") {
+      return sec !== "Sistemas / ISOs";
+    }
+    return sec === targetSection;
+  }
+
+  function syncOsChips() {
     for (var i = 0; i < elements.osChips.length; i++) {
       var chip = elements.osChips[i];
       var chipOs = chip.getAttribute("data-os") || "";
@@ -179,12 +183,6 @@
       }
       if (prog.subcategoria && subs.indexOf(prog.subcategoria) === -1) {
         subs.push(prog.subcategoria);
-      } else if (Array.isArray(prog.sistemas)) {
-        prog.sistemas.forEach(function (sys) {
-          if (sys && subs.indexOf(sys) === -1) {
-            subs.push(sys);
-          }
-        });
       }
     });
     return subs;
@@ -215,7 +213,7 @@
 
     var categories = [];
     state.programs.forEach(function (prog) {
-      if (state.section !== "Todos" && inferSection(prog) !== state.section) {
+      if (!matchesSection(prog, state.section)) {
         return;
       }
       if (prog.categoria && categories.indexOf(prog.categoria) === -1) {
@@ -370,11 +368,6 @@
       elements.detailSubtitle.textContent = subParts.join(" · ") || "Paquete de software";
     }
 
-    if (elements.detailPrimaryCta) {
-      elements.detailPrimaryCta.innerHTML = "";
-      elements.detailPrimaryCta.hidden = true;
-    }
-
     if (elements.detailDescription) {
       elements.detailDescription.textContent =
         prog.descripcion || "Sin descripción detallada disponible.";
@@ -517,7 +510,7 @@
     }
 
     syncTopTabs();
-    syncOsControls();
+    syncOsChips();
     renderSidebarMenu();
     renderPrograms();
 
@@ -542,19 +535,6 @@
     }
   }
 
-  function getFirstDownloadUrl(prog) {
-    if (Array.isArray(prog.descargas)) {
-      for (var i = 0; i < prog.descargas.length; i++) {
-        var d = prog.descargas[i];
-        if (d && typeof d === "object") {
-          var u = safeUrl(d.url);
-          if (u) return u;
-        }
-      }
-    }
-    return safeUrl(prog.urlDescarga) || safeUrl(prog.urlOficial) || null;
-  }
-
   function matchesArchitecture(progArch, selectedArch) {
     if (!selectedArch) return true;
     var a = String(progArch || "").toLowerCase();
@@ -570,7 +550,7 @@
     var query = state.search.toLowerCase();
 
     var list = state.programs.filter(function (prog) {
-      if (state.section !== "Todos" && inferSection(prog) !== state.section) {
+      if (!matchesSection(prog, state.section)) {
         return false;
       }
       if (state.category !== "Todas" && prog.categoria !== state.category) {
@@ -646,7 +626,7 @@
 
   function renderPrograms() {
     syncTopTabs();
-    syncOsControls();
+    syncOsChips();
     updateBreadcrumb();
     if (!elements.programList) return;
 
@@ -748,7 +728,6 @@
     state.currentPage = 1;
 
     if (elements.searchInput) elements.searchInput.value = "";
-    if (elements.systemFilter) elements.systemFilter.value = "";
     if (elements.archFilter) elements.archFilter.value = "";
     if (elements.sortFilter) elements.sortFilter.value = "nombre";
 
@@ -811,20 +790,6 @@
           closeItemDetail(true, false, true);
         } else {
           renderPrograms();
-        }
-      });
-    }
-
-    if (elements.systemFilter) {
-      elements.systemFilter.addEventListener("change", function () {
-        lastCatalogScrollY = 0;
-        state.system = elements.systemFilter.value;
-        state.currentPage = 1;
-        if (state.activeItem) {
-          closeItemDetail(true, false, true);
-        } else {
-          renderPrograms();
-          triggerViewFade(elements.catalogView);
         }
       });
     }
@@ -892,12 +857,6 @@
 
     if (elements.backToListBtn) {
       elements.backToListBtn.addEventListener("click", function () {
-        closeItemDetail(true, true, false);
-      });
-    }
-
-    if (elements.backToListBottomBtn) {
-      elements.backToListBottomBtn.addEventListener("click", function () {
         closeItemDetail(true, true, false);
       });
     }

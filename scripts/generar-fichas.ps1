@@ -33,66 +33,233 @@ function Get-SafeIconSrc([string]$rawIcon) {
   return ""
 }
 
-$rawJson = Get-Content -Path $jsonPath -Raw -Encoding UTF8
-$items = $rawJson | ConvertFrom-Json
+function Get-FileNameFromUrl([string]$rawUrl) {
+  if ([string]::IsNullOrWhiteSpace($rawUrl)) { return "" }
+  $cleanUrl = ($rawUrl -split '\?')[0]
+  $lastSegment = ($cleanUrl -split '/')[-1]
+  if (-not $lastSegment) { return "" }
+  return [System.Uri]::UnescapeDataString($lastSegment)
+}
+
+function Infer-Section($item) {
+  if ($item.seccion) {
+    return [string]$item.seccion
+  }
+  $cat  = ([string]$item.categoria).ToLower()
+  $name = ([string]$item.nombre).ToLower()
+  if ($cat.Contains("iso") -or $cat.Contains("sistema") -or $name.Contains("iso")) {
+    return "Sistemas / ISOs"
+  }
+  if ($cat.Contains("util") -or $cat.Contains("driver") -or $cat.Contains("compresor")) {
+    return "Utilidades"
+  }
+  return "Programas"
+}
+
+$emDash    = [string][char]0x2014
+$midDot    = [string][char]0x00B7
+$oAcute    = [string][char]0x00F3
+$OAcute    = [string][char]0x00D3
+$aAcute    = [string][char]0x00E1
+$eAcute    = [string][char]0x00E9
+$iAcute    = [string][char]0x00ED
+$nTilde    = [string][char]0x00F1
+$copySign  = [string][char]0x00A9
+$sepDot    = " " + $midDot + " "
+
+$utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+$rawJson   = [System.IO.File]::ReadAllText($jsonPath, $utf8NoBom)
+$items     = $rawJson | ConvertFrom-Json
 
 foreach ($item in $items) {
   if (-not $item.nombre) { continue }
 
-  $slug = if ($item.slug) {
-    ($item.slug.ToLower() -replace '[^a-z0-9-]+', '-').Trim('-')
+  if ($item.slug) {
+    $slug = ([string]$item.slug).ToLower() -replace '[^a-z0-9-]+', '-'
   } else {
-    ($item.nombre.ToLower() -replace '[^a-z0-9]+', '-').Trim('-')
+    $slug = ([string]$item.nombre).ToLower() -replace '[^a-z0-9]+', '-'
+  }
+  $slug = $slug.Trim('-')
+
+  $nombreRaw  = [string]$item.nombre
+  $nombreSafe = Escape-Html $nombreRaw
+
+  $seccionRaw  = Infer-Section $item
+  $seccionSafe = Escape-Html $seccionRaw
+
+  if ($item.categoria) {
+    $categoriaRaw = [string]$item.categoria
+  } else {
+    $categoriaRaw = "General"
+  }
+  $subcatRaw = [string]$item.subcategoria
+
+  if ($subcatRaw) {
+    $catBadgeText = $categoriaRaw + $sepDot + $subcatRaw
+  } else {
+    $catBadgeText = $categoriaRaw
+  }
+  $catBadgeSafe = Escape-Html $catBadgeText
+
+  $crumbParts = @($seccionRaw, $categoriaRaw)
+  if ($subcatRaw) { $crumbParts += $subcatRaw }
+  $crumbParts += $nombreRaw
+  $crumbSafe = Escape-Html ($crumbParts -join " / ")
+
+  if ($item.editor) {
+    $editorRaw = [string]$item.editor
+  } else {
+    $editorRaw = "No especificado"
+  }
+  $editorSafe = Escape-Html $editorRaw
+
+  $versionRaw = [string]$item.version
+  if ($versionRaw) {
+    $versionSafe = Escape-Html $versionRaw
+  } else {
+    $versionSafe = Escape-Html $emDash
+  }
+  $versionClean = $versionRaw -replace '^(?i)v', ''
+
+  $subParts = @()
+  if ($item.editor) { $subParts += ("Por " + [string]$item.editor) }
+  if ($versionClean) { $subParts += ("Versi" + $oAcute + "n " + $versionClean) }
+  if ($item.tamano) { $subParts += [string]$item.tamano }
+  if ($subParts.Count -gt 0) {
+    $subtitleSafe = Escape-Html ($subParts -join $sepDot)
+  } else {
+    $subtitleSafe = Escape-Html "Paquete de software"
   }
 
-  $nombreRaw    = [string]$item.nombre
-  $nombreSafe   = Escape-Html $nombreRaw
-  $editorSafe   = Escape-Html ([string]$item.editor)
-  $versionSafe  = Escape-Html ([string]$item.version)
-  $archSafe     = Escape-Html ([string]$item.arquitectura)
-  $tamanoSafe   = Escape-Html ([string]$item.tamano)
-  $precioSafe   = Escape-Html ([string]$item.precio)
-  $descSafe     = Escape-Html ([string]$item.descripcion)
-  $notasSafe    = Escape-Html ([string]$item.notas)
-  $sistemasText = if ($item.sistemas) { Escape-Html (($item.sistemas) -join ", ") } else { "Windows" }
+  if ($item.arquitectura) {
+    $archSafe = Escape-Html ([string]$item.arquitectura)
+  } else {
+    $archSafe = Escape-Html $emDash
+  }
+
+  if ($item.tamano) {
+    $tamanoSafe = Escape-Html ([string]$item.tamano)
+  } else {
+    $tamanoSafe = Escape-Html $emDash
+  }
+
+  if ($item.precio) {
+    $precioSafe = Escape-Html ([string]$item.precio)
+  } else {
+    $precioSafe = Escape-Html "Gratis"
+  }
+
+  if ($item.actualizado) {
+    $actualizadoSafe = Escape-Html ([string]$item.actualizado)
+  } else {
+    $actualizadoSafe = Escape-Html "2026"
+  }
+
+  if ($slug) {
+    $slugSafe = Escape-Html $slug
+  } else {
+    $slugSafe = Escape-Html $emDash
+  }
+
+  if ($item.descripcion) {
+    $descSafe = Escape-Html ([string]$item.descripcion)
+  } else {
+    $descSafe = Escape-Html ("Sin descripci" + $oAcute + "n detallada disponible.")
+  }
+
+  $notasSafe = Escape-Html ([string]$item.notas)
+
+  if ($item.sistemas -and $item.sistemas.Count -gt 0) {
+    $sistemasBase = ($item.sistemas) -join ", "
+  } else {
+    $sistemasBase = "Windows"
+  }
+  $sistemasSafe = Escape-Html $sistemasBase
 
   $initialSafe  = Escape-Html ($nombreRaw.Substring(0, 1).ToUpper())
   $iconSrc      = Get-SafeIconSrc ([string]$item.icono)
   $iconSrcSafe  = Escape-Html $iconSrc
 
-  $badgeHtml = if ($iconSrcSafe) {
-    "<div class=`"detail-badge-icon has-icon`"><img src=`"$iconSrcSafe`" alt=`"$nombreSafe`"></div>"
+  if ($iconSrcSafe) {
+    $badgeHtml = "<div class=`"detail-badge-icon has-icon`"><img src=`"$iconSrcSafe`" alt=`"$nombreSafe`"></div>"
   } else {
-    "<div class=`"detail-badge-icon`">$initialSafe</div>"
+    $badgeHtml = "<div class=`"detail-badge-icon`">$initialSafe</div>"
   }
 
   $descargasHtml = ""
+  $hasRows = $false
+
   if ($item.descargas -and $item.descargas.Count -gt 0) {
     foreach ($d in $item.descargas) {
       if ($d.url) {
-        $etq = Escape-Html ([string]$d.etiqueta)
-        $url = Escape-Html ([string]$d.url)
-        $descargasHtml += "<tr><td><strong>$etq</strong></td><td><a class=`"btn-classic btn-primary`" href=`"$url`" target=`"_blank`" rel=`"noopener noreferrer`">Descargar</a></td></tr>`n"
+        if ($d.etiqueta) {
+          $etq = Escape-Html ([string]$d.etiqueta)
+        } else {
+          $etq = Escape-Html "Archivo de descarga"
+        }
+        $urlRaw = [string]$d.url
+        $url = Escape-Html $urlRaw
+        $fileName = Get-FileNameFromUrl $urlRaw
+        if ($fileName) {
+          $fileNameHtml = "<div class=`"mono-col`">$(Escape-Html $fileName)</div>"
+        } else {
+          $fileNameHtml = ""
+        }
+        if ($d.sistemas -and $d.sistemas.Count -gt 0) {
+          $dSystems = ($d.sistemas) -join ", "
+        } else {
+          $dSystems = $sistemasBase
+        }
+        $dSystemsSafe = Escape-Html $dSystems
+
+        $descargasHtml += "<tr><td><strong>$etq</strong>$fileNameHtml</td><td class=`"mono-col`">$dSystemsSafe</td><td class=`"action-links`"><a class=`"btn-classic btn-primary`" href=`"$url`" target=`"_blank`" rel=`"noopener noreferrer`">Descargar</a></td></tr>`n"
+        $hasRows = $true
       }
     }
-  } elseif ($item.urlDescarga) {
-    $url = Escape-Html ([string]$item.urlDescarga)
-    $descargasHtml += "<tr><td><strong>Instalador / Archivo</strong></td><td><a class=`"btn-classic btn-primary`" href=`"$url`" target=`"_blank`" rel=`"noopener noreferrer`">Descargar</a></td></tr>`n"
+  }
+
+  if (-not $hasRows -and $item.urlDescarga) {
+    $urlRaw = [string]$item.urlDescarga
+    $url = Escape-Html $urlRaw
+    $fileName = Get-FileNameFromUrl $urlRaw
+    if ($fileName) {
+      $fileNameHtml = "<div class=`"mono-col`">$(Escape-Html $fileName)</div>"
+    } else {
+      $fileNameHtml = ""
+    }
+    $pkgLabel = "Paquete de instalaci" + $oAcute + "n"
+    $descargasHtml += "<tr><td><strong>$pkgLabel</strong>$fileNameHtml</td><td class=`"mono-col`">$sistemasSafe</td><td class=`"action-links`"><a class=`"btn-classic btn-primary`" href=`"$url`" target=`"_blank`" rel=`"noopener noreferrer`">Descargar</a></td></tr>`n"
+    $hasRows = $true
   }
 
   if ($item.urlOficial) {
     $offUrl = Escape-Html ([string]$item.urlOficial)
-    $descargasHtml += "<tr><td><strong>Sitio oficial</strong></td><td><a class=`"btn-classic`" href=`"$offUrl`" target=`"_blank`" rel=`"noopener noreferrer`">Abrir web oficial</a></td></tr>`n"
+    $descargasHtml += "<tr><td><strong>Sitio oficial del desarrollador</strong></td><td class=`"mono-col`">Enlace externo</td><td class=`"action-links`"><a class=`"btn-classic`" href=`"$offUrl`" target=`"_blank`" rel=`"noopener noreferrer`">Abrir web oficial</a></td></tr>`n"
+    $hasRows = $true
   }
 
-  if (-not $descargasHtml) {
-    $descargasHtml = "<tr><td colspan=`"2`">Enlace pendiente de publicacion.</td></tr>"
+  if (-not $hasRows) {
+    $emptyMsg = "No hay archivos publicados todav" + $iAcute + "a para este elemento."
+    $descargasHtml = "<tr><td colspan=`"3`">$emptyMsg</td></tr>`n"
   }
 
   $notasBlock = ""
   if ($notasSafe) {
-    $notasBlock = "<div class=`"detail-notes`"><strong>Notas tecnicas:</strong><p>$notasSafe</p></div>"
+    $notasTitle = "Notas t" + $eAcute + "cnicas / Instalaci" + $oAcute + "n:"
+    $notasBlock = "<div class=`"detail-notes`"><strong>$notasTitle</strong><p>$notasSafe</p></div>"
   }
+
+  $hashRowHtml = ""
+  if ($item.sha256) {
+    $hashSafe = Escape-Html ([string]$item.sha256)
+    $hashRowHtml = "<tr><th>Hash SHA-256</th><td colspan=`"3`" class=`"mono-col hash-cell`">$hashSafe</td></tr>`n"
+  }
+
+  $descTitle = "DESCRIPCI" + $OAcute + "N DEL PAQUETE"
+  $accionTh  = "Acci" + $oAcute + "n"
+  $verTh     = "Versi" + $oAcute + "n / Compilaci" + $oAcute + "n"
+  $tamTh     = "Tama" + $nTilde + "o Aproximado"
+  $catLink   = "Cat" + $aAcute + "logo principal"
 
   $html = @"
 <!doctype html>
@@ -101,9 +268,9 @@ foreach ($item in $items) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="$descSafe">
-  <title>$nombreSafe — Nexus</title>
+  <title>$nombreSafe $emDash Nexus</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../css/styles.css?v=30">
+  <link rel="stylesheet" href="../css/styles.css?v=32">
 </head>
 <body>
   <header class="topbar">
@@ -119,22 +286,26 @@ foreach ($item in $items) {
   </header>
 
   <div class="portal-layout">
-    <main class="content-area" style="margin-left: 0; width: 100%;">
+    <main class="content-area">
       <div class="detail-nav-bar">
-        <a class="btn-classic" href="../index.html">« Volver al catalogo</a>
-        <span class="detail-crumb">Ficha / $nombreSafe</span>
+        <a class="btn-classic" href="../index.html">&laquo; Volver al listado</a>
+        <span class="detail-crumb">$crumbSafe</span>
       </div>
 
       <div class="detail-header-box">
         $badgeHtml
-        <div class="detail-header-info" style="margin-right: 0;">
+        <div class="detail-header-info">
+          <div class="detail-kicker">
+            <span class="detail-tag">$seccionSafe</span>
+            <span class="detail-tag detail-tag-alt">$catBadgeSafe</span>
+          </div>
           <h1>$nombreSafe</h1>
-          <div class="detail-subtitle">Editor: $editorSafe · Version: $versionSafe · Tamano: $tamanoSafe</div>
+          <div class="detail-subtitle">$subtitleSafe</div>
         </div>
       </div>
 
       <div class="detail-block">
-        <div class="detail-block-title">DESCRIPCION</div>
+        <div class="detail-block-title">$descTitle</div>
         <div class="detail-block-body">
           <p class="detail-text">$descSafe</p>
           $notasBlock
@@ -142,40 +313,52 @@ foreach ($item in $items) {
       </div>
 
       <div class="detail-block">
-        <div class="detail-block-title">DESCARGAS</div>
+        <div class="detail-block-title">ARCHIVOS Y VARIANTES DE DESCARGA</div>
         <div class="detail-block-body no-pad">
           <table class="catalog-table files-table">
             <thead>
               <tr>
-                <th>Archivo / Variante</th>
-                <th>Accion</th>
+                <th>Variante / Nombre de archivo</th>
+                <th>Compatibilidad</th>
+                <th>$accionTh</th>
               </tr>
             </thead>
             <tbody>
-              $descargasHtml
-            </tbody>
+              $descargasHtml            </tbody>
           </table>
         </div>
       </div>
 
       <div class="detail-block">
-        <div class="detail-block-title">ESPECIFICACIONES</div>
+        <div class="detail-block-title">ESPECIFICACIONES Y METADATOS</div>
         <div class="detail-block-body no-pad">
-          <table class="specs-table">
+          <table class="specs-table detail-specs">
             <tbody>
               <tr>
-                <th>Sistemas</th>
-                <td>$sistemasText</td>
+                <th>Desarrollador / Editor</th>
+                <td>$editorSafe</td>
+                <th>$verTh</th>
+                <td>$versionSafe</td>
+              </tr>
+              <tr>
+                <th>Sistemas Soportados</th>
+                <td>$sistemasSafe</td>
                 <th>Arquitectura</th>
                 <td>$archSafe</td>
               </tr>
               <tr>
-                <th>Version</th>
-                <td>$versionSafe</td>
+                <th>$tamTh</th>
+                <td>$tamanoSafe</td>
                 <th>Licencia</th>
                 <td>$precioSafe</td>
               </tr>
-            </tbody>
+              <tr>
+                <th>Identificador (Slug)</th>
+                <td class="mono-col">$slugSafe</td>
+                <th>Actualizado</th>
+                <td>$actualizadoSafe</td>
+              </tr>
+              $hashRowHtml            </tbody>
           </table>
         </div>
       </div>
@@ -184,8 +367,8 @@ foreach ($item in $items) {
 
   <footer class="footer-bar">
     <div class="footer-inner">
-      <span>© 2026 Nexus · Alejandro Manrique (Trelew, Chubut, Argentina).</span>
-      <span><a href="../index.html">Catalogo principal</a></span>
+      <span>$copySign 2026 Nexus $midDot Alejandro Manrique (Trelew, Chubut, Argentina).</span>
+      <span><a href="../index.html">$catLink</a></span>
     </div>
   </footer>
 </body>
@@ -193,7 +376,7 @@ foreach ($item in $items) {
 "@
 
   $filePath = Join-Path $outDir "$slug.html"
-  Set-Content -Path $filePath -Value $html -Encoding UTF8
+  [System.IO.File]::WriteAllText($filePath, $html, $utf8NoBom)
 }
 
 Write-Host "Fichas generadas correctamente en: $outDir" -ForegroundColor Green

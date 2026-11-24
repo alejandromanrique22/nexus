@@ -15,8 +15,8 @@
   <meta name="robots" content="index,follow,max-image-preview:large">
   <title>Nexus — Archivo de Software e ISOs</title>
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./css/styles.css?v=30">
-  <script src="./js/app.js?v=30" defer></script>
+  <link rel="stylesheet" href="./css/styles.css?v=35">
+  <script src="./js/app.js?v=35" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main-panel">Saltar al contenido</a>
@@ -59,7 +59,7 @@
   </div>
 
   <div class="portal-layout">
-    <aside class="sidebar" aria-label="Menú de categorías y submenús">
+    <aside class="sidebar" aria-label="Menú de categorías y filtros">
       <div class="sidebar-box">
         <div class="sidebar-header">MENÚ DE APARTADOS</div>
         <div id="sidebarMenu" class="sidebar-tree"></div>
@@ -68,18 +68,6 @@
       <div class="sidebar-box">
         <div class="sidebar-header">FILTROS DEL CATÁLOGO</div>
         <div class="sidebar-filters">
-          <div class="filter-row">
-            <label for="systemFilter">Sistema operativo</label>
-            <select id="systemFilter">
-              <option value="">Todos los sistemas</option>
-              <option value="Windows XP">Windows XP</option>
-              <option value="Windows 7">Windows 7</option>
-              <option value="Windows 8.1">Windows 8.1</option>
-              <option value="Windows 10">Windows 10</option>
-              <option value="Windows 11">Windows 11</option>
-            </select>
-          </div>
-
           <div class="filter-row">
             <label for="archFilter">Arquitectura</label>
             <select id="archFilter">
@@ -116,7 +104,7 @@
     <main id="main-panel" class="content-area">
       <!-- VISTA 1: LISTADO DEL CATÁLOGO -->
       <div id="catalogView">
-        <div class="os-quickbar" role="group" aria-label="Filtrar rápido por sistema operativo">
+        <div class="os-quickbar" role="group" aria-label="Filtrar por sistema operativo">
           <span class="os-label">Sistema:</span>
           <button type="button" class="os-chip active" data-os="">Todos</button>
           <button type="button" class="os-chip" data-os="Windows XP">Windows XP</button>
@@ -157,7 +145,7 @@
           <ul>
             <li><strong>Sistemas y arquitecturas:</strong> Verificá si el instalador o ISO corresponde a 32 bits (x86) o 64 bits (x64) y qué versión o Service Pack de Windows admite.</li>
             <li><strong>Integridad de archivos:</strong> Revisá el peso aproximado del paquete y, cuando esté publicado, el hash SHA-256 antes de instalar o grabar.</li>
-            <li><strong>Ficha del paquete:</strong> Hacé clic en el nombre o en <em>Ver ficha</em> para abrir la página completa con todos los archivos y metadatos.</li>
+            <li><strong>Ficha del paquete:</strong> Hacé clic en el nombre o en <em>Abrir ficha →</em> para ver todas las variantes de descarga y metadatos.</li>
           </ul>
         </div>
       </div>
@@ -171,7 +159,6 @@
 
         <div class="detail-header-box">
           <div id="detailIcon" class="detail-badge-icon">?</div>
-          <div id="detailPrimaryCta" class="detail-primary-cta"></div>
           <div class="detail-header-info">
             <div class="detail-kicker">
               <span id="detailSectionTag" class="detail-tag">Programas</span>
@@ -245,10 +232,6 @@
               </tbody>
             </table>
           </div>
-        </div>
-
-        <div class="detail-footer-bar">
-          <button type="button" id="backToListBottomBtn" class="btn-classic">« Volver al listado</button>
         </div>
       </article>
     </main>
