@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "slug": "winamp",
     "icono": "img/iconos/winamp.png",
@@ -17,7 +17,7 @@
     "descargas": [
       {
         "etiqueta": "Instalador Completo (32-bit)",
-        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/winamp_latest_full.exe"
+        "url": "https://descargas.error404-ar.com.ar/winamp_latest_full.exe"
       }
     ]
   },
@@ -59,17 +59,17 @@
     "subcategoria": "Monitoreo de Hardware",
     "nombre": "HWMonitor",
     "editor": "CPUID",
-    "version": "1.55",
+    "version": "1.68",
     "precio": "Gratis",
     "actualizado": "2026",
     "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7", "Windows XP"],
-    "arquitectura": "32 bits",
+    "arquitectura": "32 y 64 bits",
     "tamano": "~2 MB",
     "descripcion": "Lectura en tiempo real de sensores de temperatura, voltajes y velocidad de ventiladores.",
     "descargas": [
       {
-        "etiqueta": "Ejecutable (32-bit)",
-        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/HWMonitor_x32.exe"
+        "etiqueta": "Archivo ZIP (32 / 64-bit)",
+        "url": "https://descargas.error404-ar.com.ar/hwmonitor_1.68.zip"
       }
     ]
   },
@@ -81,14 +81,19 @@
     "subcategoria": "Discos y Almacenamiento",
     "nombre": "CrystalDiskInfo",
     "editor": "hiyohiyo",
-    "version": "9.5",
+    "version": "9.9.5",
     "precio": "Gratis",
     "actualizado": "2026",
     "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
     "arquitectura": "32 y 64 bits",
-    "tamano": "Web Oficial",
+    "tamano": "~8 MB",
     "descripcion": "Diagnóstico de salud S.M.A.R.T., horas de encendido y temperatura en discos rígidos y unidades SSD.",
-    "urlOficial": "https://crystalmark.info/en/software/crystaldiskinfo/"
+    "descargas": [
+      {
+        "etiqueta": "Archivo ZIP (32 / 64-bit)",
+        "url": "https://descargas.error404-ar.com.ar/CrystalDiskInfo9_9_5.zip"
+      }
+    ]
   },
   {
     "slug": "everything",
@@ -108,11 +113,11 @@
     "descargas": [
       {
         "etiqueta": "Instalador (32-bit)",
-        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/Everything-1.4.1.1032.x86-Setup.exe"
+        "url": "https://descargas.error404-ar.com.ar/Everything-1.4.1.1032.x86-Setup.exe"
       },
       {
         "etiqueta": "Instalador (64-bit)",
-        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/Everything-1.4.1.1032.x64-Setup.exe"
+        "url": "https://descargas.error404-ar.com.ar/Everything-1.4.1.1032.x64-Setup.exe"
       }
     ]
   },
@@ -135,11 +140,11 @@
     "descargas": [
       {
         "etiqueta": "Paquete x86 (32-bit)",
-        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/one-core-api-pack-x86.zip"
+        "url": "https://descargas.error404-ar.com.ar/one-core-api-pack-x86.zip"
       },
       {
         "etiqueta": "Paquete x64 (64-bit)",
-        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/one-core-api-pack-x64.zip"
+        "url": "https://descargas.error404-ar.com.ar/one-core-api-pack-x64.zip"
       }
     ]
   },
@@ -162,7 +167,7 @@
     "descargas": [
       {
         "etiqueta": "Instalador Offline (32 / 64-bit)",
-        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/UpdatePack7R2-26.1.15.exe"
+        "url": "https://descargas.error404-ar.com.ar/UpdatePack7R2-26.1.15.exe"
       }
     ]
   },
@@ -184,7 +189,7 @@
     "descargas": [
       {
         "etiqueta": "Archivo ZIP (32 / 64-bit)",
-        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/DriverBooster.zip"
+        "url": "https://descargas.error404-ar.com.ar/DriverBooster.zip"
       }
     ]
   },
@@ -206,7 +211,7 @@
     "descargas": [
       {
         "etiqueta": "Instalador (32-bit)",
-        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/poweriso_setup.exe"
+        "url": "https://descargas.error404-ar.com.ar/poweriso_setup.exe"
       }
     ]
   },
@@ -218,7 +223,7 @@
     "subcategoria": "USB Booteables",
     "nombre": "Rufus",
     "editor": "Pete Batard",
-    "version": "4.15",
+    "version": "4.16",
     "precio": "Gratis",
     "actualizado": "2026",
     "sistemas": ["Windows 11", "Windows 10", "Windows 8.1"],
@@ -228,7 +233,7 @@
     "descargas": [
       {
         "etiqueta": "Ejecutable Portable (64-bit)",
-        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/rufus-4.15.exe"
+        "url": "https://descargas.error404-ar.com.ar/rufus-4.16p.exe"
       }
     ]
   },
@@ -240,7 +245,7 @@
     "subcategoria": "USB Booteables",
     "nombre": "Ventoy",
     "editor": "longpanda",
-    "version": "1.1.00",
+    "version": "1.1.18",
     "precio": "Gratis",
     "actualizado": "2026",
     "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
@@ -249,8 +254,8 @@
     "descripcion": "Herramienta para crear unidades USB multiboot y arrancar archivos ISO, WIM, IMG, VHD y EFI directamente sin reformatear.",
     "descargas": [
       {
-        "etiqueta": "Instalador Windows (ZIP)",
-        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/ventoy-windows.zip"
+        "etiqueta": "Instalador Windows Portable (ZIP)",
+        "url": "https://descargas.error404-ar.com.ar/ventoy-1.1.18-windows.zip"
       }
     ]
   },
@@ -296,7 +301,7 @@
     "subcategoria": "7Z / Código Abierto",
     "nombre": "7-Zip",
     "editor": "Igor Pavlov",
-    "version": "26.05",
+    "version": "26.06",
     "precio": "Gratis",
     "actualizado": "2026",
     "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7", "Windows XP"],
@@ -351,14 +356,14 @@
     "version": "2026.2.1",
     "precio": "Gratis",
     "actualizado": "2026",
-    "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
+    "sistemas": ["Windows 11", "Windows 10"],
     "arquitectura": "64 bits",
-    "tamano": "~180 MB",
+    "tamano": "~284 MB",
     "descripcion": "Lector de PDF completo con firma digital, relleno de formularios y herramientas de anotación.",
     "descargas": [
       {
         "etiqueta": "Instalador (64-bit)",
-        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/FoxitPDFReader202621_L10N_Setup_Prom_x64.exe"
+        "url": "https://descargas.error404-ar.com.ar/FoxitPDFReader202621_L10N_Setup_Prom_x64.exe"
       }
     ]
   },
@@ -396,13 +401,21 @@
     "precio": "Gratis",
     "actualizado": "2026",
     "sistemas": ["Windows 11", "Windows 10", "Windows 8.1", "Windows 7"],
-    "arquitectura": "64 bits",
+    "arquitectura": "32 y 64 bits",
     "tamano": "~45 MB",
     "descripcion": "Plataforma de acceso remoto, asistencia técnica y transferencia de archivos entre equipos.",
     "descargas": [
       {
-        "etiqueta": "Instalador (64-bit)",
-        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/TeamViewer_Setup_x64.exe"
+        "etiqueta": "Instalador (64-bit · Windows 10 / 11)",
+        "url": "https://descargas.error404-ar.com.ar/TeamViewer_Setup_x64.exe"
+      },
+      {
+        "etiqueta": "Instalador (32-bit · Windows 7)",
+        "url": "https://descargas.error404-ar.com.ar/TeamViewer%20Windows%207/TeamViewer_Setup.exe"
+      },
+      {
+        "etiqueta": "Instalador (64-bit · Windows 7)",
+        "url": "https://descargas.error404-ar.com.ar/TeamViewer%20Windows%207/TeamViewer_Setup_x64.exe"
       }
     ]
   },
@@ -417,14 +430,22 @@
     "version": "5.3.0",
     "precio": "Gratis",
     "actualizado": "2026",
-    "sistemas": ["Windows 11", "Windows 10"],
-    "arquitectura": "64 bits",
+    "sistemas": ["Windows 11", "Windows 10", "Windows 7"],
+    "arquitectura": "32 y 64 bits",
     "tamano": "50 MB",
     "descripcion": "Cliente BitTorrent de código abierto y libre de publicidad con buscador integrado y soporte magnet.",
     "descargas": [
       {
-        "etiqueta": "Instalador (64-bit)",
-        "url": "https://descargas.error404-ar.com.ar/ProgramasTODOS/qbittorrent_5.3.0_x64_setup.exe"
+        "etiqueta": "Instalador v5.3.0 (64-bit · Windows 10 / 11)",
+        "url": "https://descargas.error404-ar.com.ar/qBittorrent/qbittorrent_5.3.0_x64_setup.exe"
+      },
+      {
+        "etiqueta": "Instalador v4.5.5 (64-bit · Windows 7)",
+        "url": "https://descargas.error404-ar.com.ar/qBittorrent/qbittorrent_4.5.5_x64_setup.exe"
+      },
+      {
+        "etiqueta": "Instalador v4.4.5 (32-bit · Windows 7)",
+        "url": "https://descargas.error404-ar.com.ar/qBittorrent/qbittorrent_4.4.5_setup.exe"
       }
     ]
   },
